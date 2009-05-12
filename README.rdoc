@@ -1,0 +1,7 @@
+= picasa
+
+Description goes here.
+
+== Copyright
+
+Copyright (c) 2009 Wojciech Wnętrzak. See LICENSE for details.
