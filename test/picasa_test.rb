@@ -1,7 +1,11 @@
 require 'test_helper'
 
 class PicasaTest < Test::Unit::TestCase
-  should "probably rename this file and start testing for real" do
-    flunk "hey buddy, you should probably rename this file and start testing for real"
+  context 'with xml page' do
+    setup {}
+    
+    should 'parse it' do
+      assert true
+    end
   end
 end

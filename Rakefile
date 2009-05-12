@@ -5,10 +5,11 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "picasa"
-    gem.summary = %Q{TODO}
+    gem.summary = %Q{simple google picasa managment}
     gem.email = "w.wnetrzak@gmail.com"
     gem.homepage = "http://github.com/morgoth/picasa"
     gem.authors = ["Wojciech Wnętrzak"]
+    gem.add_dependency('xml-simple')
 
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
