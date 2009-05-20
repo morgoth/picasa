@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
      "Rakefile",
      "VERSION.yml",
      "lib/picasa.rb",
+     "picasa.gemspec",
      "test/fixtures/albums",
      "test/fixtures/photos",
      "test/picasa_test.rb",
