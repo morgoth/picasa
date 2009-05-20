@@ -19,7 +19,7 @@ In RAILS_ROOT/config/environment.rb
   
   Picasa.photos(google_username, album_id)
   #=> {:photos => [{ :title, :thumbnail_1, :thumbnail_2, :thumbnail_3, :photo },{}],
-  #    :slideshow => "link to picasa slideshow"}
+  #       :slideshow => "link to picasa slideshow"}
   
 = Copyright
 

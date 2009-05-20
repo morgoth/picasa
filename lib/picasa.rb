@@ -3,7 +3,6 @@ module Picasa
   require "xmlsimple"
 
   def albums(google_user)
-    #returns [ {:id => "id", :title => "title"}, {another one} ]
     http=Net::HTTP.new('picasaweb.google.com')
     resp, data = http.get("/data/feed/api/user/#{google_user}")
     xml=XmlSimple.xml_in(data, 'KeyAttr' => 'name')
@@ -19,7 +18,6 @@ module Picasa
   end
 
   def photos(google_user, album_id)
-    #returns {:photos => [:title, :thumbnail, :photo], :slideshow => "link to picasa slideshow"}
     http=Net::HTTP.new('picasaweb.google.com')
     resp, data = http.get("/data/feed/api/user/#{google_user}/albumid/#{album_id}")
     xml=XmlSimple.xml_in(data, 'KeyAttr' => 'name')
