@@ -9,12 +9,13 @@ Gem::Specification.new do |s|
   s.date = %q{2009-05-20}
   s.email = %q{w.wnetrzak@gmail.com}
   s.extra_rdoc_files = [
-    "README.rdoc"
+    "LICENSE",
+     "README.rdoc"
   ]
   s.files = [
     ".document",
      ".gitignore",
-     "MIT-LICENSE",
+     "LICENSE",
      "README.rdoc",
      "Rakefile",
      "VERSION.yml",
