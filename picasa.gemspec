@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{picasa}
-  s.version = "0.1.1"
+  s.version = "0.1.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Wojciech Wn\304\231trzak"]
-  s.date = %q{2009-05-20}
+  s.date = %q{2009-07-02}
   s.email = %q{w.wnetrzak@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
      "Rakefile",
      "VERSION.yml",
      "lib/picasa.rb",
+     "lib/web_albums.rb",
      "picasa.gemspec",
      "test/fixtures/albums",
      "test/fixtures/photos",
@@ -29,7 +30,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/morgoth/picasa}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.3.3}
+  s.rubygems_version = %q{1.3.4}
   s.summary = %q{simple google picasa managment}
   s.test_files = [
     "test/picasa_test.rb",
