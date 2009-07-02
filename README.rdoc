@@ -2,25 +2,25 @@
 
 Simple google picasa managment.
 Only for public albums so far.
-  
+
 = Installation
 
   gem sources -a http://gems.github.com
   sudo gem install morgoth-picasa
 
 In RAILS_ROOT/config/environment.rb
-  
+
   config.gem "morgoth-picasa",  :lib => "picasa"
 
 == Usage
 
-  Picasa.albums(google_username)
-  #=> [ {:id => "666", :title => "satan-album", :photos_count => '6'}, {another one} ]
-  
-  Picasa.photos(google_username, album_id)
+  Picasa.albums(:google_username => 'google_username')
+  #=> [ {:id => "666", :title => "satan-album", :photos_count => 6}, {another one} ]
+
+  Picasa.photos(:google_username => google_username, :album_id => 'album_id')
   #=> {:photos => [{ :title, :thumbnail_1, :thumbnail_2, :thumbnail_3, :photo },{}],
-  #       :slideshow => "link to picasa slideshow"}
-  
+  #    :slideshow => "link to picasa slideshow"}
+
 = Copyright
 
 Copyright (c) 2009 Wojciech Wnętrzak, released under the MIT license.
