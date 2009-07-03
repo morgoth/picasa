@@ -24,13 +24,26 @@ class PicasaTest < Test::Unit::TestCase
 
     should 'parse it' do
       photos = Picasa.photos(:google_user => 'some.user', :album_id => '666')
-      assert_equal photos[:photos].count.to_i, 10
+      assert_equal 10, photos[:photos].count
       assert_not_nil photos[:slideshow]
       assert_not_nil photos[:photos].first[:thumbnail_1]
       assert_not_nil photos[:photos].first[:thumbnail_2]
       assert_not_nil photos[:photos].first[:thumbnail_3]
       assert_nil photos[:photos].first[:title]
-      assert_equal photos[:photos].first[:photo], "http://lh5.ggpht.com/_Kp7xCOU0f_U/SQS8EFqEXjI/AAAAAAAAAFo/aUOA6byXAuE/Jurek.JPG"
+      assert_equal "http://lh5.ggpht.com/_Kp7xCOU0f_U/SQS8EFqEXjI/AAAAAAAAAFo/aUOA6byXAuE/Jurek.JPG",
+        photos[:photos].first[:photo]
+    end
+  end
+
+  should "Raise argument error if google user is not present" do
+    assert_raise ArgumentError do
+      Picasa.albums
+    end
+  end
+
+  should "Raise argument error if album_id is not present" do
+    assert_raise ArgumentError do
+      Picasa.photos :google_user => 'some.user'
     end
   end
 end
