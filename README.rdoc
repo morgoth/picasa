@@ -5,12 +5,16 @@ Only for public albums so far.
 
 = Installation
 
+<b>deprecated!</b>
   gem sources -a http://gems.github.com
   sudo gem install morgoth-picasa
 
+<b>actual</b>
+  sudo gem install picasa --source http://gemcutter.org
+
 In RAILS_ROOT/config/environment.rb
 
-  config.gem "morgoth-picasa",  :lib => "picasa"
+  config.gem "picasa"
 
 == Usage
 
