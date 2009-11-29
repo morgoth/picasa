@@ -5,11 +5,6 @@ Only for public albums so far.
 
 = Installation
 
-<b>deprecated!</b>
-  gem sources -a http://gems.github.com
-  sudo gem install morgoth-picasa
-
-<b>actual</b>
   sudo gem install picasa --source http://gemcutter.org
 
 In RAILS_ROOT/config/environment.rb
@@ -24,6 +19,15 @@ In RAILS_ROOT/config/environment.rb
   Picasa.photos(:google_user => 'google_username', :album_id => 'album_id')
   #=> {:photos => [{ :title, :thumbnail_1, :thumbnail_2, :thumbnail_3, :photo },{}],
   #    :slideshow => "link to picasa slideshow"}
+
+or you can set google user in initializer like this:
+
+  Picasa::WebAlbums.google_user = "google_username"
+
+and use it:
+
+  Picasa.albums
+  Picasa.photos(:album_id => 'album_id')
 
 = Copyright
 

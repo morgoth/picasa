@@ -7,6 +7,7 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "picasa"
+    gem.description = %Q{Simple Google Picasa managment}
     gem.summary = %Q{simple google picasa managment}
     gem.email = "w.wnetrzak@gmail.com"
     gem.homepage = "http://github.com/morgoth/picasa"

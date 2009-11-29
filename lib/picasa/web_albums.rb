@@ -1,9 +1,14 @@
 module Picasa
   class WebAlbums
-    attr_accessor :google_user
+    attr_reader :google_user
 
-    def initialize(google_user)
-      @google_user = google_user
+    def self.google_user=(user)
+      @@google_user = user
+    end
+
+    def initialize(user)
+      @google_user = user || @@google_user
+      raise ArgumentError.new("You must specify google_user") unless @google_user
     end
 
     def albums

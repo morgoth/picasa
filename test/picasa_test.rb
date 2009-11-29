@@ -37,13 +37,20 @@ class PicasaTest < Test::Unit::TestCase
 
   should "Raise argument error if google user is not present" do
     assert_raise ArgumentError do
-      Picasa.albums
+      Picasa::WebAlbums.new
     end
   end
 
   should "Raise argument error if album_id is not present" do
     assert_raise ArgumentError do
       Picasa.photos :google_user => 'some.user'
+    end
+  end
+
+  should "Not raise argument error if google user is set by class variable" do
+    Picasa::WebAlbums.google_user = "some.user"
+    assert_nothing_raised do
+      Picasa::WebAlbums.new(nil)
     end
   end
 end
