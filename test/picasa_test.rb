@@ -13,6 +13,8 @@ class PicasaTest < Test::Unit::TestCase
       assert_equal "SAPS in da akcion :P", albums.first[:title]
       assert_equal 10, albums[2][:photos_count]
       assert_equal "5277503612406515713", albums.first[:id]
+      assert_not_nil albums.first[:photo]
+      assert_not_nil albums.first[:thumbnail]
     end
   end
 
