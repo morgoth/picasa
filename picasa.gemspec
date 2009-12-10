@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{picasa}
-  s.version = "0.1.7"
+  s.version = "0.1.8"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Wojciech Wnętrzak"]
-  s.date = %q{2009-12-09}
+  s.date = %q{2009-12-10}
   s.description = %q{Simple Google Picasa managment}
   s.email = %q{w.wnetrzak@gmail.com}
   s.extra_rdoc_files = [
