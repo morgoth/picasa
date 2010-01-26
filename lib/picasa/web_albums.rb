@@ -1,19 +1,13 @@
 module Picasa
   class WebAlbums
-    attr_reader :google_user
-
-    def self.google_user=(user)
-      @@google_user = user
-    end
-
     def initialize(user)
-      @google_user = user || @@google_user
-      raise ArgumentError.new("You must specify google_user") unless @google_user
+      Picasa.config.google_user ||= user
+      raise ArgumentError.new("You must specify google_user") unless Picasa.config.google_user
     end
 
     def albums
-      data = connect("/data/feed/api/user/#{google_user}")
-      xml=XmlSimple.xml_in(data)
+      data = connect("/data/feed/api/user/#{Picasa.config.google_user}")
+      xml = XmlSimple.xml_in(data)
       albums = []
       xml['entry'].each do |album|
         attributes = {}
@@ -28,7 +22,7 @@ module Picasa
     end
 
     def photos(album_id)
-      data = connect("/data/feed/api/user/#{google_user}/albumid/#{album_id}")
+      data = connect("/data/feed/api/user/#{Picasa.config.google_user}/albumid/#{album_id}")
       xml = XmlSimple.xml_in(data)
       photos = []
       xml['entry'].each do |photo|

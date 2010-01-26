@@ -49,8 +49,10 @@ class PicasaTest < Test::Unit::TestCase
     end
   end
 
-  should "Not raise argument error if google user is set by class variable" do
-    Picasa::WebAlbums.google_user = "some.user"
+  should "Not raise argument error if google user is set by configuration block" do
+    Picasa.config do |c|
+      c.google_user = 'some.user'
+    end
     assert_nothing_raised do
       Picasa::WebAlbums.new(nil)
     end
