@@ -23,7 +23,9 @@ In RAILS_ROOT/config/environment.rb
 
 or you can set google user in initializer like this:
 
-  Picasa::WebAlbums.google_user = "google_username"
+  Picasa.config do |c|
+    c.google_user = 'google.user'
+  end
 
 and use it:
 
