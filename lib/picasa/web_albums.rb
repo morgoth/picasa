@@ -1,7 +1,7 @@
 module Picasa
   class WebAlbums
     def initialize(user)
-      Picasa.config.google_user ||= user
+      Picasa.config.google_user = user || Picasa.config.google_user
       raise ArgumentError.new("You must specify google_user") unless Picasa.config.google_user
     end
 

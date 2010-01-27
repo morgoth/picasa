@@ -13,8 +13,8 @@ begin
     gem.homepage = "http://github.com/morgoth/picasa"
     gem.authors = ["Wojciech Wnętrzak"]
     gem.add_dependency('xml-simple')
-    gem.add_development_dependency('shoulda')
-    gem.add_development_dependency('fakeweb')
+    gem.add_development_dependency 'test-unit', '>=2.0.6'
+    gem.add_development_dependency 'fakeweb'
 
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
