@@ -12,6 +12,7 @@ class WebAlbumsTest < Test::Unit::TestCase
     assert_equal "5277503612406515713", albums.first[:id]
     assert_not_nil albums.first[:photo]
     assert_not_nil albums.first[:thumbnail]
+    assert_not_nil albums.first[:slideshow]
   end
 
   test 'Should parse photos page' do

@@ -16,6 +16,7 @@ module Picasa
         attributes[:photos_count] = album['numphotos'][0].to_i
         attributes[:photo] = album['group'][0]['content']['url']
         attributes[:thumbnail] = album['group'][0]['thumbnail'][0]['url']
+        attributes[:slideshow] = album['link'][1]['href'] + "#slideshow"
         albums << attributes
       end if xml['entry']
       albums
@@ -35,7 +36,7 @@ module Picasa
         attributes[:photo] = photo['content']['src']
         photos << attributes
       end if xml['entry']
-      { :photos => photos, :slideshow => xml['link'][2]['href'] }
+      { :photos => photos, :slideshow => xml['link'][1]['href'] + "#slideshow" }
     end
 
     private

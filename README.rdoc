@@ -14,7 +14,8 @@ In RAILS_ROOT/config/environment.rb
 == Usage
 
   Picasa.albums(:google_user => 'google_username')
-  #=> [ {:id => "666", :title => "satan-album", :photos_count => 6, :photo => "url", :thumbnail => "url"},
+  #=> [ {:id => "666", :title => "satan-album", :photos_count => 6, :photo => "url",
+  #      :thumbnail => "url", :slideshow => "url"},
   #     {another one} ]
 
   Picasa.photos(:google_user => 'google_username', :album_id => 'album_id')
