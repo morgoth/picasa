@@ -5,7 +5,7 @@ Only for public albums so far.
 
 = Installation
 
-  sudo gem install picasa --source http://gemcutter.org
+  gem install picasa
 
 In RAILS_ROOT/config/environment.rb
 
