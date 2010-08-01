@@ -1,6 +1,6 @@
-require 'test_helper'
+require 'helper'
 
-class ConfigTest < Test::Unit::TestCase
+class TestConfig < Test::Unit::TestCase
   test "Not raise argument error if google user is set by configuration block" do
     Picasa.config do |c|
       c.google_user = 'some.user'

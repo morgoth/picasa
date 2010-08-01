@@ -7,22 +7,18 @@ Only for public albums so far.
 
   gem install picasa
 
-In RAILS_ROOT/config/environment.rb
-
-  config.gem "picasa"
-
 == Usage
 
   Picasa.albums(:google_user => 'google_username')
-  #=> [ {:id => "666", :title => "satan-album", :photos_count => 6, :photo => "url",
-  #      :thumbnail => "url", :slideshow => "url"},
+  # => [ {:id => "666", :title => "satan-album", :photos_count => 6, :photo => "url",
+  #      :thumbnail => "url", :slideshow => "url", :summary => "summary"},
   #     {another one} ]
 
   Picasa.photos(:google_user => 'google_username', :album_id => 'album_id')
   #=> {:photos => [{ :title, :thumbnail_1, :thumbnail_2, :thumbnail_3, :photo },{}],
   #    :slideshow => "link to picasa slideshow"}
 
-or you can set google user in initializer like this:
+or you can set google user for all requests like this:
 
   Picasa.config do |c|
     c.google_user = 'google.user'

@@ -29,11 +29,10 @@ module Picasa
       photos = []
       xml['entry'].each do |photo|
         attributes = {}
-        attributes[:title] = photo['group'][0]['description'][0]['content'] #returns nil if empty
+        attributes[:title] = photo['group'][0]['description'][0]['content']
         attributes[:thumbnail_1] = photo['group'][0]['thumbnail'][0]['url']
         attributes[:thumbnail_2] = photo['group'][0]['thumbnail'][1]['url']
         attributes[:thumbnail_3] = photo['group'][0]['thumbnail'][2]['url']
-        #attributes[:photo] << photo['group'][0]['content']['url']
         attributes[:photo] = photo['content']['src']
         photos << attributes
       end if xml['entry']

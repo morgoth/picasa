@@ -1,6 +1,6 @@
-require 'test_helper'
+require 'helper'
 
-class WebAlbumsTest < Test::Unit::TestCase
+class TestWebAlbums < Test::Unit::TestCase
   test 'Should parse albums page' do
     page = fixture_file('albums')
     FakeWeb.register_uri(:get, "picasaweb.google.com/data/feed/api/user/some.user", :response => page)
