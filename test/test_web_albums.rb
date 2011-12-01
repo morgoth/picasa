@@ -1,11 +1,11 @@
-require 'helper'
+require "helper"
 
 class TestWebAlbums < Test::Unit::TestCase
-  test 'Should parse albums page' do
-    page = fixture_file('albums')
+  test "Should parse albums page" do
+    page = fixture_file("albums")
     FakeWeb.register_uri(:get, "picasaweb.google.com/data/feed/api/user/some.user", :response => page)
 
-    albums = Picasa.albums(:google_user => 'some.user')
+    albums = Picasa.albums(:google_user => "some.user")
     assert_equal 5, albums.count
     assert_equal "SAPS in da akcion :P", albums.first[:title]
     assert_equal 10, albums[2][:photos_count]
@@ -15,11 +15,11 @@ class TestWebAlbums < Test::Unit::TestCase
     assert_not_nil albums.first[:slideshow]
   end
 
-  test 'Should parse photos page' do
-    page = fixture_file('photos')
+  test "Should parse photos page" do
+    page = fixture_file("photos")
     FakeWeb.register_uri(:get, "picasaweb.google.com/data/feed/api/user/some.user/albumid/666", :response => page)
 
-    photos = Picasa.photos(:google_user => 'some.user', :album_id => '666')
+    photos = Picasa.photos(:google_user => "some.user", :album_id => "666")
     assert_equal 10, photos[:photos].count
     assert_not_nil photos[:slideshow]
     assert_not_nil photos[:photos].first[:thumbnail_1]
@@ -38,7 +38,7 @@ class TestWebAlbums < Test::Unit::TestCase
 
   test "Raise argument error if album_id is not present" do
     assert_raise ArgumentError do
-      Picasa.photos :google_user => 'some.user'
+      Picasa.photos :google_user => "some.user"
     end
   end
 end

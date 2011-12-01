@@ -1,7 +1,6 @@
-require 'net/http'
-require 'xmlsimple'
-require 'picasa/web_albums'
-require 'picasa/config'
+require "picasa/web_albums"
+require "picasa/config"
+require "picasa/version"
 
 module Picasa
   def self.albums(options = {})
