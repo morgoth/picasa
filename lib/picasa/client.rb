@@ -1,16 +1,17 @@
 require "net/http"
 require "net/https"
 require "uri"
+require "multi_xml"
 
 class Picasa::Client
   URL = "https://picasaweb.google.com"
   API_VERSION = "2"
 
-  attr_accessor :username
-  attr_reader :response
+  attr_accessor :user_id
+  attr_reader :response, :parsed_body
 
-  def initialize(username)
-    self.username = username
+  def initialize(user_id)
+    self.user_id = user_id
   end
 
   def http
@@ -22,8 +23,16 @@ class Picasa::Client
 
   def get(path)
     request = Net::HTTP::Get.new(path, headers)
-    @response = http.request(request)
-    self
+    self.response = http.request(request)
+  end
+
+  def response=(response)
+    @response = response
+    parse_response
+  end
+
+  def parse_response
+    @parsed_body = MultiXml.parse(response.body)
   end
 
   def uri
