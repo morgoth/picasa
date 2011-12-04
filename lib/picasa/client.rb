@@ -23,7 +23,7 @@ class Picasa::Client
 
   def get(path)
     request = Net::HTTP::Get.new(path, headers)
-    self.response = http.request(request)
+    handle_response(http.request(request))
   end
 
   def response=(response)
@@ -37,6 +37,11 @@ class Picasa::Client
 
   def uri
     URI.parse(URL)
+  end
+
+  def handle_response(response)
+    self.response = response
+    parsed_body
   end
 
   private
