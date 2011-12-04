@@ -3,7 +3,11 @@ require "singleton"
 module Picasa
   class Config
     include Singleton
-    attr_accessor :google_user
+    attr_accessor :user_id
+
+    # TODO: remove google_user
+    alias :google_user :user_id
+    alias :"google_user=" :"user_id="
   end
 
   def self.config

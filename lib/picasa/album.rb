@@ -1,7 +1,7 @@
 class Picasa::Album
   attr_reader :client, :user_id
 
-  def initialize(user_id)
+  def initialize(user_id = nil)
     @client = Picasa::Client.new(user_id)
   end
 
