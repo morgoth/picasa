@@ -16,6 +16,5 @@ Gem::Specification.new do |gem|
   gem.version = Picasa::VERSION
 
   gem.add_dependency "xml-simple"
-  gem.add_development_dependency "test-unit"
   gem.add_development_dependency "fakeweb"
 end

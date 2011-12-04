@@ -1,16 +1,7 @@
 require "helper"
 
-class TestConfig < Test::Unit::TestCase
-  test "Not raise argument error if google user is set by configuration block" do
-    Picasa.config do |c|
-      c.google_user = "some.user"
-    end
-    assert_nothing_raised do
-      Picasa::WebAlbums.new(nil)
-    end
-  end
-
-  test "Take user passed to method instead of config" do
+describe Picasa::Config do
+  it "should take user passed to method instead of config" do
     Picasa.config do |c|
       c.google_user = "some.user"
     end

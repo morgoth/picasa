@@ -1,5 +1,4 @@
-gem "test-unit"
-require "test/unit"
+require "minitest/autorun"
 require "fakeweb"
 
 require "picasa"
