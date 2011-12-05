@@ -1,0 +1,68 @@
+HTTP/1.1 200 OK
+Expires: Mon, 05 Dec 2011 20:17:24 GMT
+Date: Mon, 05 Dec 2011 20:17:24 GMT
+Cache-Control: private, max-age=0, must-revalidate, no-transform
+Set-Cookie: _rtok=seW2VfBeMWcR; Path=/; Secure; HttpOnly
+Set-Cookie: S=photos_html=p8GDlXoFVlE58t0I2YhTkA; Domain=.google.com; Path=/; Secure; HttpOnly
+Content-Type: application/atom+xml; charset=UTF-8; type=feed
+Vary: Accept, X-GData-Authorization, GData-Version, Cookie
+GData-Version: 2.0
+ETag: W/"CUUGRXc9cCp7ImA9WhRQEUw."
+Last-Modified: Mon, 05 Dec 2011 19:27:04 GMT
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1; mode=block
+Server: GSE
+Transfer-Encoding: chunked
+
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns='http://www.w3.org/2005/Atom' xmlns:gphoto='http://schemas.google.com/photos/2007' xmlns:openSearch='http://a9.com/-/spec/opensearch/1.1/' xmlns:gd='http://schemas.google.com/g/2005' gd:etag='W/&quot;CUUGRXc9cCp7ImA9WhRQEUw.&quot;'>
+	<id>https://picasaweb.google.com/data/feed/user/106136347770555028022</id>
+	<updated>2011-12-05T19:27:04.968Z</updated>
+	<category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/photos/2007#user'/>
+	<title>106136347770555028022</title>
+	<subtitle/>
+	<icon>https://lh3.googleusercontent.com/-6ezHc54U8x0/AAAAAAAAAAI/AAAAAAAAAAA/PBuxm7Ehn6E/s64-c/106136347770555028022.jpg</icon>
+	<link rel='http://schemas.google.com/g/2005#feed' type='application/atom+xml' href='https://picasaweb.google.com/data/feed/api/user/106136347770555028022'/>
+	<link rel='alternate' type='text/html' href='https://picasaweb.google.com/106136347770555028022'/>
+	<link rel='http://schemas.google.com/photos/2007#slideshow' type='application/x-shockwave-flash' href='https://picasaweb.google.com/s/c/bin/slideshow.swf?host=picasaweb.google.com&amp;RGB=0x000000&amp;feed=https%3A%2F%2Fpicasaweb.google.com%2Fdata%2Ffeed%2Fapi%2Fuser%2F106136347770555028022%3Falt%3Drss'/>
+	<link rel='self' type='application/atom+xml' href='https://picasaweb.google.com/data/feed/api/user/106136347770555028022?start-index=1&amp;max-results=500&amp;kind=tag'/>
+	<author>
+		<name>Wojciech Wnętrzak</name>
+		<uri>https://picasaweb.google.com/106136347770555028022</uri>
+	</author>
+	<generator version='1.00' uri='http://picasaweb.google.com/'>Picasaweb</generator>
+	<openSearch:totalResults>2</openSearch:totalResults>
+	<openSearch:startIndex>1</openSearch:startIndex>
+	<openSearch:itemsPerPage>500</openSearch:itemsPerPage>
+	<gphoto:user>106136347770555028022</gphoto:user>
+	<gphoto:nickname>Wojciech Wnętrzak</gphoto:nickname>
+	<gphoto:thumbnail>https://lh3.googleusercontent.com/-6ezHc54U8x0/AAAAAAAAAAI/AAAAAAAAAAA/PBuxm7Ehn6E/s64-c/106136347770555028022.jpg</gphoto:thumbnail>
+	<entry gd:etag='W/&quot;CUUGRXc9cCp7ImA9WhRQEUw.&quot;'>
+		<id>https://picasaweb.google.com/data/entry/user/106136347770555028022/tag/ziemniaki</id>
+		<updated>2011-12-05T19:27:04.968Z</updated>
+		<category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/photos/2007#tag'/>
+		<title>ziemniaki</title>
+		<summary>ziemniaki</summary>
+		<link rel='alternate' type='text/html' href='https://picasaweb.google.com/lh/searchbrowse?q=ziemniaki&amp;psc=G&amp;uname=106136347770555028022&amp;filter=0'/>
+		<link rel='self' type='application/atom+xml' href='https://picasaweb.google.com/data/entry/api/user/106136347770555028022/tag/ziemniaki'/>
+		<author>
+			<name>Wojciech Wnętrzak</name>
+			<uri>https://picasaweb.google.com/106136347770555028022</uri>
+		</author>
+	</entry>
+	<entry gd:etag='W/&quot;CUUGRXc9cCp7ImA9WhRQEUw.&quot;'>
+		<id>https://picasaweb.google.com/data/entry/user/106136347770555028022/tag/nice</id>
+		<updated>2011-12-05T19:27:04.968Z</updated>
+		<category scheme='http://schemas.google.com/g/2005#kind' term='http://schemas.google.com/photos/2007#tag'/>
+		<title>nice</title>
+		<summary>nice</summary>
+		<link rel='alternate' type='text/html' href='https://picasaweb.google.com/lh/searchbrowse?q=nice&amp;psc=G&amp;uname=106136347770555028022&amp;filter=0'/>
+		<link rel='self' type='application/atom+xml' href='https://picasaweb.google.com/data/entry/api/user/106136347770555028022/tag/nice'/>
+		<author>
+			<name>Wojciech Wnętrzak</name>
+			<uri>https://picasaweb.google.com/106136347770555028022</uri>
+		</author>
+		<gphoto:weight>2</gphoto:weight>
+	</entry>
+</feed>

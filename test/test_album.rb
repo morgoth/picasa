@@ -61,5 +61,30 @@ describe Picasa::Album do
       assert_equal "47", thumbnails[0]["height"]
       assert_equal "72", thumbnails[0]["width"]
     end
+
+    # tag
+    it "should have one photo only with given tag" do
+      response = fixture_file("album-show-with-tag-and-one-photo.txt")
+      FakeWeb.register_uri(:get, "https://picasaweb.google.com/data/feed/api/user/w.wnetrzak/albumid/5243667126168669553?tag=ziemniaki", :response => response)
+      feed = @album.show("5243667126168669553", :tag => "ziemniaki")["feed"]
+      assert_kind_of Hash, feed["entry"]
+    end
+
+    it "should have array of photos with given tag" do
+      response = fixture_file("album-show-with-tag-and-many-photos.txt")
+      FakeWeb.register_uri(:get, "https://picasaweb.google.com/data/feed/api/user/w.wnetrzak/albumid/5243667126168669553?tag=nice", :response => response)
+      feed = @album.show("5243667126168669553", :tag => "nice")["feed"]
+      assert_kind_of Array, feed["entry"]
+      assert_equal 2, feed["entry"].size
+    end
+
+    # max_results
+    it "should have array of photos with given tag" do
+      response = fixture_file("album-show-with-max-results.txt")
+      FakeWeb.register_uri(:get, "https://picasaweb.google.com/data/feed/api/user/w.wnetrzak/albumid/5243667126168669553?max-results=2", :response => response)
+      feed = @album.show("5243667126168669553", :max_results => 2)["feed"]
+      assert_kind_of Array, feed["entry"]
+      assert_equal 2, feed["entry"].size
+    end
   end
 end
