@@ -21,7 +21,8 @@ class Picasa::Client
     http
   end
 
-  def get(path)
+  def get(path, params = {})
+    path = path_with_params(path, params)
     request = Net::HTTP::Get.new(path, headers)
     handle_response(http.request(request))
   end
@@ -42,6 +43,18 @@ class Picasa::Client
   def handle_response(response)
     self.response = response
     parsed_body
+  end
+
+  def inline_params(params)
+    params.map do |param, value|
+      param = param.to_s.gsub("_", "-")
+      "#{param}=#{value}"
+    end.join("&")
+  end
+
+  def path_with_params(path, params = {})
+    path = path + "?" + inline_params(params) unless params.empty?
+    URI.parse(path).to_s
   end
 
   private
