@@ -62,6 +62,11 @@ describe Picasa::Album do
       assert_equal "72", thumbnails[0]["width"]
     end
 
+    it "should have public url" do
+      expected = "https://lh4.googleusercontent.com/-O0AOpTAPGBQ/SMU_j4ADl9I/AAAAAAAAAFs/DRnmROPuRVU/Kashmir%252520range.jpg"
+      assert_equal expected, @album.show("5243667126168669553")["feed"]["entry"][0]["content"]["src"]
+    end
+
     # tag
     it "should have one photo only with given tag" do
       response = fixture_file("album-show-with-tag-and-one-photo.txt")

@@ -11,7 +11,7 @@ class Picasa::Client
   attr_reader :response, :parsed_body
 
   def initialize(user_id)
-    self.user_id = user_id || Picasa.config.user_id
+    self.user_id = user_id || Picasa.user_id
   end
 
   def http
