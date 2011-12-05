@@ -17,4 +17,17 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency "xml-simple"
   gem.add_development_dependency "fakeweb"
+
+  gem.post_install_message = %{
+*************************************************************************
+
+Version 0.4 of this gem will be totaly rewritten.
+Gem syntax will change with backwards incompatibilities.
+If you don't want to update your code, please specify in your Gemfile:
+gem "picasa", "~> 0.3.0"
+
+Follow https://github.com/morgoth/picasa for updates.
+
+*************************************************************************
+}
 end
