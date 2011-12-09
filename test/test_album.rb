@@ -68,6 +68,7 @@ describe Picasa::Album do
     end
 
     # tag
+
     it "should have one photo only with given tag" do
       response = fixture_file("album-show-with-tag-and-one-photo.txt")
       FakeWeb.register_uri(:get, "https://picasaweb.google.com/data/feed/api/user/w.wnetrzak/albumid/5243667126168669553?tag=ziemniaki", :response => response)
@@ -84,6 +85,7 @@ describe Picasa::Album do
     end
 
     # max_results
+
     it "should have array of photos with given tag" do
       response = fixture_file("album-show-with-max-results.txt")
       FakeWeb.register_uri(:get, "https://picasaweb.google.com/data/feed/api/user/w.wnetrzak/albumid/5243667126168669553?max-results=2", :response => response)

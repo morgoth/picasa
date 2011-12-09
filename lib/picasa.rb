@@ -1,6 +1,7 @@
 require "picasa/web_albums"
 require "picasa/client"
 require "picasa/album"
+require "picasa/photo"
 require "picasa/version"
 
 module Picasa
