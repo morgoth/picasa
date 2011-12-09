@@ -4,7 +4,7 @@ require "helper"
 describe Picasa::Album do
   describe "#list" do
     before do
-      response = fixture_file("album-list.txt")
+      response = fixture_file("album/album-list.txt")
       FakeWeb.register_uri(:get, "https://picasaweb.google.com/data/feed/api/user/w.wnetrzak", :response => response)
       @album = Picasa::Album.new("w.wnetrzak")
     end
@@ -32,7 +32,7 @@ describe Picasa::Album do
 
   describe "#show" do
     before do
-      response = fixture_file("album-show.txt")
+      response = fixture_file("album/album-show.txt")
       FakeWeb.register_uri(:get, "https://picasaweb.google.com/data/feed/api/user/w.wnetrzak/albumid/5243667126168669553", :response => response)
       @album = Picasa::Album.new("w.wnetrzak")
     end
@@ -70,14 +70,14 @@ describe Picasa::Album do
     # tag
 
     it "should have one photo only with given tag" do
-      response = fixture_file("album-show-with-tag-and-one-photo.txt")
+      response = fixture_file("album/album-show-with-tag-and-one-photo.txt")
       FakeWeb.register_uri(:get, "https://picasaweb.google.com/data/feed/api/user/w.wnetrzak/albumid/5243667126168669553?tag=ziemniaki", :response => response)
       feed = @album.show("5243667126168669553", :tag => "ziemniaki")["feed"]
       assert_kind_of Hash, feed["entry"]
     end
 
     it "should have array of photos with given tag" do
-      response = fixture_file("album-show-with-tag-and-many-photos.txt")
+      response = fixture_file("album/album-show-with-tag-and-many-photos.txt")
       FakeWeb.register_uri(:get, "https://picasaweb.google.com/data/feed/api/user/w.wnetrzak/albumid/5243667126168669553?tag=nice", :response => response)
       feed = @album.show("5243667126168669553", :tag => "nice")["feed"]
       assert_kind_of Array, feed["entry"]
@@ -87,7 +87,7 @@ describe Picasa::Album do
     # max_results
 
     it "should have array of photos with given tag" do
-      response = fixture_file("album-show-with-max-results.txt")
+      response = fixture_file("album/album-show-with-max-results.txt")
       FakeWeb.register_uri(:get, "https://picasaweb.google.com/data/feed/api/user/w.wnetrzak/albumid/5243667126168669553?max-results=2", :response => response)
       feed = @album.show("5243667126168669553", :max_results => 2)["feed"]
       assert_kind_of Array, feed["entry"]
