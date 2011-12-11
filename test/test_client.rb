@@ -28,4 +28,53 @@ describe Picasa::Client do
       assert_equal "/data/feed/api?q=bomb", path
     end
   end
+
+  describe "Authentication" do
+    before do
+      @client           = Picasa::Client.new("john.doe@domain.com")
+      @client.password  = "secret"
+      @uri              = URI.parse("/data/feed/api/user/#{@client.user_id}")
+    end
+    describe "Succesfull" do
+      before do
+        response = fixture_file("auth/success.txt")
+        FakeWeb.register_uri(:post, "https://www.google.com/accounts/ClientLogin", :response => response)
+
+        response = fixture_file("album/album-list.txt")
+        FakeWeb.register_uri(:get, "https://picasaweb.google.com/data/feed/api/user/john.doe@domain.com", :response => response)
+      end
+
+      it "Invokes authentication if password is set" do
+        @client.expects(:authenticate).returns(:result)
+        refute_nil @client.get(@uri.path)
+      end
+
+      it "Only authenticates when a password is given" do
+        @client.password = nil
+        @client.expects(:authenticate).never
+        @client.get(@uri.path)
+      end
+    end
+
+    describe "Failures" do
+      before do
+        response = fixture_file("auth/failure.txt")
+        FakeWeb.register_uri(:post, "https://www.google.com/accounts/ClientLogin", :response => response)
+      end
+
+      it "Raises an ArgumentError when validation failed" do
+        assert_raises(::ArgumentError) do
+          @client.get(@uri.path)
+        end
+      end
+
+      it "Raises an error when an invalid Email is given" do
+        @client.user_id = "john.doe"
+
+        assert_raises(::ArgumentError) do
+          @client.get(@uri.path)
+        end
+      end
+    end
+  end
 end

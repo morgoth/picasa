@@ -7,7 +7,7 @@ module Picasa
   def self.albums(options = {})
     options[:user_id] = options.delete(:google_user) if options.has_key? :google_user
 
-    album = Picasa::Album.new(options)
+    album = Picasa::Album.new(options[:user_id], options.delete(:password))
     album.list options
   end
 
@@ -16,12 +16,12 @@ module Picasa
 
     options[:user_id] = options.delete(:google_user) if options.has_key? :google_user
 
-    album   = Picasa::Album.new(options[:user_id])
+    album   = Picasa::Album.new(options[:user_id], options.delete(:password))
     album.show options.delete(:album_id), options
   end
 
   class << self
-    attr_accessor :user_id
+    attr_accessor :user_id, :password
 
     def configure
       yield self

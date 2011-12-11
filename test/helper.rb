@@ -1,7 +1,6 @@
 require "minitest/autorun"
 require "fakeweb"
 require "mocha"
-require "turn"
 require "picasa"
 
 class MiniTest::Unit::TestCase

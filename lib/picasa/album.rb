@@ -2,8 +2,8 @@ module Picasa
   class Album
     attr_reader :client
 
-    def initialize(user_id = nil)
-      @client = Picasa::Client.new(user_id)
+    def initialize(user_id = nil, password = nil)
+      @client = Picasa::Client.new(user_id, password)
     end
 
     # Returns album list
