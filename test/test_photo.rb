@@ -8,7 +8,7 @@ describe Picasa::Photo do
       FakeWeb.register_uri(:get, "https://picasaweb.google.com/data/feed/api/user/w.wnetrzak?kind=photo", :response => response)
       @album = Picasa::Photo.new("w.wnetrzak")
 
-      assert_equal "Wojciech Wnętrzak", @album.list["feed"]["author"]["name"]
+      assert_equal "Wojciech Wnętrzak", @album.list["author"]["name"]
     end
 
     # without user_id
@@ -18,7 +18,7 @@ describe Picasa::Photo do
       FakeWeb.register_uri(:get, "https://picasaweb.google.com/data/feed/api/user/all?kind=photo", :response => response)
       @album = Picasa::Photo.new
 
-      assert_nil @album.list["feed"]["author"]
+      assert_nil @album.list["author"]
     end
 
     it "should scope results to given query" do
@@ -26,7 +26,7 @@ describe Picasa::Photo do
       FakeWeb.register_uri(:get, "https://picasaweb.google.com/data/feed/api/user/all?kind=photo&q=cowbell", :response => response)
       @album = Picasa::Photo.new
 
-      assert_match "cowbell", @album.list(:q => "cowbell")["feed"]["entry"][0]["title"]
+      assert_match "cowbell", @album.list(:q => "cowbell")["entry"][0]["title"]
     end
   end
 end

@@ -1,6 +1,7 @@
 require "minitest/autorun"
 require "fakeweb"
-
+require "mocha"
+require "turn"
 require "picasa"
 
 class MiniTest::Unit::TestCase
@@ -8,7 +9,7 @@ class MiniTest::Unit::TestCase
     FakeWeb.allow_net_connect = false
     # TODO: investigate better solution
     # do not pass user_id from one test to another
-    Picasa.user_id = nil
+    # Picasa.user_id = nil
   end
 
   # Recording response is as simple as writing in terminal:

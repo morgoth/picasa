@@ -11,8 +11,11 @@ class Picasa::Photo
   #
   def list(options = {})
     user_id = options.delete(:user_id) || client.user_id || "all"
-    uri = URI.parse("/data/feed/api/user/#{user_id}")
-    client.get(uri.path, default_options.merge(options))
+    uri     = URI.parse("/data/feed/api/user/#{user_id}")
+    feed    = client.get(uri.path, default_options.merge(options))
+
+    return feed["feed"] if feed && feed.has_key?("feed")
+    feed
   end
 
   private
