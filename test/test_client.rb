@@ -35,6 +35,7 @@ describe Picasa::Client do
       @client.password  = "secret"
       @uri              = URI.parse("/data/feed/api/user/#{@client.user_id}")
     end
+
     describe "Succesfull" do
       before do
         response = fixture_file("auth/success.txt")

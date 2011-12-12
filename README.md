@@ -1,7 +1,6 @@
 # Picasa
 
-Ruby libraroy for Picasa Web Albums Data API
-Only for public albums so far.
+Ruby library for Picasa Web Albums Data API
 
 ## Installation
 
@@ -39,6 +38,10 @@ Picasa.photos(:album_id => "album_id")
 
 ## Continuous Integration
 [![Build Status](https://secure.travis-ci.org/morgoth/picasa.png)](http://travis-ci.org/morgoth/picasa)
+
+## Contributors
+
+* [Bram Wijnands](https://github.com/BRamBoo)
 
 ## Copyright
 
