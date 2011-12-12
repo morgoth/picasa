@@ -14,8 +14,8 @@ module Picasa
     attr_reader :response, :parsed_body
 
     def initialize(user_id, password = nil)
-      self.user_id  = user_id || Picasa.user_id
-      @password     = password || Picasa.password
+      self.user_id = user_id || Picasa.user_id
+      @password    = password || Picasa.password
     end
 
     def http(url = URL)
@@ -65,10 +65,11 @@ module Picasa
     end
 
     private
+
     def headers
-      h = {"User-Agent" => "ruby-gem-v#{Picasa::VERSION}", "GData-Version" => API_VERSION}
-      h["Authorization"] = "GoogleLogin auth=#{@auth_key}" unless @auth_key.nil?
-      h
+      headers = {"User-Agent" => "ruby-gem-v#{Picasa::VERSION}", "GData-Version" => API_VERSION}
+      headers["Authorization"] = "GoogleLogin auth=#{@auth_key}" unless @auth_key.nil?
+      headers
     end
 
     def auth?
@@ -86,10 +87,10 @@ module Picasa
       validate_email!
 
       data = inline_params({"accountType" => "HOSTED_OR_GOOGLE",
-                                "Email"       => user_id,
-                                "Passwd"      => @password,
-                                "service"     => "lh2",
-                                "source"      => "ruby-gem-v#{Picasa::VERSION}"})
+                            "Email"       => user_id,
+                            "Passwd"      => @password,
+                            "service"     => "lh2",
+                            "source"      => "ruby-gem-v#{Picasa::VERSION}"})
 
       resp, data = http(AUTH_URL).post("/accounts/ClientLogin", data, headers)
       raise ::ArgumentError.new(resp) unless resp.is_a? Net::HTTPSuccess
@@ -98,8 +99,8 @@ module Picasa
     end
 
     def extract_auth_key(data)
-      response = data.split("\n").map {|v| v.split "="}
-      response = Hash[*response.collect { |v| [v, v*2] }.flatten]
+      response = data.split("\n").map { |v| v.split("=") }
+      response = Hash[*response.collect { |v| [v, v * 2] }.flatten]
       response["Auth"]
     end
   end

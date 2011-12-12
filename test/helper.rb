@@ -7,8 +7,9 @@ class MiniTest::Unit::TestCase
   def setup
     FakeWeb.allow_net_connect = false
     # TODO: investigate better solution
-    # do not pass user_id from one test to another
-    # Picasa.user_id = nil
+    # do not pass credentials from one test to another
+    Picasa.user_id = nil
+    Picasa.password = nil
   end
 
   # Recording response is as simple as writing in terminal:
