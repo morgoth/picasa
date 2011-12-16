@@ -8,7 +8,9 @@ describe Picasa::Client do
   describe "#inline_params" do
     it "should convert params to inline style" do
       params = @client.inline_params({:alt => "json", :kind => "photo"})
-      assert_equal "alt=json&kind=photo", params
+      # make ruby 1.8 tests pass
+      assert_equal "alt=json", params.split("&").sort[0]
+      assert_equal "kind=photo", params.split("&").sort[1]
     end
 
     it "should change param keys underscore to dash" do
