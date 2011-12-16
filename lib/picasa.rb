@@ -1,6 +1,7 @@
 require "picasa/client"
 require "picasa/album"
 require "picasa/photo"
+require "picasa/tag"
 require "picasa/version"
 
 module Picasa
