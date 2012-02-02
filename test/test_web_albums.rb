@@ -22,6 +22,7 @@ describe Picasa::WebAlbums do
     photos = Picasa.photos(:google_user => "some.user", :album_id => "666")
     assert_equal 10, photos[:photos].count
     refute_nil photos[:slideshow]
+    refute_nil photos[:photos].first[:id]
     refute_nil photos[:photos].first[:thumbnail_1]
     refute_nil photos[:photos].first[:thumbnail_2]
     refute_nil photos[:photos].first[:thumbnail_3]

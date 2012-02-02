@@ -32,6 +32,7 @@ module Picasa
       photos = []
       xml["entry"].each do |photo|
         attributes = {}
+        attributes[:id] = photo["id"][1]
         attributes[:title] = photo["group"][0]["description"][0]["content"]
         attributes[:thumbnail_1] = photo["group"][0]["thumbnail"][0]["url"]
         attributes[:thumbnail_2] = photo["group"][0]["thumbnail"][1]["url"]
