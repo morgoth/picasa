@@ -8,8 +8,8 @@ module Picasa
       raise ArgumentError.new("You must specify google_user") unless Picasa.config.google_user
     end
 
-    def albums
-      data = connect("/data/feed/api/user/#{Picasa.config.google_user}")
+    def albums opts=nil
+      data = connect("/data/feed/api/user/#{Picasa.config.google_user}", opts)
       xml = XmlSimple.xml_in(data)
       albums = []
       xml["entry"].each do |album|
@@ -26,8 +26,8 @@ module Picasa
       albums
     end
 
-    def photos(album_id)
-      data = connect("/data/feed/api/user/#{Picasa.config.google_user}/albumid/#{album_id}")
+    def photos(album_id, opts=nil)
+      data = connect("/data/feed/api/user/#{Picasa.config.google_user}/albumid/#{album_id}", opts)
       xml = XmlSimple.xml_in(data)
       photos = []
       xml["entry"].each do |photo|
@@ -45,8 +45,8 @@ module Picasa
 
     private
 
-    def connect(url)
-      full_url = "http://picasaweb.google.com" + url
+    def connect(url, opts=nil)
+      full_url = "http://picasaweb.google.com#{ url }?#{ opts.try( :to_query ) }"
       Net::HTTP.get(URI.parse(full_url))
     end
   end
