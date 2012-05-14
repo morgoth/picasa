@@ -8,8 +8,8 @@ module Picasa
       raise ArgumentError.new("You must specify google_user") unless Picasa.config.google_user
     end
 
-    def albums opts=nil
-      data = connect("/data/feed/api/user/#{Picasa.config.google_user}", opts)
+    def albums(options = {})
+      data = connect("/data/feed/api/user/#{Picasa.config.google_user}", options)
       xml = XmlSimple.xml_in(data)
       albums = []
       xml["entry"].each do |album|
@@ -26,8 +26,8 @@ module Picasa
       albums
     end
 
-    def photos(album_id, opts=nil)
-      data = connect("/data/feed/api/user/#{Picasa.config.google_user}/albumid/#{album_id}", opts)
+    def photos(album_id, options = {})
+      data = connect("/data/feed/api/user/#{Picasa.config.google_user}/albumid/#{album_id}", options)
       xml = XmlSimple.xml_in(data)
       photos = []
       xml["entry"].each do |photo|
@@ -40,13 +40,14 @@ module Picasa
         attributes[:photo] = photo["content"]["src"]
         photos << attributes
       end if xml["entry"]
-      { :photos => photos, :slideshow => xml["link"][1]["href"] + "#slideshow" }
+      {:photos => photos, :slideshow => xml["link"][1]["href"] + "#slideshow"}
     end
 
     private
 
-    def connect(url, opts=nil)
-      full_url = "http://picasaweb.google.com#{ url }?#{ opts.try( :to_query ) }"
+    def connect(url, options = {})
+      full_url = "http://picasaweb.google.com" + url
+      full_url += "?" + URI.encode_www_form(options) unless options.empty?
       Net::HTTP.get(URI.parse(full_url))
     end
   end
