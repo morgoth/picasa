@@ -21,6 +21,8 @@ module Picasa
         attributes[:photo] = album["group"][0]["content"]["url"]
         attributes[:thumbnail] = album["group"][0]["thumbnail"][0]["url"]
         attributes[:slideshow] = album["link"][1]["href"] + "#slideshow"
+        attributes[:updated] = album["updated"][0]
+        attributes[:url] = album["link"][1]["href"]
         albums << attributes
       end if xml["entry"]
       albums
