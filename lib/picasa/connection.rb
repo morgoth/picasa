@@ -1,20 +1,14 @@
-require "net/https"
-require "uri"
-require "multi_xml"
-
 module Picasa
-  class Client
+  class Connection
     URL         = "https://picasaweb.google.com"
     AUTH_URL    = "https://www.google.com"
     API_VERSION = "2"
 
-    attr_accessor :user_id
-    attr_writer :password
-    attr_reader :response, :parsed_body
+    attr_reader :user_id, :password, :response
 
-    def initialize(user_id, password = nil)
-      self.user_id = user_id || Picasa.user_id
-      @password    = password || Picasa.password
+    def initialize(credentials = {})
+      @user_id  = credentials.fetch(:user_id)
+      @password = credentials.fetch(:password, nil)
     end
 
     def http(url = URL)
@@ -30,25 +24,16 @@ module Picasa
 
       path = path_with_params(path, params)
       request = Net::HTTP::Get.new(path, headers)
-      handle_response(http.request(request))
+      @response = http.request(request)
+      parsed_body
     end
 
-    def response=(response)
-      @response = response
-      parse_response
-    end
-
-    def parse_response
-      @parsed_body = MultiXml.parse(response.body)
+    def parsed_body
+      @parsed_body ||= MultiXml.parse(response.body)
     end
 
     def uri(url)
       URI.parse(url)
-    end
-
-    def handle_response(response)
-      self.response = response
-      parsed_body
     end
 
     def inline_params(params)
@@ -72,7 +57,7 @@ module Picasa
     end
 
     def auth?
-      !@password.nil?
+      !password.nil?
     end
 
     def validate_email!
@@ -82,12 +67,12 @@ module Picasa
     end
 
     def authenticate
-      return @auth_key if @auth_key
+      return @auth_key if defined?(@auth_key)
       validate_email!
 
       data = inline_params({"accountType" => "HOSTED_OR_GOOGLE",
                             "Email"       => user_id,
-                            "Passwd"      => @password,
+                            "Passwd"      => password,
                             "service"     => "lh2",
                             "source"      => "ruby-gem-v#{Picasa::VERSION}"})
 

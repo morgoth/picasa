@@ -1,8 +1,10 @@
-source 'http://rubygems.org'
+source "https://rubygems.org"
 
 gemspec
 
 gem "rake"
 gem "minitest", :platform => :ruby_18
-gem "mocha"
+gem "debugger", :platform => :ruby_19
+
+# xml parsers
 gem "nokogiri"
