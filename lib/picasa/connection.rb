@@ -3,10 +3,6 @@ require "uri"
 
 module Picasa
   class Connection
-    URL         = "https://picasaweb.google.com"
-    AUTH_URL    = "https://www.google.com"
-    API_VERSION = "2"
-
     attr_reader :user_id, :password, :response
 
     def initialize(credentials = {})
@@ -65,7 +61,7 @@ module Picasa
 
     def validate_email!
       unless user_id =~ /[a-z0-9][a-z0-9._%+-]+[a-z0-9]@[a-z0-9][a-z0-9.-][a-z0-9]+\.[a-z]{2,6}/i
-        raise ::ArgumentError.new("user_id must be a valid E-mail address when authentication is used.")
+        raise ArgumentError.new("user_id must be a valid E-mail address when authentication is used.")
       end
     end
 
@@ -80,7 +76,7 @@ module Picasa
                             "source"      => "ruby-gem-v#{Picasa::VERSION}"})
 
       resp, data = http(AUTH_URL).post("/accounts/ClientLogin", data, headers)
-      raise ::ArgumentError.new(resp) unless resp.is_a? Net::HTTPSuccess
+      raise ArgumentError.new(resp) unless resp.is_a? Net::HTTPSuccess
 
       @auth_key = extract_auth_key(data)
     end

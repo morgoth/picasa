@@ -17,6 +17,10 @@ module Picasa
         @entries ||= safe_retrieve(parsed_body, "feed", "entry").map { |entry| Album.new(entry) }
       end
 
+      def links
+        @links ||= safe_retrieve(parsed_body, "feed", "link").map { |link| Link.new(link) }
+      end
+
       def title
         @title ||= safe_retrieve(parsed_body, "feed", "title")
       end

@@ -6,7 +6,7 @@ module Picasa
       if keys.size == 1
         hash[keys.first]
       elsif keys.size > 1
-        Picasa::Utils.safe_retrieve(hash[keys.first], *keys[1..-1])
+        Utils.safe_retrieve(hash[keys.first], *keys[1..-1])
       end
     end
 

@@ -15,6 +15,10 @@ describe Picasa::Presenter::AlbumList do
     assert_equal "https://picasaweb.google.com/106136347770555028022", @album_list.author.uri
   end
 
+  it "has links" do
+    assert_equal 4, @album_list.links.size
+  end
+
   it "has title" do
     assert_equal "106136347770555028022", @album_list.title
   end

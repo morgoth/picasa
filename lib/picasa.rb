@@ -14,21 +14,10 @@ require "picasa/api/album"
 require "picasa/presenter/album"
 require "picasa/presenter/album_list"
 require "picasa/presenter/author"
+require "picasa/presenter/link"
 
 module Picasa
-  # def self.albums(options = {})
-  #   options[:user_id] = options.delete(:google_user) if options.has_key?(:google_user)
-
-  #   album = Picasa::Album.new(options[:user_id], options.delete(:password))
-  #   album.list options
-  # end
-
-  # def self.photos(options = {})
-  #   raise ArgumentError.new("You must specify album_id") unless options[:album_id]
-
-  #   options[:user_id] = options.delete(:google_user) if options.has_key?(:google_user)
-
-  #   album   = Picasa::Album.new(options[:user_id], options.delete(:password))
-  #   album.show options.delete(:album_id), options
-  # end
+  URL         = "https://picasaweb.google.com"
+  AUTH_URL    = "https://www.google.com"
+  API_VERSION = "2"
 end

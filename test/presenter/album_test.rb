@@ -15,6 +15,10 @@ describe Picasa::Presenter::Album do
     assert_equal "https://picasaweb.google.com/106136347770555028022", @album.author.uri
   end
 
+  it "has links" do
+    assert_equal 3, @album.links.size
+  end
+
   it "has published" do
     assert_equal "2008-09-08T07:00:00.000Z", @album.published
   end

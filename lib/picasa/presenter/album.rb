@@ -13,6 +13,10 @@ module Picasa
         @author ||= Author.new(safe_retrieve(parsed_body, "author"))
       end
 
+      def links
+        @links ||= safe_retrieve(parsed_body, "link").map { |link| Link.new(link) }
+      end
+
       def published
         @published ||= safe_retrieve(parsed_body, "published")
       end
