@@ -11,15 +11,15 @@ module Picasa
     end
 
     def http(url = API_URL)
-      host, port = uri(url).host, uri(url).port
-      http = Net::HTTP.new(host, port)
+      uri = URI.parse(url)
+      http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
       http
     end
 
     def get(path, params = {})
-      # authenticate if auth?
+      authenticate if auth?
 
       path = path_with_params(path, params)
       request = Net::HTTP::Get.new(path, headers)
@@ -29,10 +29,6 @@ module Picasa
 
     def parsed_body
       @parsed_body ||= MultiXml.parse(response.body)
-    end
-
-    def uri(url)
-      URI.parse(url)
     end
 
     def inline_params(params)
@@ -50,9 +46,9 @@ module Picasa
     private
 
     def headers
-      headers = {"User-Agent" => "ruby-gem-v#{Picasa::VERSION}", "GData-Version" => API_VERSION}
-      headers["Authorization"] = "GoogleLogin auth=#{@auth_key}" unless @auth_key.nil?
-      headers
+      {"User-Agent" => "ruby-gem-v#{Picasa::VERSION}", "GData-Version" => API_VERSION}.tap do |headers|
+        headers["Authorization"] = "GoogleLogin auth=#{@auth_key}" if @auth_key
+      end
     end
 
     def auth?
@@ -75,10 +71,10 @@ module Picasa
                             "service"     => "lh2",
                             "source"      => "ruby-gem-v#{Picasa::VERSION}"})
 
-      resp, data = http(API_AUTH_URL).post("/accounts/ClientLogin", data, headers)
-      raise ArgumentError.new(resp) unless resp.is_a? Net::HTTPSuccess
+      response = http(API_AUTH_URL).post("/accounts/ClientLogin", data)
+      raise ResponseError.new(response.body, response) unless response.is_a? Net::HTTPSuccess
 
-      @auth_key = extract_auth_key(data)
+      @auth_key = extract_auth_key(response.body)
     end
 
     def extract_auth_key(data)

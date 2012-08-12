@@ -1,14 +1,12 @@
 require "minitest/autorun"
-require "fakeweb"
+require "webmock/minitest"
 require "mocha"
 
 require "picasa"
 
-MultiXml.parser = :ox
-
 class MiniTest::Unit::TestCase
   def setup
-    FakeWeb.allow_net_connect = false
+    WebMock.disable_net_connect!
   end
 
   # Recording response is as simple as writing in terminal:

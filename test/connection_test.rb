@@ -31,47 +31,35 @@ describe Picasa::Connection do
     end
   end
 
-  # describe "Authentication" do
-  #   before do
-  #     @connection = Picasa::Connection.new(:user_id => "john.doe@domain.com", :passsword => "secret")
-  #     @uri        = URI.parse("/data/feed/api/user/#{@connection.user_id}")
-  #   end
+  describe "authentication" do
+    it "successfully authenticates" do
+      connection = Picasa::Connection.new(:user_id => "john.doe@domain.com", :password => "secret")
+      uri        = URI.parse("/data/feed/api/user/#{connection.user_id}")
 
-  #   describe "Succesfull" do
-  #     before do
-  #       response = fixture("auth/success.txt")
-  #       FakeWeb.register_uri(:post, "https://www.google.com/accounts/ClientLogin", :response => response)
+      stub_request(:post, "https://www.google.com/accounts/ClientLogin").to_return(fixture("auth/success.txt"))
+      stub_request(:get, "https://picasaweb.google.com/data/feed/api/user/john.doe@domain.com").to_return(fixture("album/album-list.txt"))
 
-  #       response = fixture("album/album-list.txt")
-  #       FakeWeb.register_uri(:get, "https://picasaweb.google.com/data/feed/api/user/john.doe@domain.com", :response => response)
-  #     end
+      connection.expects(:authenticate).returns(:result)
+      refute_nil connection.get(uri.path)
+    end
 
-  #     it "Invokes authentication if password is set" do
-  #       @connection.expects(:authenticate).returns(:result)
-  #       refute_nil @connection.get(@uri.path)
-  #     end
-  #   end
+    it "raises ArgumentError when invalid email given" do
+      connection = Picasa::Connection.new(:user_id => "john.doe", :password => "secret")
 
-  #   describe "Failures" do
-  #     before do
-  #       response = fixture("auth/failure.txt")
-  #       FakeWeb.register_uri(:post, "https://www.google.com/accounts/ClientLogin", :response => response)
-  #     end
+      assert_raises(Picasa::ArgumentError) do
+        connection.get("/")
+      end
+    end
 
-  #     it "Raises an ArgumentError when validation failed" do
-  #       assert_raises(::ArgumentError) do
-  #         @connection.get(@uri.path)
-  #       end
-  #     end
+    it "raises an ResponseError when authentication failed" do
+      connection = Picasa::Connection.new(:user_id => "john.doe@domain.com", :password => "secret")
+      uri        = URI.parse("/data/feed/api/user/#{connection.user_id}")
 
-  #     it "Raises an error when an invalid Email is given" do
-  #       connection = Picasa::Connection.new(:user_id => "john.doe", :passsword => "secret")
-  #       uri        = URI.parse("/data/feed/api/user/#{connection.user_id}")
+      stub_request(:post, "https://www.google.com/accounts/ClientLogin").to_return(fixture("auth/failure.txt"))
 
-  #       assert_raises(::ArgumentError) do
-  #         connection.get(uri.path)
-  #       end
-  #     end
-  #   end
-  # end
+      assert_raises(Picasa::ResponseError) do
+        connection.get(uri.path)
+      end
+    end
+  end
 end
