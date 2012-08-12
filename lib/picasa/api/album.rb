@@ -14,10 +14,10 @@ module Picasa
         uri  = URI.parse("/data/feed/api/user/#{user_id}")
         parsed_body = Connection.new(:user_id => user_id, :password => password).get(uri.path, options)
 
-        Presenter::AlbumList.new(parsed_body)
+        Presenter::AlbumList.new(parsed_body["feed"])
       end
 
-      # Returns photo list
+      # Returns photo list for given album
       #
       # ==== Options
       # * <tt>:max_results</tt>
@@ -26,10 +26,8 @@ module Picasa
         uri  = URI.parse("/data/feed/api/user/#{user_id}/albumid/#{album_id}")
         feed = Connection.new(:user_id => user_id, :password => password).get(uri.path, options)
 
-        return feed["feed"] if feed && feed.has_key?("feed")
-        feed
+        Presenter::Album.new(parsed_body["feed"])
       end
-      alias photos show
     end
   end
 end

@@ -3,7 +3,7 @@ require "helper"
 
 describe Picasa::Presenter::Author do
   before do
-    body = MultiXml.parse(fixture("presenters/album_list/album_list.xml"))
+    body = MultiXml.parse(fixture("presenters/album_list.xml"))
     @author = Picasa::Presenter::Author.new(body["feed"]["author"])
   end
 
