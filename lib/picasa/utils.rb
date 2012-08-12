@@ -10,6 +10,19 @@ module Picasa
       end
     end
 
-    module_function :safe_retrieve
+    def map_to_integer(value)
+      value && value.to_i
+    end
+
+    def map_to_boolean(value)
+      return unless value
+      if value == "true"
+        true
+      elsif value == "false"
+        false
+      end
+    end
+
+    module_function :safe_retrieve, :map_to_integer, :map_to_boolean
   end
 end

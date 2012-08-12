@@ -10,7 +10,7 @@ module Picasa
       @password = credentials.fetch(:password, nil)
     end
 
-    def http(url = URL)
+    def http(url = API_URL)
       host, port = uri(url).host, uri(url).port
       http = Net::HTTP.new(host, port)
       http.use_ssl = true
@@ -75,7 +75,7 @@ module Picasa
                             "service"     => "lh2",
                             "source"      => "ruby-gem-v#{Picasa::VERSION}"})
 
-      resp, data = http(AUTH_URL).post("/accounts/ClientLogin", data, headers)
+      resp, data = http(API_AUTH_URL).post("/accounts/ClientLogin", data, headers)
       raise ArgumentError.new(resp) unless resp.is_a? Net::HTTPSuccess
 
       @auth_key = extract_auth_key(data)

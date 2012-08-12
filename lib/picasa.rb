@@ -15,9 +15,10 @@ require "picasa/presenter/album"
 require "picasa/presenter/album_list"
 require "picasa/presenter/author"
 require "picasa/presenter/link"
+require "picasa/presenter/photo"
 
 module Picasa
-  URL         = "https://picasaweb.google.com"
-  AUTH_URL    = "https://www.google.com"
+  API_URL         = "https://picasaweb.google.com"
+  API_AUTH_URL    = "https://www.google.com"
   API_VERSION = "2"
 end
