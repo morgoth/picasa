@@ -1,14 +1,8 @@
+require "picasa/presenter/base"
+
 module Picasa
   module Presenter
-    class Photo
-      include Utils
-
-      attr_reader :parsed_body
-
-      def initialize(parsed_body)
-        @parsed_body = parsed_body
-      end
-
+    class Photo < Base
       def links
         @links ||= safe_retrieve(parsed_body, "link").map { |link| Link.new(link) }
       end

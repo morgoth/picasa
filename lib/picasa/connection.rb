@@ -19,7 +19,7 @@ module Picasa
     end
 
     def get(path, params = {})
-      authenticate if auth?
+      # authenticate if auth?
 
       path = path_with_params(path, params)
       request = Net::HTTP::Get.new(path, headers)

@@ -1,14 +1,8 @@
+require "picasa/presenter/base"
+
 module Picasa
   module Presenter
-    class Media
-      include Utils
-
-      attr_reader :parsed_body
-
-      def initialize(parsed_body)
-        @parsed_body = parsed_body
-      end
-
+    class Media < Base
       def thumbnails
         @thumbnails ||= array_wrap(safe_retrieve(parsed_body, "media:thumbnail")).map { |thumbnail| Thumbnail.new(thumbnail) }
       end

@@ -1,14 +1,8 @@
+require "picasa/presenter/base"
+
 module Picasa
   module Presenter
-    class Author
-      include Utils
-
-      attr_reader :parsed_body
-
-      def initialize(parsed_body)
-        @parsed_body = parsed_body
-      end
-
+    class Author < Base
       def name
         @name ||= safe_retrieve(parsed_body, "name")
       end

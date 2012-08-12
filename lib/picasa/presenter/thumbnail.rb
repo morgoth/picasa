@@ -1,14 +1,8 @@
+require "picasa/presenter/base"
+
 module Picasa
   module Presenter
-    class Thumbnail
-      include Utils
-
-      attr_reader :parsed_body
-
-      def initialize(parsed_body)
-        @parsed_body = parsed_body
-      end
-
+    class Thumbnail < Base
       def url
         @url ||= safe_retrieve(parsed_body, "url")
       end

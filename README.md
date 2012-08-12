@@ -11,29 +11,12 @@ gem install picasa
 ## Usage
 
 ``` ruby
-Picasa.albums(:google_user => "google_username")
-# => [ {:id => "666", :title => "satan-album", :photos_count => 6, :photo => "url",
-#      :thumbnail => "url", :slideshow => "url", :summary => "summary"},
-#     {another one} ]
+client = Picasa::Client.new(:user_id => "google_username")
+client.album.list
+# => Picasa::Presenter::AlbumList
 
-Picasa.photos(:google_user => "google_username", :album_id => "album_id")
-#=> {:photos => [{ :title, :thumbnail_1, :thumbnail_2, :thumbnail_3, :photo },{}],
-#    :slideshow => "link to picasa slideshow"}
-```
-
-or you can set google user for all requests like this:
-
-``` ruby
-Picasa.configure do |config|
-  config.user_id = "john.doe"
-end
-```
-
-and use it:
-
-``` ruby
-Picasa.albums
-Picasa.photos(:album_id => "album_id")
+client.album.photos("album-id")
+# => Picasa::Presenter::Album
 ```
 
 ## Continuous Integration
@@ -45,4 +28,4 @@ Picasa.photos(:album_id => "album_id")
 
 ## Copyright
 
-Copyright (c) 2011 Wojciech Wnętrzak, released under the MIT license.
+Copyright (c) Wojciech Wnętrzak, released under the MIT license.
