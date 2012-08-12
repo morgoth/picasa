@@ -39,24 +39,15 @@ module Picasa
       end
 
       def total_results
-        return @total_results if defined?(@total_results)
-        if total_results = safe_retrieve(parsed_body, "openSearch:totalResults")
-          @total_results = total_results.to_i
-        end
+        @total_results ||= map_to_integer(safe_retrieve(parsed_body, "openSearch:totalResults"))
       end
 
       def start_index
-        return @start_index if defined?(@start_index)
-        if start_index = safe_retrieve(parsed_body, "openSearch:startIndex")
-          @start_index = start_index.to_i
-        end
+        @start_index ||= map_to_integer(safe_retrieve(parsed_body, "openSearch:startIndex"))
       end
 
       def items_per_page
-        return @items_per_page if defined?(@items_per_page)
-        if items_per_page = safe_retrieve(parsed_body, "openSearch:itemsPerPage")
-          @items_per_page = items_per_page.to_i
-        end
+        @items_per_page ||= map_to_integer(safe_retrieve(parsed_body, "openSearch:itemsPerPage"))
       end
 
       def user

@@ -63,10 +63,7 @@ module Picasa
       end
 
       def numphotos
-        return @numphotos if defined?(@numphotos)
-        if numphotos = safe_retrieve(parsed_body, "gphoto:numphotos")
-          @numphotos = numphotos.to_i
-        end
+        @numphotos ||= map_to_integer(safe_retrieve(parsed_body, "gphoto:numphotos"))
       end
 
       def user
