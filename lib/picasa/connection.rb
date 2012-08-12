@@ -1,3 +1,6 @@
+require "net/https"
+require "uri"
+
 module Picasa
   class Connection
     URL         = "https://picasaweb.google.com"

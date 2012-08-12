@@ -11,7 +11,9 @@ require "picasa/exceptions"
 require "picasa/connection"
 require "picasa/api/album"
 
+require "picasa/presenter/album"
 require "picasa/presenter/album_list"
+require "picasa/presenter/author"
 
 module Picasa
   # def self.albums(options = {})

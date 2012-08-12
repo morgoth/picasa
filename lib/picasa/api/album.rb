@@ -12,10 +12,9 @@ module Picasa
       #
       def list(options = {})
         uri  = URI.parse("/data/feed/api/user/#{user_id}")
-        feed = Connection.new(:user_id => user_id, :password => password).get(uri.path, options)
+        parsed_body = Connection.new(:user_id => user_id, :password => password).get(uri.path, options)
 
-        return feed["feed"] if feed && feed.has_key?("feed")
-        feed
+        Presenter::AlbumList.new(parsed_body)
       end
 
       # Returns photo list

@@ -4,6 +4,8 @@ require "mocha"
 
 require "picasa"
 
+MultiXml.parser = :ox
+
 class MiniTest::Unit::TestCase
   def setup
     FakeWeb.allow_net_connect = false
