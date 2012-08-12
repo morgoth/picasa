@@ -10,6 +10,7 @@ module Picasa
       end
     end
 
+    # Ported from ActiveSupport
     def array_wrap(object)
       if object.nil?
         []
@@ -26,10 +27,9 @@ module Picasa
 
     def map_to_boolean(value)
       return unless value
-      if value == "true"
-        true
-      elsif value == "false"
-        false
+      case value
+        when "true"  then true
+        when "false" then false
       end
     end
 
