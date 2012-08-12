@@ -25,6 +25,9 @@ client.album.photos("album-id")
 ## Contributors
 
 * [Bram Wijnands](https://github.com/BRamBoo)
+* [Rafael Souza](https://github.com/rafaels)
+* [jsaak](https://github.com/jsaak)
+* [Javier Guerra](https://github.com/javierg)
 
 ## Copyright
 
