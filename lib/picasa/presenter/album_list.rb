@@ -14,7 +14,7 @@ module Picasa
       end
 
       def entries
-        @entries ||= safe_retrieve(parsed_body, "entry").map { |entry| Album.new(entry) }
+        @entries ||= array_wrap(safe_retrieve(parsed_body, "entry")).map { |entry| Album.new(entry) }
       end
       alias :albums :entries
 

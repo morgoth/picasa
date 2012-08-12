@@ -11,6 +11,10 @@ describe Picasa::Presenter::Photo do
     assert_equal 5, @photo.links.size
   end
 
+  it "has media credit" do
+    assert_equal "Wojciech Wnętrzak", @photo.media.credit
+  end
+
   it "has id" do
     assert_equal "5243667226703402962", @photo.id
   end

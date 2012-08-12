@@ -20,6 +20,14 @@ describe Picasa::Presenter::Album do
       assert_equal 3, @album.links.size
     end
 
+    it "has media credit" do
+      assert_equal "Wojciech Wnętrzak", @album.media.credit
+    end
+
+    it "has media thumbnail url" do
+      assert_equal "https://lh6.googleusercontent.com/-u_2FJXbbliU/SMU_eBetTXE/AAAAAAAAAkU/3XThNVnAM-4/s160-c/Test2.jpg", @album.media.thumbnails[0].url
+    end
+
     it "has published" do
       assert_equal "2008-09-08T07:00:00.000Z", @album.published
     end

@@ -13,6 +13,10 @@ module Picasa
         @links ||= safe_retrieve(parsed_body, "link").map { |link| Link.new(link) }
       end
 
+      def media
+        @media ||= Media.new(safe_retrieve(parsed_body, "media:group"))
+      end
+
       def id
         @id ||= safe_retrieve(parsed_body, "gphoto:id")
       end

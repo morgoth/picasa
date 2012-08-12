@@ -10,6 +10,16 @@ module Picasa
       end
     end
 
+    def array_wrap(object)
+      if object.nil?
+        []
+      elsif object.respond_to?(:to_ary)
+        object.to_ary || [object]
+      else
+        [object]
+      end
+    end
+
     def map_to_integer(value)
       value && value.to_i
     end
@@ -23,6 +33,6 @@ module Picasa
       end
     end
 
-    module_function :safe_retrieve, :map_to_integer, :map_to_boolean
+    module_function :safe_retrieve, :array_wrap, :map_to_integer, :map_to_boolean
   end
 end

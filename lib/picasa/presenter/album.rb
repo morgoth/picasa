@@ -14,12 +14,16 @@ module Picasa
       end
 
       def entries
-        @entries ||= Array(safe_retrieve(parsed_body, "entry")).map { |photo| Photo.new(photo) }
+        @entries ||= array_wrap(safe_retrieve(parsed_body, "entry")).map { |photo| Photo.new(photo) }
       end
       alias :photos :entries
 
       def links
         @links ||= safe_retrieve(parsed_body, "link").map { |link| Link.new(link) }
+      end
+
+      def media
+        @media ||= Media.new(safe_retrieve(parsed_body, "media:group"))
       end
 
       def published
