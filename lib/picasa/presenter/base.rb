@@ -10,7 +10,18 @@ module Picasa
       end
 
       def inspect
-        "<#{self.class}>"
+        inspection = methods_to_inspect.map do |method|
+          value = send(method)
+          value = value.nil? ? "nil" : value.inspect
+          "#{method}: #{value}"
+        end.join(", ")
+        "#<#{self.class} #{inspection}>"
+      end
+
+      private
+
+      def methods_to_inspect
+        public_methods - Object.methods - [:parsed_body]
       end
     end
   end

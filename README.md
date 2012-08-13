@@ -1,6 +1,6 @@
 # Picasa
 
-Ruby library for Picasa Web Albums Data API
+Ruby library for [Picasa Web Albums Data API](https://developers.google.com/picasa-web/)
 
 ## Installation
 
