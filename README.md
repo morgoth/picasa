@@ -15,7 +15,7 @@ client = Picasa::Client.new(:user_id => "google_username")
 client.album.list
 # => Picasa::Presenter::AlbumList
 
-client.album.photos("album-id")
+client.album.show("album-id")
 # => Picasa::Presenter::Album
 ```
 
