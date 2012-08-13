@@ -1,5 +1,4 @@
 require "multi_xml"
-require "ox"
 
 require "picasa/version"
 require "picasa/utils"
@@ -15,9 +14,6 @@ require "picasa/presenter/link"
 require "picasa/presenter/media"
 require "picasa/presenter/photo"
 require "picasa/presenter/thumbnail"
-
-# Currently it only works with ox parser
-MultiXml.parser = :ox
 
 module Picasa
   API_URL      = "https://picasaweb.google.com"

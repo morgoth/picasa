@@ -5,7 +5,7 @@ describe Picasa::Presenter::Thumbnail do
   describe "album list" do
     before do
       body = MultiXml.parse(fixture("presenters/album_list.xml"))
-      @thumbnail = Picasa::Presenter::Thumbnail.new(body["feed"]["entry"][0]["media:group"]["media:thumbnail"])
+      @thumbnail = Picasa::Presenter::Thumbnail.new(body["feed"]["entry"][0]["group"]["thumbnail"])
     end
 
     it "has url" do

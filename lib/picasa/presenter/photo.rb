@@ -8,11 +8,11 @@ module Picasa
       end
 
       def media
-        @media ||= Media.new(safe_retrieve(parsed_body, "media:group"))
+        @media ||= Media.new(safe_retrieve(parsed_body, "group"))
       end
 
       def id
-        @id ||= safe_retrieve(parsed_body, "gphoto:id")
+        @id ||= array_wrap(safe_retrieve(parsed_body, "id"))[1]
       end
 
       def published
@@ -32,47 +32,47 @@ module Picasa
       end
 
       def album_id
-        @album_id ||= safe_retrieve(parsed_body, "gphoto:albumid")
+        @album_id ||= safe_retrieve(parsed_body, "albumid")
       end
 
       def access
-        @access ||= safe_retrieve(parsed_body, "gphoto:access")
+        @access ||= safe_retrieve(parsed_body, "access")
       end
 
       def width
-        @width ||= map_to_integer(safe_retrieve(parsed_body, "gphoto:width"))
+        @width ||= map_to_integer(safe_retrieve(parsed_body, "width"))
       end
 
       def height
-        @height ||= map_to_integer(safe_retrieve(parsed_body, "gphoto:height"))
+        @height ||= map_to_integer(safe_retrieve(parsed_body, "height"))
       end
 
       def size
-        @size ||= map_to_integer(safe_retrieve(parsed_body, "gphoto:size"))
+        @size ||= map_to_integer(safe_retrieve(parsed_body, "size"))
       end
 
       def checksum
-        @checksum ||= safe_retrieve(parsed_body, "gphoto:checksum")
+        @checksum ||= safe_retrieve(parsed_body, "checksum")
       end
 
       def timestamp
-        @timestamp ||= safe_retrieve(parsed_body, "gphoto:timestamp")
+        @timestamp ||= safe_retrieve(parsed_body, "timestamp")
       end
 
       def image_version
-        @image_version ||= map_to_integer(safe_retrieve(parsed_body, "gphoto:imageVersion"))
+        @image_version ||= map_to_integer(safe_retrieve(parsed_body, "imageVersion"))
       end
 
       def commenting_enabled
-        @commenting_enabled ||= map_to_boolean(safe_retrieve(parsed_body, "gphoto:commentingEnabled"))
+        @commenting_enabled ||= map_to_boolean(safe_retrieve(parsed_body, "commentingEnabled"))
       end
 
       def comment_count
-        @comment_count ||= map_to_integer(safe_retrieve(parsed_body, "gphoto:commentCount"))
+        @comment_count ||= map_to_integer(safe_retrieve(parsed_body, "commentCount"))
       end
 
       def license
-        @license ||= safe_retrieve(parsed_body, "gphoto:license", "__content__")
+        @license ||= safe_retrieve(parsed_body, "license", "__content__")
       end
     end
   end

@@ -17,7 +17,7 @@ module Picasa
       end
 
       def media
-        @media ||= Media.new(safe_retrieve(parsed_body, "media:group"))
+        @media ||= Media.new(safe_retrieve(parsed_body, "group"))
       end
 
       def published
@@ -41,35 +41,35 @@ module Picasa
       end
 
       def id
-        @id ||= safe_retrieve(parsed_body, "gphoto:id")
+        @id ||= array_wrap(safe_retrieve(parsed_body, "id"))[1]
       end
 
       def name
-        @name ||= safe_retrieve(parsed_body, "gphoto:name")
+        @name ||= safe_retrieve(parsed_body, "name")
       end
 
       def location
-        @location ||= safe_retrieve(parsed_body, "gphoto:location")
+        @location ||= safe_retrieve(parsed_body, "location")
       end
 
       def access
-        @access ||= safe_retrieve(parsed_body, "gphoto:access")
+        @access ||= safe_retrieve(parsed_body, "access")
       end
 
       def timestamp
-        @timestamp ||= safe_retrieve(parsed_body, "gphoto:timestamp")
+        @timestamp ||= safe_retrieve(parsed_body, "timestamp")
       end
 
       def numphotos
-        @numphotos ||= map_to_integer(safe_retrieve(parsed_body, "gphoto:numphotos"))
+        @numphotos ||= map_to_integer(safe_retrieve(parsed_body, "numphotos"))
       end
 
       def user
-        @user ||= safe_retrieve(parsed_body, "gphoto:user")
+        @user ||= safe_retrieve(parsed_body, "user")
       end
 
       def nickname
-        @nickname ||= safe_retrieve(parsed_body, "gphoto:nickname")
+        @nickname ||= safe_retrieve(parsed_body, "nickname")
       end
     end
   end

@@ -4,7 +4,7 @@ require "helper"
 describe Picasa::Presenter::Media do
   before do
     body = MultiXml.parse(fixture("presenters/album_show.xml"))
-    @media = Picasa::Presenter::Media.new(body["feed"]["entry"][0]["media:group"])
+    @media = Picasa::Presenter::Media.new(body["feed"]["entry"][0]["group"])
   end
 
   it "has credit" do

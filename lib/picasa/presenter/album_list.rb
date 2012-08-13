@@ -33,27 +33,27 @@ module Picasa
       end
 
       def total_results
-        @total_results ||= map_to_integer(safe_retrieve(parsed_body, "openSearch:totalResults"))
+        @total_results ||= map_to_integer(safe_retrieve(parsed_body, "totalResults"))
       end
 
       def start_index
-        @start_index ||= map_to_integer(safe_retrieve(parsed_body, "openSearch:startIndex"))
+        @start_index ||= map_to_integer(safe_retrieve(parsed_body, "startIndex"))
       end
 
       def items_per_page
-        @items_per_page ||= map_to_integer(safe_retrieve(parsed_body, "openSearch:itemsPerPage"))
+        @items_per_page ||= map_to_integer(safe_retrieve(parsed_body, "itemsPerPage"))
       end
 
       def user
-        @user ||= safe_retrieve(parsed_body, "gphoto:user")
+        @user ||= safe_retrieve(parsed_body, "user")
       end
 
       def nickname
-        @nickname ||= safe_retrieve(parsed_body, "gphoto:nickname")
+        @nickname ||= safe_retrieve(parsed_body, "nickname")
       end
 
       def thumbnail
-        @thumbnail ||= safe_retrieve(parsed_body, "gphoto:thumbnail")
+        @thumbnail ||= safe_retrieve(parsed_body, "thumbnail")
       end
     end
   end
