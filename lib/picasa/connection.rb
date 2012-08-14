@@ -1,4 +1,5 @@
 require "net/https"
+require "cgi"
 require "uri"
 
 module Picasa
@@ -31,10 +32,10 @@ module Picasa
     end
 
     def inline_params(params)
-      dasherized_params = params.map do |key, value|
-        [key.to_s.gsub("_", "-"), value]
-      end
-      URI.encode_www_form(dasherized_params)
+      params.map do |key, value|
+        dasherized = key.to_s.gsub("_", "-")
+        "#{CGI.escape(dasherized)}=#{CGI.escape(value.to_s)}"
+      end.join("&")
     end
 
     def path_with_params(path, params = {})
