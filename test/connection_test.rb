@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 require "helper"
 
 describe Picasa::Connection do
@@ -16,6 +17,11 @@ describe Picasa::Connection do
     it "changes param keys underscore to dash" do
       params = @connection.inline_params({:max_results => 10})
       assert_equal "max-results=10", params
+    end
+
+    it "escapes values" do
+      params = @connection.inline_params({:kind => "żółć"})
+      assert_equal "kind=%C5%BC%C3%B3%C5%82%C4%87", params
     end
   end
 

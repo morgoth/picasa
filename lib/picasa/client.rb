@@ -1,14 +1,13 @@
 module Picasa
   class Client
-    attr_reader :user_id, :password
+    attr_reader :credentials
 
     def initialize(credentials = {})
-      @user_id  = credentials[:user_id] || raise(ArgumentError.new("You must specify user_id"))
-      @password = credentials[:password]
+      credentials[:user_id] || raise(ArgumentError, "You must specify user_id")
     end
 
     def album
-      API::Album.new(:user_id => user_id, :password => password)
+      API::Album.new(credentials)
     end
   end
 end

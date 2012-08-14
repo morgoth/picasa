@@ -31,10 +31,10 @@ module Picasa
     end
 
     def inline_params(params)
-      params.map do |param, value|
-        param = param.to_s.gsub("_", "-")
-        "#{param}=#{value}"
-      end.join("&")
+      dasherized_params = params.map do |key, value|
+        [key.to_s.gsub("_", "-"), value]
+      end
+      URI.encode_www_form(dasherized_params)
     end
 
     def path_with_params(path, params = {})

@@ -11,13 +11,16 @@ gem install picasa
 ## Usage
 
 ``` ruby
-client = Picasa::Client.new(:user_id => "google_username")
+client = Picasa::Client.new(:user_id => "username@gmail.com")
 client.album.list
 # => Picasa::Presenter::AlbumList
 
 client.album.show("album_id")
 # => Picasa::Presenter::Album
 ```
+
+If password is specified, all requests will be authenticated.
+This affect results to contain private data.
 
 ## Continuous Integration
 [![Build Status](https://secure.travis-ci.org/morgoth/picasa.png)](http://travis-ci.org/morgoth/picasa)
