@@ -78,8 +78,8 @@ module Picasa
 
     def extract_auth_key(data)
       response = data.split("\n").map { |v| v.split("=") }
-      response = Hash[*response.collect { |v| [v, v * 2] }.flatten]
-      response["Auth"]
+      params = Hash[response]
+      params["Auth"]
     end
   end
 end

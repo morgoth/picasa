@@ -4,6 +4,7 @@ module Picasa
 
     def initialize(credentials = {})
       credentials[:user_id] || raise(ArgumentError, "You must specify user_id")
+      @credentials = credentials
     end
 
     def album
