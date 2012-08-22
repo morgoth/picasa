@@ -11,7 +11,7 @@ gem install picasa
 ## Usage
 
 ``` ruby
-client = Picasa::Client.new(:user_id => "username@gmail.com")
+client = Picasa::Client.new(user_id: "username@gmail.com")
 client.album.list
 # => Picasa::Presenter::AlbumList
 

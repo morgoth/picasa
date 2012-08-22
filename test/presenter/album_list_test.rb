@@ -24,7 +24,7 @@ describe Picasa::Presenter::AlbumList do
   end
 
   it "has updated" do
-    assert_equal "2011-11-19T07:47:33.984Z", @album_list.updated
+    assert_equal "2011-11-19T07:47:33+00:00", @album_list.updated.to_s
   end
 
   it "has icon" do

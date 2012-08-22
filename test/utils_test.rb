@@ -58,6 +58,16 @@ describe Picasa::Utils do
     end
   end
 
+  describe "#map_to_date" do
+    it "does not convert nil value" do
+      assert_nil Picasa::Utils.map_to_date(nil)
+    end
+
+    it "converts given value to date" do
+      assert_equal DateTime, Picasa::Utils.map_to_date("2008-09-08T07:00:00+00:00").class
+    end
+  end
+
   describe "#map_to_boolean" do
     it "converts true string to boolean" do
       assert_equal true, Picasa::Utils.map_to_boolean("true")

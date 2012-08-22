@@ -1,3 +1,5 @@
+require "date"
+
 module Picasa
   module Utils
     def safe_retrieve(hash, *keys)
@@ -25,6 +27,10 @@ module Picasa
       value && value.to_i
     end
 
+    def map_to_date(value)
+      value && DateTime.parse(value)
+    end
+
     def map_to_boolean(value)
       return unless value
       case value
@@ -33,6 +39,6 @@ module Picasa
       end
     end
 
-    module_function :safe_retrieve, :array_wrap, :map_to_integer, :map_to_boolean
+    module_function :safe_retrieve, :array_wrap, :map_to_integer, :map_to_boolean, :map_to_date
   end
 end

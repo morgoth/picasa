@@ -5,6 +5,10 @@ class TestPresenter < Picasa::Presenter::Base
   def body
     parsed_body[:body]
   end
+
+  def nil_value
+    nil
+  end
 end
 
 describe Picasa::Presenter::Base do
@@ -17,7 +21,7 @@ describe Picasa::Presenter::Base do
   end
 
   it "has inspect with class name and defined methods" do
-    expected = %q{#<TestPresenter body: "presented body">}
+    expected = %q{#<TestPresenter body: "presented body", nil_value: nil>}
     assert_equal expected, @presenter.inspect
   end
 end

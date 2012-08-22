@@ -21,7 +21,7 @@ module Picasa
       end
 
       def updated
-        @updated ||= safe_retrieve(parsed_body, "updated")
+        @updated ||= map_to_date(safe_retrieve(parsed_body, "updated"))
       end
 
       def icon

@@ -16,11 +16,11 @@ module Picasa
       end
 
       def published
-        @published ||= safe_retrieve(parsed_body, "published")
+        @published ||= map_to_date(safe_retrieve(parsed_body, "published"))
       end
 
       def updated
-        @updated ||= safe_retrieve(parsed_body, "updated")
+        @updated ||= map_to_date(safe_retrieve(parsed_body, "updated"))
       end
 
       def title

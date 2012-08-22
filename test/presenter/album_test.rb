@@ -29,11 +29,11 @@ describe Picasa::Presenter::Album do
     end
 
     it "has published" do
-      assert_equal "2008-09-08T07:00:00.000Z", @album.published
+      assert_equal "2008-09-08T07:00:00+00:00", @album.published.to_s
     end
 
     it "has updated" do
-      assert_equal "2011-07-28T18:26:00.345Z", @album.updated
+      assert_equal "2011-07-28T18:26:00+00:00", @album.updated.to_s
     end
 
     it "has title" do
@@ -108,7 +108,7 @@ describe Picasa::Presenter::Album do
     end
 
     it "has updated" do
-      assert_equal "2011-07-28T18:26:00.345Z", @album.updated
+      assert_equal "2011-07-28T18:26:00+00:00", @album.updated.to_s
     end
 
     it "has title" do

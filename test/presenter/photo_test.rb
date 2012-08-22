@@ -20,11 +20,11 @@ describe Picasa::Presenter::Photo do
   end
 
   it "has published" do
-    assert_equal "2008-09-08T15:06:55.000Z", @photo.published
+    assert_equal "2008-09-08T15:06:55+00:00", @photo.published.to_s
   end
 
   it "has updated" do
-    assert_equal "2009-06-24T15:59:48.639Z", @photo.updated
+    assert_equal "2009-06-24T15:59:48+00:00", @photo.updated.to_s
   end
 
   it "has title" do
