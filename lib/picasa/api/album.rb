@@ -4,8 +4,8 @@ module Picasa
       attr_reader :user_id, :credentials
 
       # @param [Hash] credentials
-      #   @option options [String] :user_id google username/email
-      #   @option options [String] :password password for given username/email
+      # @option options [String] :user_id google username/email
+      # @option options [String] :password password for given username/email
       def initialize(credentials)
         if MultiXml.parser.to_s == "MultiXml::Parsers::Ox"
           raise StandardError, "MultiXml parser is set to :ox - picasa gem will not work with it currently, use one of: :libxml, :nokogiri, :rexml"
@@ -16,7 +16,7 @@ module Picasa
 
       # Returns album list
       #
-      # @param [Hash] additional options included in request
+      # @param [Hash] options additional options included in request
       #
       # @return [Presenter::AlbumList]
       def list(options = {})
@@ -28,10 +28,10 @@ module Picasa
 
       # Returns photo list for given album
       #
-      # @param [String] id of album
-      # @param [Hash] additional options included in request
-      #   @option options [String, Integer] :max_results max number of returned results
-      #   @option options [String] :tag include photos with given tag only
+      # @param [String] album_id album id
+      # @param [Hash] options additional options included in request
+      # @option options [String, Integer] :max_results max number of returned results
+      # @option options [String] :tag include photos with given tag only
       #
       # @return [Presenter::Album]
       def show(album_id, options = {})

@@ -10,6 +10,8 @@ gem install picasa
 
 ## Usage
 
+[Documentation](http://rubydoc.info/github/morgoth/picasa)
+
 ``` ruby
 client = Picasa::Client.new(user_id: "username@gmail.com")
 client.album.list
