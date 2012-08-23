@@ -8,13 +8,13 @@ module Picasa
         @author ||= Author.new(safe_retrieve(parsed_body, "author"))
       end
 
-      # @return Array<Presenter::Album>
+      # @return [Array<Presenter::Album>]
       def entries
         @entries ||= array_wrap(safe_retrieve(parsed_body, "entry")).map { |entry| Album.new(entry) }
       end
       alias :albums :entries
 
-      # @return Array<Presenter::Link>
+      # @return [Array<Presenter::Link>]
       def links
         @links ||= safe_retrieve(parsed_body, "link").map { |link| Link.new(link) }
       end

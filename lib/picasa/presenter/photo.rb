@@ -3,7 +3,7 @@ require "picasa/presenter/base"
 module Picasa
   module Presenter
     class Photo < Base
-      # @return Array<Presenter::Link>
+      # @return [Array<Presenter::Link>]
       def links
         @links ||= safe_retrieve(parsed_body, "link").map { |link| Link.new(link) }
       end

@@ -4,8 +4,8 @@ module Picasa
       attr_reader :user_id, :credentials
 
       # @param [Hash] credentials
-      # @option options [String] :user_id google username/email
-      # @option options [String] :password password for given username/email
+      # @option credentials [String] :user_id google username/email
+      # @option credentials [String] :password password for given username/email
       def initialize(credentials)
         if MultiXml.parser.to_s == "MultiXml::Parsers::Ox"
           raise StandardError, "MultiXml parser is set to :ox - picasa gem will not work with it currently, use one of: :libxml, :nokogiri, :rexml"
