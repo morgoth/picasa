@@ -11,6 +11,11 @@ describe Picasa::Presenter::Photo do
     assert_equal 5, @photo.links.size
   end
 
+  it "has content src" do
+    expected = "https://lh4.googleusercontent.com/-O0AOpTAPGBQ/SMU_j4ADl9I/AAAAAAAAAFs/DRnmROPuRVU/Kashmir%252520range.jpg"
+    assert_equal expected, @photo.content.src
+  end
+
   it "has media credit" do
     assert_equal "Wojciech Wnętrzak", @photo.media.credit
   end

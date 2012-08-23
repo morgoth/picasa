@@ -13,6 +13,11 @@ module Picasa
         @media ||= Media.new(safe_retrieve(parsed_body, "group"))
       end
 
+      # @return [Presenter::Content]
+      def content
+        @content ||= Content.new(safe_retrieve(parsed_body, "content"))
+      end
+
       # @return [String]
       def id
         @id ||= array_wrap(safe_retrieve(parsed_body, "id"))[1]
