@@ -3,7 +3,7 @@ require "picasa/presenter/base"
 module Picasa
   module Presenter
     class Media < Base
-      # @return Array<Presenter::Thumbnail>
+      # @return [Array<Presenter::Thumbnail>]
       def thumbnails
         @thumbnails ||= array_wrap(safe_retrieve(parsed_body, "thumbnail")).map { |thumbnail| Thumbnail.new(thumbnail) }
       end
