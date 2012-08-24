@@ -6,6 +6,7 @@ require "picasa/exceptions"
 require "picasa/connection"
 require "picasa/client"
 require "picasa/api/album"
+require "picasa/api/tag"
 
 require "picasa/presenter/album"
 require "picasa/presenter/album_list"
@@ -14,6 +15,8 @@ require "picasa/presenter/content"
 require "picasa/presenter/link"
 require "picasa/presenter/media"
 require "picasa/presenter/photo"
+require "picasa/presenter/tag"
+require "picasa/presenter/tag_list"
 require "picasa/presenter/thumbnail"
 
 module Picasa
