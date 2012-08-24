@@ -17,8 +17,8 @@ module Picasa
       # Returns tag list - when album_id is not specified, list of user tags will be returned
       #
       # @param [Hash] options additional options included in request
-      # @option option [String] :album_id retrieve tags for given album
-      # @option option [String] :photo_id retrieve tags for given photo (album_id must be provided)
+      # @option options [String] :album_id retrieve tags for given album
+      # @option options [String] :photo_id retrieve tags for given photo (album_id must be provided)
       #
       # @return [Presenter::TagList]
       def list(options = {})
