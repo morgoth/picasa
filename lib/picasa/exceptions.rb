@@ -14,4 +14,6 @@ module Picasa
       super(message)
     end
   end
+
+  class NotFoundError < ResponseError; end
 end

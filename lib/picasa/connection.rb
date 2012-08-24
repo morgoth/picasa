@@ -4,7 +4,7 @@ require "uri"
 
 module Picasa
   class Connection
-    attr_reader :user_id, :password, :response
+    attr_reader :user_id, :password
 
     def initialize(credentials = {})
       @user_id  = credentials.fetch(:user_id)
@@ -23,12 +23,7 @@ module Picasa
 
       path = path_with_params(path, params)
       request = Net::HTTP::Get.new(path, headers)
-      @response = http.request(request)
-      parsed_body
-    end
-
-    def parsed_body
-      @parsed_body ||= MultiXml.parse(response.body)
+      handle_response(http.request(request))
     end
 
     def inline_params(params)
@@ -44,6 +39,17 @@ module Picasa
     end
 
     private
+
+    def handle_response(response)
+      case response.code.to_i
+      when 200...300
+        MultiXml.parse(response.body)
+      when 404
+        raise NotFoundError.new(response.body, response)
+      else
+        raise ResponseError.new(reponse.body, response)
+      end
+    end
 
     def headers
       {"User-Agent" => "ruby-gem-v#{Picasa::VERSION}", "GData-Version" => API_VERSION}.tap do |headers|
@@ -62,7 +68,6 @@ module Picasa
     end
 
     def authenticate
-      return @auth_key if defined?(@auth_key)
       validate_email!
 
       data = inline_params({"accountType" => "HOSTED_OR_GOOGLE",

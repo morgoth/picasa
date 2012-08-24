@@ -37,6 +37,17 @@ describe Picasa::Connection do
     end
   end
 
+  it "raises NotFound exception when 404 returned" do
+    connection = Picasa::Connection.new(:user_id => "john.doe@domain.com")
+    uri        = URI.parse("/data/feed/api/user/#{connection.user_id}/albumid/non-existing")
+
+    stub_request(:get, "https://picasaweb.google.com" + uri.path).to_return(fixture("not_found.txt"))
+
+    assert_raises Picasa::NotFoundError, "Invalid entity id: non-existing" do
+      connection.get(uri.path)
+    end
+  end
+
   describe "authentication" do
     it "successfully authenticates" do
       connection = Picasa::Connection.new(:user_id => "john.doe@domain.com", :password => "secret")

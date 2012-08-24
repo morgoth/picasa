@@ -34,6 +34,7 @@ module Picasa
       # @option options [String] :tag include photos with given tag only
       #
       # @return [Presenter::Album]
+      # @raise [NotFoundError] raised when album cannot be found
       def show(album_id, options = {})
         uri = URI.parse("/data/feed/api/user/#{user_id}/albumid/#{album_id}")
         parsed_body = Connection.new(credentials).get(uri.path, options)
