@@ -47,7 +47,7 @@ module Picasa
       when 404
         raise NotFoundError.new(response.body, response)
       else
-        raise ResponseError.new(reponse.body, response)
+        raise ResponseError.new(response.body, response)
       end
     end
 

@@ -158,6 +158,14 @@ describe Picasa::Presenter::Album do
     it "has photo entries" do
       assert_equal 3, @album.entries.size
     end
+
+    it "has allow_prints" do
+      assert_equal true, @album.allow_prints
+    end
+
+    it "has allow_downloads" do
+      assert_equal true, @album.allow_downloads
+    end
   end
 
   describe "album from show with single photo" do

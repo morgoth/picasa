@@ -16,7 +16,7 @@ module Picasa
 
       # @return [Array<Presenter::Link>]
       def links
-        @links ||= safe_retrieve(parsed_body, "link").map { |link| Link.new(link) }
+        @links ||= array_wrap(safe_retrieve(parsed_body, "link")).map { |link| Link.new(link) }
       end
 
       # @return [Presenter::Media]
@@ -87,6 +87,16 @@ module Picasa
       # @return [String]
       def nickname
         @nickname ||= safe_retrieve(parsed_body, "nickname")
+      end
+
+      # @return [true, false, nil]
+      def allow_prints
+        @allow_prints ||= map_to_boolean(safe_retrieve(parsed_body, "allowPrints"))
+      end
+
+      # @return [true, false, nil]
+      def allow_downloads
+        @allow_downloads ||= map_to_boolean(safe_retrieve(parsed_body, "allowDownloads"))
       end
     end
   end
