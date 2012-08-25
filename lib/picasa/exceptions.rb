@@ -16,4 +16,5 @@ module Picasa
   end
 
   class NotFoundError < ResponseError; end
+  class ForbiddenError < ResponseError; end
 end

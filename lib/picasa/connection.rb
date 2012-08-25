@@ -23,7 +23,8 @@ module Picasa
 
       path = path_with_params(path, params)
       request = Net::HTTP::Get.new(path, headers)
-      handle_response(http.request(request))
+      response = handle_response(http.request(request))
+      MultiXml.parse(response.body)
     end
 
     def inline_params(params)
@@ -43,7 +44,9 @@ module Picasa
     def handle_response(response)
       case response.code.to_i
       when 200...300
-        MultiXml.parse(response.body)
+        response
+      when 403
+        raise ForbiddenError.new(response.body, response)
       when 404
         raise NotFoundError.new(response.body, response)
       else
@@ -52,7 +55,7 @@ module Picasa
     end
 
     def headers
-      {"User-Agent" => "ruby-gem-v#{Picasa::VERSION}", "GData-Version" => API_VERSION}.tap do |headers|
+      {"User-Agent" => client_name, "GData-Version" => API_VERSION}.tap do |headers|
         headers["Authorization"] = "GoogleLogin auth=#{@auth_key}" if @auth_key
       end
     end
@@ -61,23 +64,14 @@ module Picasa
       !password.nil?
     end
 
-    def validate_email!
-      unless user_id =~ /[a-z0-9][a-z0-9._%+-]+[a-z0-9]@[a-z0-9][a-z0-9.-][a-z0-9]+\.[a-z]{2,6}/i
-        raise ArgumentError.new("user_id must be a valid E-mail address when authentication is used.")
-      end
-    end
-
     def authenticate
-      validate_email!
-
       data = inline_params({"accountType" => "HOSTED_OR_GOOGLE",
                             "Email"       => user_id,
                             "Passwd"      => password,
                             "service"     => "lh2",
-                            "source"      => "ruby-gem-v#{Picasa::VERSION}"})
+                            "source"      => client_name})
 
-      response = http(API_AUTH_URL).post("/accounts/ClientLogin", data)
-      raise ResponseError.new(response.body, response) unless response.is_a? Net::HTTPSuccess
+      response = handle_response(http(API_AUTH_URL).post("/accounts/ClientLogin", data))
 
       @auth_key = extract_auth_key(response.body)
     end
@@ -86,6 +80,10 @@ module Picasa
       response = data.split("\n").map { |v| v.split("=") }
       params = Hash[response]
       params["Auth"]
+    end
+
+    def client_name
+      "ruby-gem-v#{Picasa::VERSION}"
     end
   end
 end

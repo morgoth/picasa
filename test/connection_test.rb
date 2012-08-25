@@ -41,7 +41,7 @@ describe Picasa::Connection do
     connection = Picasa::Connection.new(:user_id => "john.doe@domain.com")
     uri        = URI.parse("/data/feed/api/user/#{connection.user_id}/albumid/non-existing")
 
-    stub_request(:get, "https://picasaweb.google.com" + uri.path).to_return(fixture("not_found.txt"))
+    stub_request(:get, "https://picasaweb.google.com" + uri.path).to_return(fixture("exceptions/not_found.txt"))
 
     assert_raises Picasa::NotFoundError, "Invalid entity id: non-existing" do
       connection.get(uri.path)
@@ -60,21 +60,13 @@ describe Picasa::Connection do
       refute_nil connection.get(uri.path)
     end
 
-    it "raises ArgumentError when invalid email given" do
-      connection = Picasa::Connection.new(:user_id => "john.doe", :password => "secret")
-
-      assert_raises(Picasa::ArgumentError) do
-        connection.get("/")
-      end
-    end
-
     it "raises an ResponseError when authentication failed" do
       connection = Picasa::Connection.new(:user_id => "john.doe@domain.com", :password => "secret")
       uri        = URI.parse("/data/feed/api/user/#{connection.user_id}")
 
-      stub_request(:post, "https://www.google.com/accounts/ClientLogin").to_return(fixture("auth/failure.txt"))
+      stub_request(:post, "https://www.google.com/accounts/ClientLogin").to_return(fixture("exceptions/forbidden.txt"))
 
-      assert_raises(Picasa::ResponseError) do
+      assert_raises(Picasa::ForbiddenError) do
         connection.get(uri.path)
       end
     end
