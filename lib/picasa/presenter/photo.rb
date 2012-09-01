@@ -23,6 +23,11 @@ module Picasa
         @id ||= array_wrap(safe_retrieve(parsed_body, "id"))[1]
       end
 
+      # @return [String]
+      def etag
+        @etag ||= safe_retrieve(parsed_body, "etag")
+      end
+
       # @return [DateTime]
       def published
         @published ||= map_to_date(safe_retrieve(parsed_body, "published"))

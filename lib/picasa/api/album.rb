@@ -74,13 +74,15 @@ module Picasa
       # Destroys given album
       #
       # @param [String] album_id album id
+      # @param [Hash] options request parameters
+      # @option options [String] :etag destroys only when etag matches - protects before destroying other client changes
       #
       # @return [true]
       # @raise [NotFoundError] raised when album cannot be found
-      # TODO: support If-Match header with ETag
-      def destroy(album_id)
+      def destroy(album_id, options = {})
+        headers = {"If-Match" => options.fetch(:etag, "*")}
         uri = URI.parse("/data/entry/api/user/#{user_id}/albumid/#{album_id}")
-        Connection.new(credentials).delete(uri.path)
+        Connection.new(credentials).delete(uri.path, headers)
         true
       end
       alias :delete :destroy

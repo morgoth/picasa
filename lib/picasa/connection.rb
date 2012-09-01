@@ -36,10 +36,10 @@ module Picasa
       MultiXml.parse(response.body)
     end
 
-    def delete(path)
+    def delete(path, custom_headers = {})
       authenticate if auth?
 
-      request = Net::HTTP::Delete.new(path, headers.merge("If-Match" => "*"))
+      request = Net::HTTP::Delete.new(path, headers.merge(custom_headers))
       handle_response(http.request(request))
     end
 

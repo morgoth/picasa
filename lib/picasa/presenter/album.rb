@@ -35,6 +35,11 @@ module Picasa
       end
 
       # @return [String]
+      def etag
+        @etag ||= safe_retrieve(parsed_body, "etag")
+      end
+
+      # @return [String]
       def title
         @title ||= safe_retrieve(parsed_body, "title")
       end

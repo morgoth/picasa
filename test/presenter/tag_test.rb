@@ -24,6 +24,10 @@ describe Picasa::Presenter::Tag do
       assert_equal "2012-08-17T08:40:24+00:00", @tag.updated.to_s
     end
 
+    it "has etag" do
+      assert_equal "W/\"CE8GRXczfip7ImA9WhJWEUQ.\"", @tag.etag
+    end
+
     it "has title" do
       assert_equal "nice", @tag.title
     end

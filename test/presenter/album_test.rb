@@ -20,6 +20,10 @@ describe Picasa::Presenter::Album do
       assert_equal 3, @album.links.size
     end
 
+    it "has etag" do
+      assert_equal "\"YDkqeyI.\"", @album.etag
+    end
+
     it "has media credit" do
       assert_equal "Wojciech Wnętrzak", @album.media.credit
     end
@@ -125,6 +129,10 @@ describe Picasa::Presenter::Album do
 
     it "has id" do
       assert_equal "5243667126168669553", @album.id
+    end
+
+    it "has etag" do
+      assert_equal "W/\"DUICQX0_fSp7ImA9WhdSGEo.\"", @album.etag
     end
 
     it "has name" do

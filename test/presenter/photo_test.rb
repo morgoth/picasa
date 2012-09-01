@@ -20,6 +20,10 @@ describe Picasa::Presenter::Photo do
     assert_equal "Wojciech Wnętrzak", @photo.media.credit
   end
 
+  it "has etag" do
+    assert_equal "\"YD4qeyI.\"", @photo.etag
+  end
+
   it "has id" do
     assert_equal "5243667226703402962", @photo.id
   end
