@@ -48,6 +48,18 @@ describe Picasa::Connection do
     end
   end
 
+  it "raises PreconditionFailed exception when 412 returned" do
+    connection = Picasa::Connection.new(:user_id => "john.doe@domain.com", :password => "secret")
+    uri        = URI.parse("/data/feed/api/user/#{connection.user_id}/albumid/123")
+
+    stub_request(:post, "https://www.google.com/accounts/ClientLogin").to_return(fixture("auth/success.txt"))
+    stub_request(:delete, "https://picasaweb.google.com" + uri.path).to_return(fixture("exceptions/precondition_failed.txt"))
+
+    assert_raises Picasa::PreconditionFailedError, "Mismatch: etags = [oldetag], version = [7]" do
+      connection.delete(uri.path, {"If-Match" => "oldetag"})
+    end
+  end
+
   describe "authentication" do
     it "successfully authenticates" do
       connection = Picasa::Connection.new(:user_id => "john.doe@domain.com", :password => "secret")

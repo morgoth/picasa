@@ -1,6 +1,4 @@
-<entry xmlns="http://www.w3.org/2005/Atom"
-    xmlns:media="http://search.yahoo.com/mrss/"
-    xmlns:gphoto="http://schemas.google.com/photos/2007">
+<entry xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:gphoto="http://schemas.google.com/photos/2007">
   <title type="text"><%= title %></title>
   <% if summary %>
   <summary type="text"><%= summary %></summary>
@@ -20,6 +18,5 @@
     <media:keywords><%= keywords %></media:keywords>
   </media:group>
   <% end %>
-  <category scheme="http://schemas.google.com/g/2005#kind"
-    term="http://schemas.google.com/photos/2007#album"></category>
+  <category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#album"></category>
 </entry>

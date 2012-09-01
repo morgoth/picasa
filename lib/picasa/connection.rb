@@ -65,6 +65,8 @@ module Picasa
         raise ForbiddenError.new(response.body, response)
       when 404
         raise NotFoundError.new(response.body, response)
+      when 412
+        raise PreconditionFailedError.new(response.body, response)
       else
         raise ResponseError.new(response.body, response)
       end
