@@ -1,3 +1,5 @@
+require "date"
+
 module Picasa
   module API
     class Album
@@ -45,6 +47,43 @@ module Picasa
 
         Presenter::Album.new(parsed_body["feed"])
       end
+
+      # Creates album
+      #
+      # @param [Hash] params album parameters
+      # @option options [String] :title title of album (required)
+      # @option options [String] :summary summary of album
+      # @option options [String] :location location of album photos (i.e. Poland)
+      # @option options [String] :access [public, private, protected]
+      # @option options [String] :timestamp timestamp of album (default to now)
+      # @option options [String] :published when photos took place (default to now) FIXME: does not work
+      # @option options [String] :keywords keywords (i.e. "vacation, poland")
+      #
+      # @return [Presenter::Album]
+      def create(params = {})
+        params[:title] || raise(ArgumentError, "You must specify title")
+        params[:timestamp] ||= Time.now.to_i
+        params[:published] ||= DateTime.now.rfc3339
+        template = Template.new(:new_album, params)
+
+        uri = URI.parse("/data/feed/api/user/#{user_id}")
+        parsed_body = Connection.new(credentials).post(uri.path, template.render)
+        Presenter::Album.new(parsed_body["entry"])
+      end
+
+      # Destroys given album
+      #
+      # @param [String] album_id album id
+      #
+      # @return [true]
+      # @raise [NotFoundError] raised when album cannot be found
+      # TODO: support If-Match header with ETag
+      def destroy(album_id)
+        uri = URI.parse("/data/entry/api/user/#{user_id}/albumid/#{album_id}")
+        Connection.new(credentials).delete(uri.path)
+        true
+      end
+      alias :delete :destroy
     end
   end
 end

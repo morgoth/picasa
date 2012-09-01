@@ -21,4 +21,26 @@ describe Picasa::API::Album do
       assert_equal "Wojciech Wnętrzak", album_show.author.name
     end
   end
+
+  describe "#create" do
+    it "gives correct parsed body fragment" do
+      stub_request(:post, "https://www.google.com/accounts/ClientLogin").to_return(fixture("auth/success.txt"))
+      stub_request(:post, "https://picasaweb.google.com/data/feed/api/user/w.wnetrzak@gmail.com").to_return(fixture("album/album-create.txt"))
+
+      album_show = Picasa::API::Album.new(:user_id => "w.wnetrzak@gmail.com", :password => "secret").create(:title => "album")
+
+      assert_equal "Wojciech Wnętrzak", album_show.author.name
+    end
+  end
+
+  describe "#destroy" do
+    it "gives true when success" do
+      stub_request(:post, "https://www.google.com/accounts/ClientLogin").to_return(fixture("auth/success.txt"))
+      stub_request(:delete, "https://picasaweb.google.com/data/entry/api/user/w.wnetrzak@gmail.com/albumid/123").to_return(:status => 200, :body => "")
+
+      result = Picasa::API::Album.new(:user_id => "w.wnetrzak@gmail.com", :password => "secret").destroy("123")
+
+      assert_equal true, result
+    end
+  end
 end

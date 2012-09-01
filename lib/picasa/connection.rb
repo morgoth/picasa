@@ -27,6 +27,22 @@ module Picasa
       MultiXml.parse(response.body)
     end
 
+    def post(path, body)
+      authenticate if auth?
+
+      request = Net::HTTP::Post.new(path, headers)
+      request.body = body
+      response = handle_response(http.request(request))
+      MultiXml.parse(response.body)
+    end
+
+    def delete(path)
+      authenticate if auth?
+
+      request = Net::HTTP::Delete.new(path, headers.merge("If-Match" => "*"))
+      handle_response(http.request(request))
+    end
+
     def inline_params(params)
       params.map do |key, value|
         dasherized = key.to_s.gsub("_", "-")
@@ -55,7 +71,11 @@ module Picasa
     end
 
     def headers
-      {"User-Agent" => client_name, "GData-Version" => API_VERSION}.tap do |headers|
+      {
+        "User-Agent"    => client_name,
+        "GData-Version" => API_VERSION,
+        "Content-Type"  => "application/atom+xml"
+      }.tap do |headers|
         headers["Authorization"] = "GoogleLogin auth=#{@auth_key}" if @auth_key
       end
     end
