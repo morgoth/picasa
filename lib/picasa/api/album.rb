@@ -1,5 +1,3 @@
-require "date"
-
 module Picasa
   module API
     class Album
@@ -56,14 +54,12 @@ module Picasa
       # @option options [String] :location location of album photos (i.e. Poland)
       # @option options [String] :access [public, private, protected]
       # @option options [String] :timestamp timestamp of album (default to now)
-      # @option options [String] :published when photos took place (default to now) FIXME: does not work
       # @option options [String] :keywords keywords (i.e. "vacation, poland")
       #
       # @return [Presenter::Album]
       def create(params = {})
         params[:title] || raise(ArgumentError, "You must specify title")
         params[:timestamp] ||= Time.now.to_i
-        params[:published] ||= DateTime.now.rfc3339
         template = Template.new(:new_album, params)
 
         uri = URI.parse("/data/feed/api/user/#{user_id}")
