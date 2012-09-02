@@ -1,25 +1,16 @@
+require "picasa/api/base"
+
 module Picasa
   module API
-    class Photo
-      attr_reader :user_id, :credentials
-
-      # @param [Hash] credentials
-      # @option credentials [String] :user_id google username/email
-      # @option credentials [String] :password password for given username/email
-      def initialize(credentials)
-        if MultiXml.parser.to_s == "MultiXml::Parsers::Ox"
-          raise StandardError, "MultiXml parser is set to :ox - picasa gem will not work with it currently, use one of: :libxml, :nokogiri, :rexml"
-        end
-        @user_id  = credentials.fetch(:user_id)
-        @credentials = credentials
-      end
-
+    class Photo < Base
       # Creates photo for given album
       #
       # @param [String] album_id album id
       # @param [Hash] options request parameters
       # @option options [String] :title title of album (required)
       # @option options [String] :summary summary of album
+      # @option options [String] :binary binary data (i.e. File.open("my-photo.png", "rb").read)
+      # @option options [String] :content_type ["image/jpeg", "image/png", "image/bmp", "image/gif"] content type of given image
       def create(album_id, params = {})
         params[:binary] || raise(ArgumentError, "You must specify binary")
         params[:content_type] || raise(ArgumentError, "You must specify image content_type")
