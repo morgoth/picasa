@@ -7,6 +7,7 @@ require "picasa/connection"
 require "picasa/client"
 require "picasa/template"
 require "picasa/api/album"
+require "picasa/api/photo"
 require "picasa/api/tag"
 
 require "picasa/presenter/album"

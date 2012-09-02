@@ -21,6 +21,17 @@ module Picasa
       API::Album.new(credentials)
     end
 
+    # @return [API::Photo]
+    #
+    # @example
+    #   client = Picasa::Client.new(user_id: "my.email@google.com", password: "secret")
+    #   photo = client.photo.create("album-id", title: "My picture", binary: "image-binary-data", content_type: "image/jpeg")
+    #   photo.id
+    #   # => "4322232322421"
+    def photo
+      API::Photo.new(credentials)
+    end
+
     # @return [API::Tag]
     #
     # @example

@@ -18,7 +18,7 @@ module Picasa
       #
       # @param [Hash] options additional options included in request
       # @option options [all, private, public, visible] :access which data should be retrieved when authenticated
-      # @option options [String] :fields which fields should be retrieved https://developers.google.com/gdata/docs/2.0/reference#fields
+      # @option options [String] :fields which fields should be retrieved https://developers.google.com/gdata/docs/2.0/reference#PartialResponseRequest
       # @option options [String, Integer] :max_results how many albums response should include
       # @option options [String, Integer] :start_index 1-based index of the first result to be retrieved
       #
@@ -60,8 +60,8 @@ module Picasa
       def create(params = {})
         params[:title] || raise(ArgumentError, "You must specify title")
         params[:timestamp] ||= Time.now.to_i
-        template = Template.new(:new_album, params)
 
+        template = Template.new(:new_album, params)
         uri = URI.parse("/data/feed/api/user/#{user_id}")
         parsed_body = Connection.new(credentials).post(uri.path, template.render)
         Presenter::Album.new(parsed_body["entry"])

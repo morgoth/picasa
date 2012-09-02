@@ -27,10 +27,10 @@ module Picasa
       MultiXml.parse(response.body)
     end
 
-    def post(path, body)
+    def post(path, body, custom_headers = {})
       authenticate if auth?
 
-      request = Net::HTTP::Post.new(path, headers)
+      request = Net::HTTP::Post.new(path, headers.merge(custom_headers))
       request.body = body
       response = handle_response(http.request(request))
       MultiXml.parse(response.body)
