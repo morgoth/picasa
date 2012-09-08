@@ -1,4 +1,4 @@
-require "picasa/api/base"
+require "./picasa/api/base"
 
 module Picasa
   module API
