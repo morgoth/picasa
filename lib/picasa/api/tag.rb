@@ -45,7 +45,7 @@ module Picasa
 		path << "/albumid/#{album_id}" if album_id
 		path << "/photoid/#{photo_id}" if photo_id
 		
-		template = Template.new("adding_tag" {:tag_name => tag_name})
+		template = Template.new("adding_tag", {:tag_name => tag_name})
 		
 		uri = URI.parse(path)
 		parsed_body = Connection.new(credentials).post(uri.path, template.render)
