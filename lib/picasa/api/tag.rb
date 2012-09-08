@@ -25,7 +25,7 @@ module Picasa
 
         Presenter::TagList.new(parsed_body["feed"])
       end
-	  
+
 	  # Adding a tag to a photo.
 	  #
 	  # @param [Hash]
@@ -51,6 +51,7 @@ module Picasa
 		parsed_body = Connection.new(credentials).post(uri.path, template.render)
 		Presenter::Photo.new(parsed_body["entry"])
 	  end
+
     end
   end
 end

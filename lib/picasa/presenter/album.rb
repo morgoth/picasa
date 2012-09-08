@@ -1,4 +1,4 @@
-require ".picasa/presenter/base"
+require "./picasa/presenter/base"
 
 module Picasa
   module Presenter
