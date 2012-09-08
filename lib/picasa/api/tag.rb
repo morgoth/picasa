@@ -31,21 +31,21 @@ module Picasa
 	  # @param [Hash]
 	  # @option options [String] :album_id
 	  # @option options [String] :photo_id
-	  # @option options [String] :adding_tag
+	  # @option options [String] :tag_name
 	  #
 	  # @return [Presenter::Photo]
 	  def add(params = {})
 	    album_id = params[:album_id]
 		photo_id = params[:photo_id]
-		adding_tag = params[:adding_tag]
+		tag_name = params[:tag_name]
 		raise(ArgumentError, "You must specify album_id when providing photo_id") if photo_id && !album_id
-		raise(ArgumentError, "You must specify adding tag name") if !adding_tag
+		raise(ArgumentError, "You must specify adding tag name") if !tag_name
 		
 		path = "/data/feed/api/user/#{user_id}"
 		path << "/albumid/#{album_id}" if album_id
 		path << "/photoid/#{photo_id}" if photo_id
 		
-		template = Template.new(:adding_tag, {:adding_tag => adding_tag})
+		template = Template.new("adding_tag" {:tag_name => tag_name})
 		
 		uri = URI.parse(path)
 		parsed_body = Connection.new(credentials).post(uri.path, template.render)
