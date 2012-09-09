@@ -32,7 +32,6 @@ module Picasa
 	  # @option options [String] :album_id
 	  # @option options [String] :photo_id
 	  # @option options [String] :tag_name
-	  #
 	  # @return [Presenter::Photo]
 	  def add(params = {})
 	    album_id = params[:album_id]
