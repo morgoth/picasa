@@ -41,14 +41,14 @@ module Picasa
       # @option options [String] :title title of album (required)
       # @option options [String] :summary summary of album
       # @option options [String] :location location of album photos (i.e. Poland)
-      # @option options [String] :access [public, private, protected]
+      # @option options [String] :access ["public", "private", "protected"]
       # @option options [String] :timestamp timestamp of album (default to now)
       # @option options [String] :keywords keywords (i.e. "vacation, poland")
-      #
       # @return [Presenter::Album]
       def create(params = {})
         params[:title] || raise(ArgumentError, "You must specify title")
         params[:timestamp] ||= Time.now.to_i
+		params[:access] ||= "private"
 
         template = Template.new(:new_album, params)
         uri = URI.parse("/data/feed/api/user/#{user_id}")
