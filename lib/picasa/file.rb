@@ -15,7 +15,7 @@ module Picasa
     end
 
     def binary
-      @binary ||= ::File.binread(path)
+      @binary ||= ::File.open(path, "rb").read
     end
 
     def content_type

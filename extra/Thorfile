@@ -1,0 +1,48 @@
+require "picasa"
+
+# Temporary requirement
+MultiXml.parser = :libxml
+
+class PicasaUploader < Thor
+  include Thor::Actions
+
+  desc "upload_all DIR", "Uploads all photos from given directory"
+  def upload_all(dir = File.basename(Dir.getwd))
+    require_credentials
+    say("Creating album: #{album}")
+    album_presenter = create_album_by_api(File.basename(dir))
+    inside(dir, :verbose => true) do
+      Dir.entries(".").reject { |e| e =~ /^\.\.?$/ }.sort.each do |file|
+        invoke :create_photo, [album_presenter.id, file]
+      end
+    end
+  end
+
+  desc "create_album ALBUM (defaults to current working directory)", "Create album"
+  def create_album(album = File.basename(Dir.getwd))
+    require_credentials
+    say("Creating album: #{album}")
+    create_album_by_api(album)
+  end
+
+  desc "create_photo ALBUM_ID, PATH", "Create photo in given album"
+  def create_photo(album_id, path)
+    require_credentials
+    path = File.join(Dir.getwd, path)
+    say("Creating photo: #{path} in album #{album_id}")
+    client = Picasa::Client.new(user_id: ENV["GOOGLE_USER_ID"], password: ENV["GOOGLE_PASSWORD"])
+    client.photo.create(album_id, file_path: path)
+  end
+
+  no_tasks do
+    def require_credentials
+      say "You must specify GOOGLE_USER_ID env variable" and exit unless ENV["GOOGLE_USER_ID"]
+      say "You must specify GOOGLE_PASSWORD env variable" and exit unless ENV["GOOGLE_PASSWORD"]
+    end
+
+    def create_album_by_api(album)
+      client = Picasa::Client.new(user_id: ENV["GOOGLE_USER_ID"], password: ENV["GOOGLE_PASSWORD"])
+      client.album.create(title: album)
+    end
+  end
+end

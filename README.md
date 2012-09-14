@@ -24,6 +24,20 @@ client.album.show("album_id")
 If password is specified, all requests will be authenticated.
 This affect results to contain private data.
 
+## Extra
+
+You can install thor script for uploading all photos from given directory:
+
+```
+thor install https://github.com/morgoth/picasa/raw/master/extra/Thorfile --as picasa_uploader --force
+```
+
+And then use it:
+
+```
+thor picasa_uploader:upload_all path-to-folder-with-photos
+```
+
 ## Continuous Integration
 [![Build Status](https://secure.travis-ci.org/morgoth/picasa.png)](http://travis-ci.org/morgoth/picasa)
 
