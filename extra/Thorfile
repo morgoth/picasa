@@ -9,7 +9,7 @@ class PicasaUploader < Thor
   desc "upload_all DIR", "Uploads all photos from given directory"
   def upload_all(dir = File.basename(Dir.getwd))
     require_credentials
-    say("Creating album: #{album}")
+    say("Creating album: #{File.basename(dir)}")
     album_presenter = create_album_by_api(File.basename(dir))
     inside(dir, :verbose => true) do
       Dir.entries(".").reject { |e| e =~ /^\.\.?$/ }.sort.each do |file|
