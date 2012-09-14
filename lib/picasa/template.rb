@@ -6,12 +6,12 @@ module Picasa
     attr_reader :name, :params
 
     def initialize(name, params)
-      @name = name
+      @name   = name
       @params = params
     end
 
     def file
-      @file ||= IO.read(File.expand_path("../templates/#{name}.xml.erb", __FILE__))
+      @file ||= IO.read(::File.expand_path("../templates/#{name}.xml.erb", __FILE__))
     end
 
     def struct

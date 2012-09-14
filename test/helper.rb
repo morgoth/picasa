@@ -14,6 +14,10 @@ class MiniTest::Unit::TestCase
     WebMock.disable_net_connect!
   end
 
+  def image_path(filename)
+    ::File.join("test", "fixtures", filename)
+  end
+
   # Recording response is as simple as writing in terminal:
   # curl -is -H "GData-Version: 2" "https://picasaweb.google.com/data/feed/api/user/username?prettyprint=true" -X GET > test/fixtures/albums.txt
   def fixture(filename)

@@ -12,7 +12,7 @@ module Picasa
       end
     end
 
-    # Ported from ActiveSupport
+    # Ported from activesupport gem
     def array_wrap(object)
       if object.nil?
         []

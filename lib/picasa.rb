@@ -5,6 +5,7 @@ require "picasa/utils"
 require "picasa/exceptions"
 require "picasa/connection"
 require "picasa/client"
+require "picasa/file"
 require "picasa/template"
 
 require "picasa/api/album"

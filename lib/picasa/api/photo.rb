@@ -7,14 +7,17 @@ module Picasa
       #
       # @param [String] album_id album id
       # @param [Hash] options request parameters
-      # @option options [String] :title title of album (required)
-      # @option options [String] :summary summary of album
+      # @option options [String] :file_path path to photo file, rest of required attributes might be guessed based on file (i.e. "/home/john/Images/me.png")
+      # @option options [String] :title title of photo
+      # @option options [String] :summary summary of photo
       # @option options [String] :binary binary data (i.e. File.open("my-photo.png", "rb").read)
       # @option options [String] :content_type ["image/jpeg", "image/png", "image/bmp", "image/gif"] content type of given image
       def create(album_id, params = {})
-        params[:binary] || raise(ArgumentError, "You must specify binary")
-        params[:content_type] || raise(ArgumentError, "You must specify image content_type")
-        params[:boundary] ||= "===============PicasaRubyGem=="
+        file = params[:file_path] ? File.new(params.delete(:file_path)) : nil
+        params[:boundary]     ||= "===============PicasaRubyGem=="
+        params[:title]        ||= (file && file.name) || raise(ArgumentError.new("title must be specified"))
+        params[:binary]       ||= (file && file.binary) || raise(ArgumentError.new("binary must be specified"))
+        params[:content_type] ||= (file && file.content_type) || raise(ArgumentError.new("content_type must be specified"))
         template = Template.new(:new_photo, params)
         headers = {"Content-Type" => "multipart/related; boundary=\"#{params[:boundary]}\""}
 
