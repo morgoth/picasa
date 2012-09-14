@@ -9,19 +9,21 @@ class PicasaUploader < Thor
   desc "upload_all DIR", "Uploads all photos from given directory"
   def upload_all(dir = File.basename(Dir.getwd))
     require_credentials
-    say("Creating album: #{File.basename(dir)}")
     album_presenter = create_album_by_api(File.basename(dir))
+    say "Created album #{album_presenter.title}"
+    photos_number = 0
     inside(dir, :verbose => true) do
       Dir.entries(".").reject { |e| e =~ /^\.\.?$/ }.sort.each do |file|
-        invoke :create_photo, [album_presenter.id, file]
+        create_photo_by_api(album_presenter.id, file)
+        photos_number += 1
       end
     end
+    say "Finished uploading #{photos_number} photos"
   end
 
   desc "create_album ALBUM (defaults to current working directory)", "Create album"
   def create_album(album = File.basename(Dir.getwd))
     require_credentials
-    say("Creating album: #{album}")
     create_album_by_api(album)
   end
 
@@ -29,9 +31,7 @@ class PicasaUploader < Thor
   def create_photo(album_id, path)
     require_credentials
     path = File.join(Dir.getwd, path)
-    say("Creating photo: #{path} in album #{album_id}")
-    client = Picasa::Client.new(user_id: ENV["GOOGLE_USER_ID"], password: ENV["GOOGLE_PASSWORD"])
-    client.photo.create(album_id, file_path: path)
+    create_photo_by_api(album_id, path)
   end
 
   no_tasks do
@@ -41,8 +41,15 @@ class PicasaUploader < Thor
     end
 
     def create_album_by_api(album)
+      say("Creating album: #{album}")
       client = Picasa::Client.new(user_id: ENV["GOOGLE_USER_ID"], password: ENV["GOOGLE_PASSWORD"])
       client.album.create(title: album)
+    end
+
+    def create_photo_by_api(album_id, path)
+      say("Creating photo: #{path} in album #{album_id}")
+      client = Picasa::Client.new(user_id: ENV["GOOGLE_USER_ID"], password: ENV["GOOGLE_PASSWORD"])
+      client.photo.create(album_id, file_path: path)
     end
   end
 end

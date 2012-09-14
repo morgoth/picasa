@@ -35,7 +35,7 @@ thor install https://github.com/morgoth/picasa/raw/master/extra/Thorfile --as pi
 And then use it:
 
 ```
-thor picasa_uploader:upload_all path-to-folder-with-photos
+GOOGLE_USER_ID=your.email@gmail.com GOOGLE_PASSWORD=secret thor picasa_uploader:upload_all path-to-folder-with-photos
 ```
 
 ## Continuous Integration
