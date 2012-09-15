@@ -27,5 +27,5 @@ begin
 	end
 	
 rescue Picasa::ForbiddenError
-	puts "user_id is not found"
+	puts "You have the wrong user_id or password."
 end
