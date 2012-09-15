@@ -15,9 +15,6 @@ module Picasa
       uri = URI.parse(url)
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
-	  # ruby 1.9.3 => error SSL certificate
-	  # maybe, Google has issued an invalid certificate.
-	  http.verify_mode = OpenSSL::SSL::VERIFY_NONE
       http
     end
 
