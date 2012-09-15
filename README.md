@@ -41,10 +41,22 @@ You can install thor script for uploading all photos from given directory:
 thor install https://github.com/morgoth/picasa/raw/master/extra/Thorfile --as picasa_uploader --force
 ```
 
+Updating script can be done by:
+
+```
+thor update picasa_uploader
+```
+
 And then use it (it will create album taking title from folder name and upload all photos from that directory):
 
 ```
 GOOGLE_USER_ID=your.email@gmail.com GOOGLE_PASSWORD=secret thor picasa_uploader:upload_all path-to-folder-with-photos
+```
+
+If your upload was somehow interrupted, you can resume it by adding `--continue` option:
+
+```
+GOOGLE_USER_ID=your.email@gmail.com GOOGLE_PASSWORD=secret thor picasa_uploader:upload_all --continue path-to-folder-with-photos
 ```
 
 ## Continuous Integration
