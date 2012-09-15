@@ -31,7 +31,7 @@ This affect results to contain private data, however it can be controlled by `ac
 
 Currently picasa wont work with `ox` xml parser.
 Using `rexml` parser wont return `etag` attribute properly.
-I recommend to use one of `libxml` or `nokogiri`.
+I recommend to use `libxml` or `nokogiri`.
 
 ## Extra
 
@@ -52,7 +52,7 @@ GOOGLE_USER_ID=your.email@gmail.com GOOGLE_PASSWORD=secret thor picasa_uploader:
 
 ## Contributors
 
-* [Bram Wijnands](https://github.com/BRamBoo)
+* [Bram Wijnands](https://github.com/Bram--)
 * [Rafael Souza](https://github.com/rafaels)
 * [jsaak](https://github.com/jsaak)
 * [Javier Guerra](https://github.com/javierg)

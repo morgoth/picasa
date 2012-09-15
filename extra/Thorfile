@@ -9,29 +9,15 @@ class PicasaUploader < Thor
   desc "upload_all DIR", "Uploads all photos from given directory"
   def upload_all(dir = File.basename(Dir.getwd))
     require_credentials
-    album_presenter = create_album_by_api(File.basename(dir))
-    say "Created album #{album_presenter.title}"
+    album_presenter = create_album(File.basename(dir))
     photos_number = 0
     inside(dir, :verbose => true) do
-      Dir.entries(".").reject { |e| e =~ /^\.\.?$/ }.sort.each do |file|
-        create_photo_by_api(album_presenter.id, file)
+      Dir.entries(".").select { |e| e =~ /\.(jpg|jpeg|png|gif|bmp)$/i }.sort.each do |file|
+        create_photo(album_presenter, file)
         photos_number += 1
       end
     end
     say "Finished uploading #{photos_number} photos"
-  end
-
-  desc "create_album ALBUM (defaults to current working directory)", "Create album"
-  def create_album(album = File.basename(Dir.getwd))
-    require_credentials
-    create_album_by_api(album)
-  end
-
-  desc "create_photo ALBUM_ID, PATH", "Create photo in given album"
-  def create_photo(album_id, path)
-    require_credentials
-    path = File.join(Dir.getwd, path)
-    create_photo_by_api(album_id, path)
   end
 
   no_tasks do
@@ -40,16 +26,16 @@ class PicasaUploader < Thor
       say "You must specify GOOGLE_PASSWORD env variable" and exit unless ENV["GOOGLE_PASSWORD"]
     end
 
-    def create_album_by_api(album)
+    def create_album(album)
       say("Creating album: #{album}")
       client = Picasa::Client.new(user_id: ENV["GOOGLE_USER_ID"], password: ENV["GOOGLE_PASSWORD"])
       client.album.create(title: album)
     end
 
-    def create_photo_by_api(album_id, path)
-      say("Creating photo: #{path} in album #{album_id}")
+    def create_photo(album, path)
+      say("Uploading photo #{path} to album #{album.title}")
       client = Picasa::Client.new(user_id: ENV["GOOGLE_USER_ID"], password: ENV["GOOGLE_PASSWORD"])
-      client.photo.create(album_id, file_path: path)
+      client.photo.create(album.id, file_path: path)
     end
   end
 end
