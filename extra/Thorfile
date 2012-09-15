@@ -6,35 +6,58 @@ MultiXml.parser = :libxml
 class PicasaUploader < Thor
   include Thor::Actions
 
-  desc "upload_all DIR", "Uploads all photos from given directory"
+  desc "upload_all DIR", "Uploads all photos from given directory (pass --continue to resume uploading)"
+  method_options continue: false
   def upload_all(dir = File.basename(Dir.getwd))
     require_credentials
-    album_presenter = create_album(File.basename(dir))
-    photos_number = 0
-    inside(dir, :verbose => true) do
-      Dir.entries(".").select { |e| e =~ /\.(jpg|jpeg|png|gif|bmp)$/i }.sort.each do |file|
-        create_photo(album_presenter, file)
-        photos_number += 1
+
+    inside(dir, verbose: true) do
+      entries       = Dir.entries(".").select { |e| e =~ /\.(jpg|jpeg|png|gif|bmp)$/i }.sort
+      album_name    = File.basename(dir)
+      photos_number = 0
+
+      if options[:continue]
+        # We're looking for existing album and photos already uploaded
+        albums = client.album.list(fields: "entry(title,gphoto:id)")
+        album  = albums.entries.find { |a| a.title == album_name }
+        if album
+          say "Album #{album_name} found - continuing upload"
+        else
+          say "Album #{album_name} not found in your collection - aborting" and exit
+        end
+
+        photo_titles = client.album.show(album.id, fields: "entry/title").entries.map &:title
+
+        entries.reject! { |e| photo_titles.include?(File.basename(e, ".*")) }
+      else
+        say("Creating album: #{album_name}")
+        album = create_album(album_name)
       end
+
+      entries.each do |file|
+        photos_number += 1
+        say("Uploading photo #{file} to album #{album.title} - #{photos_number}/#{entries.size}")
+        create_photo(album, file)
+      end
+      say "Finished uploading #{photos_number} photos"
     end
-    say "Finished uploading #{photos_number} photos"
   end
 
   no_tasks do
+    def client
+      @client ||= Picasa::Client.new(user_id: ENV["GOOGLE_USER_ID"], password: ENV["GOOGLE_PASSWORD"])
+    end
+
     def require_credentials
       say "You must specify GOOGLE_USER_ID env variable" and exit unless ENV["GOOGLE_USER_ID"]
       say "You must specify GOOGLE_PASSWORD env variable" and exit unless ENV["GOOGLE_PASSWORD"]
     end
 
-    def create_album(album)
-      say("Creating album: #{album}")
-      client = Picasa::Client.new(user_id: ENV["GOOGLE_USER_ID"], password: ENV["GOOGLE_PASSWORD"])
-      client.album.create(title: album)
+    def create_album(title)
+      client.album.create(title: title)
     end
 
     def create_photo(album, path)
-      say("Uploading photo #{path} to album #{album.title}")
-      client = Picasa::Client.new(user_id: ENV["GOOGLE_USER_ID"], password: ENV["GOOGLE_PASSWORD"])
       client.photo.create(album.id, file_path: path)
     end
   end
