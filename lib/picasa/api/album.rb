@@ -48,7 +48,7 @@ module Picasa
       def create(params = {})
         params[:title] || raise(ArgumentError, "You must specify title")
         params[:timestamp] ||= Time.now.to_i
-		params[:access] ||= "private"
+        params[:access] ||= "private"
 
         template = Template.new(:new_album, params)
         uri = URI.parse("/data/feed/api/user/#{user_id}")
