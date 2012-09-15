@@ -19,10 +19,19 @@ client.album.list
 
 client.album.show("album_id")
 # => Picasa::Presenter::Album
+
+client.photo.create("album_id", file_path: "path/to/my-photo.png")
+# => Picasa::Presenter::Photo
 ```
 
 If password is specified, all requests will be authenticated.
-This affect results to contain private data.
+This affect results to contain private data, however it can be controlled by `access` parameter.
+
+## Caveats
+
+Currently picasa wont work with `ox` xml parser.
+Using `rexml` parser wont return `etag` attribute properly.
+I recommend to use one of `libxml` or `nokogiri`.
 
 ## Extra
 
@@ -32,7 +41,7 @@ You can install thor script for uploading all photos from given directory:
 thor install https://github.com/morgoth/picasa/raw/master/extra/Thorfile --as picasa_uploader --force
 ```
 
-And then use it:
+And then use it (it will create album taking title from folder name and upload all photos from that directory):
 
 ```
 GOOGLE_USER_ID=your.email@gmail.com GOOGLE_PASSWORD=secret thor picasa_uploader:upload_all path-to-folder-with-photos

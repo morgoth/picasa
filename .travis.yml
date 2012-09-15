@@ -9,3 +9,7 @@ env:
   - XML_PARSER=libxml
   # does not work yet
   # - XML_PARSER=ox
+
+matrix:
+  allow_failures:
+    - env: XML_PARSER=rexml
