@@ -23,6 +23,7 @@ module Picasa
       #
       # @param [String] album_id album id
       # @param [Hash] options additional options included in request
+      # @option options [String] :fields which fields should be retrieved https://developers.google.com/gdata/docs/2.0/reference#PartialResponseRequest
       # @option options [String, Integer] :max_results max number of returned results
       # @option options [String] :tag include photos with given tag only
       #

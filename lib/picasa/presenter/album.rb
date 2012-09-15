@@ -56,7 +56,7 @@ module Picasa
 
       # @return [String]
       def id
-        @id ||= array_wrap(safe_retrieve(parsed_body, "id"))[1]
+        @id ||= array_wrap(safe_retrieve(parsed_body, "id")).last
       end
 
       # @return [String]
