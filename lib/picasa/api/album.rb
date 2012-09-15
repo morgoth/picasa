@@ -42,7 +42,7 @@ module Picasa
       # @option options [String] :title title of album (required)
       # @option options [String] :summary summary of album
       # @option options [String] :location location of album photos (i.e. Poland)
-      # @option options [String] :access ["public", "private", "protected"]
+      # @option options [String] :access ["public", "private", "protected"] (default to private)
       # @option options [String] :timestamp timestamp of album (default to now)
       # @option options [String] :keywords keywords (i.e. "vacation, poland")
       # @return [Presenter::Album]

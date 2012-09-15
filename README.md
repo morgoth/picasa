@@ -56,6 +56,7 @@ GOOGLE_USER_ID=your.email@gmail.com GOOGLE_PASSWORD=secret thor picasa_uploader:
 * [Rafael Souza](https://github.com/rafaels)
 * [jsaak](https://github.com/jsaak)
 * [Javier Guerra](https://github.com/javierg)
+* [Eiichi Takebuchi](https://github.com/GRGSIBERIA)
 
 ## Copyright
 

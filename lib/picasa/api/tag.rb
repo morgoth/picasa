@@ -20,37 +20,31 @@ module Picasa
         path << "/photoid/#{photo_id}" if photo_id
 
         uri = URI.parse(path)
-
         parsed_body = Connection.new(credentials).get(uri.path, options.merge(:kind => "tag"))
-
         Presenter::TagList.new(parsed_body["feed"])
       end
 
-      # Adding a tag to a photo.
+      # Creates a tag for a photo.
       #
       # @param [Hash]
-      # @option options [String] :album_id
-      # @option options [String] :photo_id
-      # @option options [String] :title
-      # @return [Presenter::Photo]
-      def add(params = {})
-        album_id = params[:album_id]
-        photo_id = params[:photo_id]
-        title = params[:title]
-        raise(ArgumentError, "You must specify album_id when providing photo_id") if photo_id && !album_id
-        raise(ArgumentError, "You must specify adding tag name") if !title
-        
-        path = "/data/feed/api/user/#{user_id}"
-        path << "/albumid/#{album_id}" if album_id
-        path << "/photoid/#{photo_id}" if photo_id
-        
-        template = Template.new("adding_tag", {:title => title})
-        
+      # @option options [String] :album_id id pof album
+      # @option options [String] :photo_id id of photo
+      # @option options [String] :title name of tag
+      #
+      # @return [Presenter::Tag]
+      def create(params = {})
+        album_id = params.delete(:album_id) || raise(ArgumentError, "You must specify album_id")
+        photo_id = params.delete(:photo_id) || raise(ArgumentError, "You must specify photo_id")
+        params[:title] || raise(ArgumentError, "You must specify title")
+
+        path = "/data/feed/api/user/#{user_id}/albumid/#{album_id}/photoid/#{photo_id}"
+
+        template = Template.new("new_tag", params)
+
         uri = URI.parse(path)
         parsed_body = Connection.new(credentials).post(uri.path, template.render)
-        Presenter::Photo.new(parsed_body["entry"])
+        Presenter::Tag.new(parsed_body["entry"])
       end
-
     end
   end
 end

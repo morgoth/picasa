@@ -18,6 +18,7 @@ module Picasa
         params[:title]        ||= (file && file.name) || raise(ArgumentError.new("title must be specified"))
         params[:binary]       ||= (file && file.binary) || raise(ArgumentError.new("binary must be specified"))
         params[:content_type] ||= (file && file.content_type) || raise(ArgumentError.new("content_type must be specified"))
+
         template = Template.new(:new_photo, params)
         headers = {"Content-Type" => "multipart/related; boundary=\"#{params[:boundary]}\""}
 
@@ -25,16 +26,16 @@ module Picasa
         parsed_body = Connection.new(credentials).post(uri.path, template.render, headers)
         Presenter::Photo.new(parsed_body["entry"])
       end
-	  
-	  # Destroys given photo
+
+	    # Destroys given photo
       #
       # @param [String] album_id album id
-	  # @param [String] photo_id photo id
+	    # @param [String] photo_id photo id
       # @param [Hash] options request parameters
       # @option options [String] :etag destroys only when ETag matches - protects before destroying other client changes
       #
       # @return [true]
-      # @raise [NotFoundError] raised when album cannot be found
+      # @raise [NotFoundError] raised when album or photo cannot be found
       # @raise [PreconditionFailedError] raised when ETag does not match
       def destroy(album_id, photo_id, options = {})
         headers = {"If-Match" => options.fetch(:etag, "*")}

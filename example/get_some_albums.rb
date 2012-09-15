@@ -1,12 +1,12 @@
-require "picasa.rb"
+require "picasa"
 
-client = Picasa::Client.new(:user_id => "your_gmail_account", :password => "password")
-
+# get some albums.
 begin
-    # get some albums.
-    albums = client.album.list.entries
-    for album in albums do puts album.title end
-    
+  client = Picasa::Client.new(:user_id => "your_gmail_account", :password => "password")
+
+  albums = client.album.list.entries
+  albums.each { |album| puts album.title }
+
 rescue Picasa::ForbiddenError
-    puts "You have the wrong user_id or password."
+  puts "You have the wrong user_id or password."
 end
