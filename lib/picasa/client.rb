@@ -74,7 +74,7 @@ module Picasa
     end
 
     def credentials
-      {user_id: user_id}.tap do |credentials|
+      {:user_id => user_id}.tap do |credentials|
         credentials[:authorization_header] = authorization_header if authorization_header
       end
     end
