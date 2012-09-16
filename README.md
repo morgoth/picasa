@@ -64,6 +64,8 @@ And then use it (it will create album taking title from folder name and upload a
 
 ```
 GOOGLE_USER_ID=your.email@gmail.com GOOGLE_PASSWORD=secret thor picasa_uploader:upload_all path-to-folder-with-photos
+# Without specifing password
+GOOGLE_USER_ID=your.email@gmail.com GOOGLE_AUTHORIZATION_HEADER="GoogleLogin auth=token" thor picasa_uploader:upload_all path-to-folder-with-photos
 ```
 
 If your upload was somehow interrupted, you can resume it by adding `--continue` option:

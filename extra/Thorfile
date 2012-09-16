@@ -54,12 +54,16 @@ class PicasaUploader < Thor
 
   no_tasks do
     def client
-      @client ||= Picasa::Client.new(user_id: ENV["GOOGLE_USER_ID"], password: ENV["GOOGLE_PASSWORD"])
+      @client ||= Picasa::Client.new(user_id: ENV["GOOGLE_USER_ID"],
+        authorization_header: ENV["GOOGLE_AUTHORIZATION_HEADER"],
+        password: ENV["GOOGLE_PASSWORD"])
     end
 
     def require_credentials
-      say "You must specify GOOGLE_USER_ID env variable" and exit unless ENV["GOOGLE_USER_ID"]
-      say "You must specify GOOGLE_PASSWORD env variable" and exit unless ENV["GOOGLE_PASSWORD"]
+      say "You must specify GOOGLE_USER_ID env variable" and exit if ENV["GOOGLE_USER_ID"].nil?
+      if ENV["GOOGLE_AUTHORIZATION_HEADER"].nil? && ENV["GOOGLE_PASSWORD"].nil?
+        say "You must specify GOOGLE_PASSWORD or GOOGLE_AUTHORIZATION_HEADER env variable" and exit
+      end
     end
 
     def create_album(title)
