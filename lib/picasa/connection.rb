@@ -28,7 +28,7 @@ module Picasa
       params[:query] ||= {}
       authenticate if auth?
 
-      path = path_with_params(params[:path], params[:query])
+      path = path_with_query(params[:path], params[:query])
       request = Net::HTTP::Get.new(path, headers.merge(params[:headers]))
       handle_response(http.request(request))
     end
@@ -50,15 +50,15 @@ module Picasa
       handle_response(http.request(request))
     end
 
-    def inline_params(params)
-      params.map do |key, value|
+    def inline_query(query)
+      query.map do |key, value|
         dasherized = key.to_s.gsub("_", "-")
         "#{CGI.escape(dasherized)}=#{CGI.escape(value.to_s)}"
       end.join("&")
     end
 
-    def path_with_params(path, params = {})
-      path = path + "?" + inline_params(params) unless params.empty?
+    def path_with_query(path, query = {})
+      path = path + "?" + inline_query(query) unless query.empty?
       URI.parse(path).to_s
     end
 
@@ -94,7 +94,7 @@ module Picasa
     end
 
     def authenticate
-      data = inline_params({"accountType" => "HOSTED_OR_GOOGLE",
+      data = inline_query({"accountType" => "HOSTED_OR_GOOGLE",
                             "Email"       => user_id,
                             "Passwd"      => password,
                             "service"     => "lh2",
