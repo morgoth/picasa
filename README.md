@@ -40,12 +40,6 @@ Or by setting custom authorization header, i.e. taken from OAuth authentication:
 client = Picasa::Client.new(user_id: "some.user@gmail.com", authorization_header: "OAuth token")
 ```
 
-## Caveats
-
-Currently picasa wont work with `ox` xml parser.
-Using `rexml` parser wont return `etag` attribute properly.
-I recommend to use `libxml` or `nokogiri`.
-
 ## Extra
 
 You can install thor script for uploading all photos from given directory:
@@ -75,6 +69,14 @@ GOOGLE_USER_ID=your.email@gmail.com GOOGLE_PASSWORD=secret thor picasa_uploader:
 ```
 
 If you run out of quota and want to resize images to fit Picasa free storage limits, you might be interested in Thor task for [that job](https://github.com/morgoth/ripper#usage)
+
+## Caveats
+
+Currently picasa wont work with `ox` xml parser.
+
+Using `rexml` parser wont return `etag` attribute properly.
+
+I recommend to use `libxml` or `nokogiri`.
 
 ## Continuous Integration
 [![Build Status](https://secure.travis-ci.org/morgoth/picasa.png)](http://travis-ci.org/morgoth/picasa)
