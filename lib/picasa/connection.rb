@@ -4,17 +4,9 @@ require "uri"
 
 module Picasa
   class Connection
-    def http(url = API_URL)
-      uri = URI.parse(url)
-      http = Net::HTTP.new(uri.host, uri.port)
-      http.use_ssl = true
-      http
-    end
-
     # @param [Hash] params request arguments
     # @option params [String] :host host of request
     # @option params [String] :path request path
-    # @option params [String] :body request body (for POST)
     # @option params [String] :query request url query
     # @option params [String] :headers request headers
     def get(params = {})
@@ -27,6 +19,12 @@ module Picasa
       handle_response(http(params[:host]).request(request))
     end
 
+    # @param [Hash] params request arguments
+    # @option params [String] :host host of request
+    # @option params [String] :path request path
+    # @option params [String] :body request body (for POST)
+    # @option params [String] :query request url query
+    # @option params [String] :headers request headers
     def post(params = {})
       params[:headers] ||= {}
       params[:host] ||= API_URL
@@ -36,6 +34,11 @@ module Picasa
       handle_response(http(params[:host]).request(request))
     end
 
+    # @param [Hash] params request arguments
+    # @option params [String] :host host of request
+    # @option params [String] :path request path
+    # @option params [String] :query request url query
+    # @option params [String] :headers request headers
     def delete(params = {})
       params[:headers] ||= {}
       params[:host] ||= API_URL
@@ -44,12 +47,24 @@ module Picasa
       handle_response(http(params[:host]).request(request))
     end
 
+    # @param [Hash] params request arguments
+    # @option params [String] :host host of request
+    # @option params [String] :path request path
+    # @option params [String] :query request url query
+    # @option params [String] :headers request headers
     def path_with_query(path, query = {})
       path = path + "?" + Utils.inline_query(query) unless query.empty?
       URI.parse(path).to_s
     end
 
     private
+
+    def http(url = API_URL)
+      uri = URI.parse(url)
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+      http
+    end
 
     def handle_response(response)
       case response.code.to_i
