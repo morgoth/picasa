@@ -15,7 +15,7 @@ class MiniTest::Unit::TestCase
   end
 
   def image_path(filename)
-    ::File.join("test", "fixtures", filename)
+    File.join("test", "fixtures", filename)
   end
 
   # Recording response is as simple as writing in terminal:

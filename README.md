@@ -24,8 +24,21 @@ client.photo.create("album_id", file_path: "path/to/my-photo.png")
 # => Picasa::Presenter::Photo
 ```
 
-If password is specified, all requests will be authenticated.
-This affect results to contain private data, however it can be controlled by `access` parameter.
+### Authentication
+
+When request is authenticated, response will contain private data, however this can be controlled by `access` parameter.
+
+You can authenticate by specifing password:
+
+```ruby
+client = Picasa::Client.new(user_id: "some.user@gmail.com", password: "secret")
+```
+
+Or by setting custom authorization header, i.e. taken from OAuth authentication:
+
+```ruby
+client = Picasa::Client.new(user_id: "some.user@gmail.com", authorization_header: "OAuth token")
+```
 
 ## Caveats
 

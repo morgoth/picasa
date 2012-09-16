@@ -20,10 +20,10 @@ module Picasa
         params[:content_type] ||= (file && file.content_type) || raise(ArgumentError.new("content_type must be specified"))
 
         template = Template.new(:new_photo, params)
-        headers = {"Content-Type" => "multipart/related; boundary=\"#{params[:boundary]}\""}
+        headers = auth_header.merge({"Content-Type" => "multipart/related; boundary=\"#{params[:boundary]}\""})
 
         uri = URI.parse("/data/feed/api/user/#{user_id}/albumid/#{album_id}")
-        response = Connection.new(credentials).post(:path => uri.path, :body => template.render, :headers => headers)
+        response = Connection.new.post(:path => uri.path, :body => template.render, :headers => headers)
 
         Presenter::Photo.new(MultiXml.parse(response.body)["entry"])
       end
@@ -39,9 +39,9 @@ module Picasa
       # @raise [NotFoundError] raised when album or photo cannot be found
       # @raise [PreconditionFailedError] raised when ETag does not match
       def destroy(album_id, photo_id, options = {})
-        headers = {"If-Match" => options.fetch(:etag, "*")}
+        headers = auth_header.merge({"If-Match" => options.fetch(:etag, "*")})
         uri = URI.parse("/data/entry/api/user/#{user_id}/albumid/#{album_id}/photoid/#{photo_id}")
-        Connection.new(credentials).delete(:path => uri.path, :headers => headers)
+        Connection.new.delete(:path => uri.path, :headers => headers)
         true
       end
       alias :delete :destroy

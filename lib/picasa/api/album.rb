@@ -14,7 +14,7 @@ module Picasa
       # @return [Presenter::AlbumList]
       def list(options = {})
         uri = URI.parse("/data/feed/api/user/#{user_id}")
-        response = Connection.new(credentials).get(:path => uri.path, :query => options)
+        response = Connection.new.get(:path => uri.path, :query => options, :headers => auth_header)
 
         Presenter::AlbumList.new(MultiXml.parse(response.body)["feed"])
       end
@@ -31,7 +31,7 @@ module Picasa
       # @raise [NotFoundError] raised when album cannot be found
       def show(album_id, options = {})
         uri = URI.parse("/data/feed/api/user/#{user_id}/albumid/#{album_id}")
-        response = Connection.new(credentials).get(:path => uri.path, :query => options)
+        response = Connection.new.get(:path => uri.path, :query => options, :headers => auth_header)
 
         Presenter::Album.new(MultiXml.parse(response.body)["feed"])
       end
@@ -53,7 +53,7 @@ module Picasa
 
         template = Template.new(:new_album, params)
         uri = URI.parse("/data/feed/api/user/#{user_id}")
-        response = Connection.new(credentials).post(:path => uri.path, :body => template.render)
+        response = Connection.new.post(:path => uri.path, :body => template.render, :headers => auth_header)
 
         Presenter::Album.new(MultiXml.parse(response.body)["entry"])
       end
@@ -68,9 +68,9 @@ module Picasa
       # @raise [NotFoundError] raised when album cannot be found
       # @raise [PreconditionFailedError] raised when ETag does not match
       def destroy(album_id, options = {})
-        headers = {"If-Match" => options.fetch(:etag, "*")}
+        headers = auth_header.merge({"If-Match" => options.fetch(:etag, "*")})
         uri = URI.parse("/data/entry/api/user/#{user_id}/albumid/#{album_id}")
-        Connection.new(credentials).delete(:path => uri.path, :headers => headers)
+        Connection.new.delete(:path => uri.path, :headers => headers)
         true
       end
       alias :delete :destroy

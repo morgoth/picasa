@@ -39,6 +39,13 @@ module Picasa
       end
     end
 
-    module_function :safe_retrieve, :array_wrap, :map_to_integer, :map_to_boolean, :map_to_date
+    def inline_query(query)
+      query.map do |key, value|
+        dasherized = key.to_s.gsub("_", "-")
+        "#{CGI.escape(dasherized)}=#{CGI.escape(value.to_s)}"
+      end.join("&")
+    end
+
+    module_function :safe_retrieve, :array_wrap, :map_to_integer, :map_to_boolean, :map_to_date, :inline_query
   end
 end

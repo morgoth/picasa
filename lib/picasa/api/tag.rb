@@ -20,7 +20,7 @@ module Picasa
         path << "/photoid/#{photo_id}" if photo_id
 
         uri = URI.parse(path)
-        response = Connection.new(credentials).get(:path => uri.path, :query => options.merge(:kind => "tag"))
+        response = Connection.new.get(:path => uri.path, :query => options.merge(:kind => "tag"), :headers => auth_header)
 
         Presenter::TagList.new(MultiXml.parse(response.body)["feed"])
       end
@@ -43,7 +43,7 @@ module Picasa
         template = Template.new("new_tag", params)
 
         uri = URI.parse(path)
-        response = Connection.new(credentials).post(:path => uri.path, :body => template.render)
+        response = Connection.new.post(:path => uri.path, :body => template.render, :headers => auth_header)
 
         Presenter::Tag.new(MultiXml.parse(response.body)["entry"])
       end
