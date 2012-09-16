@@ -20,8 +20,9 @@ module Picasa
         path << "/photoid/#{photo_id}" if photo_id
 
         uri = URI.parse(path)
-        parsed_body = Connection.new(credentials).get(uri.path, options.merge(:kind => "tag"))
-        Presenter::TagList.new(parsed_body["feed"])
+        response = Connection.new(credentials).get(uri.path, options.merge(:kind => "tag"))
+
+        Presenter::TagList.new(MultiXml.parse(response.body)["feed"])
       end
 
       # Creates a tag for a photo.
@@ -42,8 +43,9 @@ module Picasa
         template = Template.new("new_tag", params)
 
         uri = URI.parse(path)
-        parsed_body = Connection.new(credentials).post(uri.path, template.render)
-        Presenter::Tag.new(parsed_body["entry"])
+        response = Connection.new(credentials).post(uri.path, template.render)
+
+        Presenter::Tag.new(MultiXml.parse(response.body)["entry"])
       end
     end
   end

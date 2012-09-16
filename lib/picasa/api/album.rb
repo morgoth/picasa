@@ -14,9 +14,9 @@ module Picasa
       # @return [Presenter::AlbumList]
       def list(options = {})
         uri = URI.parse("/data/feed/api/user/#{user_id}")
-        parsed_body = Connection.new(credentials).get(uri.path, options)
+        response = Connection.new(credentials).get(uri.path, options)
 
-        Presenter::AlbumList.new(parsed_body["feed"])
+        Presenter::AlbumList.new(MultiXml.parse(response.body)["feed"])
       end
 
       # Returns photo list for given album
@@ -31,9 +31,9 @@ module Picasa
       # @raise [NotFoundError] raised when album cannot be found
       def show(album_id, options = {})
         uri = URI.parse("/data/feed/api/user/#{user_id}/albumid/#{album_id}")
-        parsed_body = Connection.new(credentials).get(uri.path, options)
+        response = Connection.new(credentials).get(uri.path, options)
 
-        Presenter::Album.new(parsed_body["feed"])
+        Presenter::Album.new(MultiXml.parse(response.body)["feed"])
       end
 
       # Creates album
@@ -53,8 +53,9 @@ module Picasa
 
         template = Template.new(:new_album, params)
         uri = URI.parse("/data/feed/api/user/#{user_id}")
-        parsed_body = Connection.new(credentials).post(uri.path, template.render)
-        Presenter::Album.new(parsed_body["entry"])
+        response = Connection.new(credentials).post(uri.path, template.render)
+
+        Presenter::Album.new(MultiXml.parse(response.body)["entry"])
       end
 
       # Destroys given album

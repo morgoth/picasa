@@ -23,8 +23,7 @@ module Picasa
 
       path = path_with_params(path, params)
       request = Net::HTTP::Get.new(path, headers)
-      response = handle_response(http.request(request))
-      MultiXml.parse(response.body)
+      handle_response(http.request(request))
     end
 
     def post(path, body, custom_headers = {})
@@ -32,8 +31,7 @@ module Picasa
 
       request = Net::HTTP::Post.new(path, headers.merge(custom_headers))
       request.body = body
-      response = handle_response(http.request(request))
-      MultiXml.parse(response.body)
+      handle_response(http.request(request))
     end
 
     def delete(path, custom_headers = {})

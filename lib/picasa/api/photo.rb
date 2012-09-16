@@ -23,8 +23,9 @@ module Picasa
         headers = {"Content-Type" => "multipart/related; boundary=\"#{params[:boundary]}\""}
 
         uri = URI.parse("/data/feed/api/user/#{user_id}/albumid/#{album_id}")
-        parsed_body = Connection.new(credentials).post(uri.path, template.render, headers)
-        Presenter::Photo.new(parsed_body["entry"])
+        response = Connection.new(credentials).post(uri.path, template.render, headers)
+
+        Presenter::Photo.new(MultiXml.parse(response.body)["entry"])
       end
 
 	    # Destroys given photo
