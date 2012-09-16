@@ -23,7 +23,7 @@ module Picasa
         headers = {"Content-Type" => "multipart/related; boundary=\"#{params[:boundary]}\""}
 
         uri = URI.parse("/data/feed/api/user/#{user_id}/albumid/#{album_id}")
-        response = Connection.new(credentials).post(uri.path, template.render, headers)
+        response = Connection.new(credentials).post(:path => uri.path, :body => template.render, :headers => headers)
 
         Presenter::Photo.new(MultiXml.parse(response.body)["entry"])
       end
@@ -41,7 +41,7 @@ module Picasa
       def destroy(album_id, photo_id, options = {})
         headers = {"If-Match" => options.fetch(:etag, "*")}
         uri = URI.parse("/data/entry/api/user/#{user_id}/albumid/#{album_id}/photoid/#{photo_id}")
-        Connection.new(credentials).delete(uri.path, headers)
+        Connection.new(credentials).delete(:path => uri.path, :headers => headers)
         true
       end
       alias :delete :destroy

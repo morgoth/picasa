@@ -44,7 +44,7 @@ describe Picasa::Connection do
     stub_request(:get, "https://picasaweb.google.com" + uri.path).to_return(fixture("exceptions/not_found.txt"))
 
     assert_raises Picasa::NotFoundError, "Invalid entity id: non-existing" do
-      connection.get(uri.path)
+      connection.get(:path => uri.path)
     end
   end
 
@@ -56,7 +56,7 @@ describe Picasa::Connection do
     stub_request(:delete, "https://picasaweb.google.com" + uri.path).to_return(fixture("exceptions/precondition_failed.txt"))
 
     assert_raises Picasa::PreconditionFailedError, "Mismatch: etags = [oldetag], version = [7]" do
-      connection.delete(uri.path, {"If-Match" => "oldetag"})
+      connection.delete(:path => uri.path, :headers => {"If-Match" => "oldetag"})
     end
   end
 
@@ -69,7 +69,7 @@ describe Picasa::Connection do
       stub_request(:get, "https://picasaweb.google.com/data/feed/api/user/john.doe@domain.com").to_return(fixture("album/album-list.txt"))
 
       connection.expects(:authenticate).returns(:result)
-      refute_nil connection.get(uri.path)
+      refute_nil connection.get(:path => uri.path)
     end
 
     it "raises an ResponseError when authentication failed" do
@@ -79,7 +79,7 @@ describe Picasa::Connection do
       stub_request(:post, "https://www.google.com/accounts/ClientLogin").to_return(fixture("exceptions/forbidden.txt"))
 
       assert_raises(Picasa::ForbiddenError) do
-        connection.get(uri.path)
+        connection.get(:path => uri.path)
       end
     end
   end

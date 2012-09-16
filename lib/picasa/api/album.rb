@@ -14,7 +14,7 @@ module Picasa
       # @return [Presenter::AlbumList]
       def list(options = {})
         uri = URI.parse("/data/feed/api/user/#{user_id}")
-        response = Connection.new(credentials).get(uri.path, options)
+        response = Connection.new(credentials).get(:path => uri.path, :query => options)
 
         Presenter::AlbumList.new(MultiXml.parse(response.body)["feed"])
       end
@@ -31,7 +31,7 @@ module Picasa
       # @raise [NotFoundError] raised when album cannot be found
       def show(album_id, options = {})
         uri = URI.parse("/data/feed/api/user/#{user_id}/albumid/#{album_id}")
-        response = Connection.new(credentials).get(uri.path, options)
+        response = Connection.new(credentials).get(:path => uri.path, :query => options)
 
         Presenter::Album.new(MultiXml.parse(response.body)["feed"])
       end
@@ -53,7 +53,7 @@ module Picasa
 
         template = Template.new(:new_album, params)
         uri = URI.parse("/data/feed/api/user/#{user_id}")
-        response = Connection.new(credentials).post(uri.path, template.render)
+        response = Connection.new(credentials).post(:path => uri.path, :body => template.render)
 
         Presenter::Album.new(MultiXml.parse(response.body)["entry"])
       end
@@ -70,7 +70,7 @@ module Picasa
       def destroy(album_id, options = {})
         headers = {"If-Match" => options.fetch(:etag, "*")}
         uri = URI.parse("/data/entry/api/user/#{user_id}/albumid/#{album_id}")
-        Connection.new(credentials).delete(uri.path, headers)
+        Connection.new(credentials).delete(:path => uri.path, :headers => headers)
         true
       end
       alias :delete :destroy

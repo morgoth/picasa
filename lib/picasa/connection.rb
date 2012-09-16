@@ -18,26 +18,35 @@ module Picasa
       http
     end
 
-    def get(path, params = {})
+    # @param [Hash] params request arguments
+    # @option params [String] :path request path
+    # @option params [String] :body request body (for POST)
+    # @option params [String] :query request url query
+    # @option params [String] :headers request headers
+    def get(params = {})
+      params[:headers] ||= {}
+      params[:query] ||= {}
       authenticate if auth?
 
-      path = path_with_params(path, params)
-      request = Net::HTTP::Get.new(path, headers)
+      path = path_with_params(params[:path], params[:query])
+      request = Net::HTTP::Get.new(path, headers.merge(params[:headers]))
       handle_response(http.request(request))
     end
 
-    def post(path, body, custom_headers = {})
+    def post(params = {})
+      params[:headers] ||= {}
       authenticate if auth?
 
-      request = Net::HTTP::Post.new(path, headers.merge(custom_headers))
-      request.body = body
+      request = Net::HTTP::Post.new(params[:path], headers.merge(params[:headers]))
+      request.body = params[:body]
       handle_response(http.request(request))
     end
 
-    def delete(path, custom_headers = {})
+    def delete(params = {})
+      params[:headers] ||= {}
       authenticate if auth?
 
-      request = Net::HTTP::Delete.new(path, headers.merge(custom_headers))
+      request = Net::HTTP::Delete.new(params[:path], headers.merge(params[:headers]))
       handle_response(http.request(request))
     end
 

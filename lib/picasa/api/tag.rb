@@ -11,8 +11,8 @@ module Picasa
       #
       # @return [Presenter::TagList]
       def list(options = {})
-        album_id = options[:album_id]
-        photo_id = options[:photo_id]
+        album_id = options.delete(:album_id)
+        photo_id = options.delete(:photo_id)
         raise(ArgumentError, "You must specify album_id when providing photo_id") if photo_id && !album_id
 
         path = "/data/feed/api/user/#{user_id}"
@@ -20,7 +20,7 @@ module Picasa
         path << "/photoid/#{photo_id}" if photo_id
 
         uri = URI.parse(path)
-        response = Connection.new(credentials).get(uri.path, options.merge(:kind => "tag"))
+        response = Connection.new(credentials).get(:path => uri.path, :query => options.merge(:kind => "tag"))
 
         Presenter::TagList.new(MultiXml.parse(response.body)["feed"])
       end
@@ -43,7 +43,7 @@ module Picasa
         template = Template.new("new_tag", params)
 
         uri = URI.parse(path)
-        response = Connection.new(credentials).post(uri.path, template.render)
+        response = Connection.new(credentials).post(:path => uri.path, :body => template.render)
 
         Presenter::Tag.new(MultiXml.parse(response.body)["entry"])
       end
