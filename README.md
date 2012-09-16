@@ -59,6 +59,8 @@ If your upload was somehow interrupted, you can resume it by adding `--continue`
 GOOGLE_USER_ID=your.email@gmail.com GOOGLE_PASSWORD=secret thor picasa_uploader:upload_all --continue path-to-folder-with-photos
 ```
 
+If you run out of quota and want to resize images to fit Picasa free storage limits, you might be interested in Thor task for [that job](https://github.com/morgoth/ripper#usage)
+
 ## Continuous Integration
 [![Build Status](https://secure.travis-ci.org/morgoth/picasa.png)](http://travis-ci.org/morgoth/picasa)
 
