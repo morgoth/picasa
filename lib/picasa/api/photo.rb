@@ -28,10 +28,10 @@ module Picasa
         Presenter::Photo.new(MultiXml.parse(response.body)["entry"])
       end
 
-	    # Destroys given photo
+      # Destroys given photo
       #
       # @param [String] album_id album id
-	    # @param [String] photo_id photo id
+      # @param [String] photo_id photo id
       # @param [Hash] options request parameters
       # @option options [String] :etag destroys only when ETag matches - protects before destroying other client changes
       #

@@ -1,4 +1,5 @@
 require "date"
+require "cgi"
 
 module Picasa
   module Utils

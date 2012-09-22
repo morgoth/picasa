@@ -45,30 +45,34 @@ client = Picasa::Client.new(user_id: "some.user@gmail.com", authorization_header
 You can install thor script for uploading all photos from given directory:
 
 ```
-thor install https://github.com/morgoth/picasa/raw/master/extra/Thorfile --as picasa_uploader --force
+thor install https://github.com/morgoth/picasa/raw/master/extra/Thorfile --as imagery --force
 ```
 
 Updating script can be done by:
 
 ```
-thor update picasa_uploader
+thor update imagery
 ```
 
 And then use it (it will create album taking title from folder name and upload all photos from that directory):
 
 ```
-GOOGLE_USER_ID=your.email@gmail.com GOOGLE_PASSWORD=secret thor picasa_uploader:upload_all path-to-folder-with-photos
+GOOGLE_USER_ID=your.email@gmail.com GOOGLE_PASSWORD=secret thor imagery:upload path-to-folder-with-photos
 # Without specifing password
-GOOGLE_USER_ID=your.email@gmail.com GOOGLE_AUTHORIZATION_HEADER="GoogleLogin auth=token" thor picasa_uploader:upload_all path-to-folder-with-photos
+GOOGLE_USER_ID=your.email@gmail.com GOOGLE_AUTHORIZATION_HEADER="GoogleLogin auth=token" thor imagery:upload path-to-folder-with-photos
 ```
 
 If your upload was somehow interrupted, you can resume it by adding `--continue` option:
 
 ```
-GOOGLE_USER_ID=your.email@gmail.com GOOGLE_PASSWORD=secret thor picasa_uploader:upload_all --continue path-to-folder-with-photos
+GOOGLE_USER_ID=your.email@gmail.com GOOGLE_PASSWORD=secret thor imagery:upload --continue path-to-folder-with-photos
 ```
 
-If you run out of quota and want to resize images to fit Picasa free storage limits, you might be interested in Thor task for [that job](https://github.com/morgoth/ripper#usage)
+If you run out of quota and want to resize images to fit Picasa free storage limits, you can install `rmagick` gem and run (this will modify files):
+
+```
+thor imagery:resize path-to-folder-with-photos
+```
 
 ## Caveats
 

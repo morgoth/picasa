@@ -4,13 +4,13 @@ require "thread"
 # Temporary requirement
 MultiXml.parser = :libxml
 
-class PicasaUploader < Thor
+class Imagery < Thor
   include Thor::Actions
 
-  desc "upload_all DIR", "Uploads all photos from given directory (pass --continue to resume uploading)"
+  desc "upload [-c] [-t <number>] DIR", "Uploads all photos from given directory (pass --continue to continue uploading)"
   method_option :continue, type: :boolean, default: false, aliases: "-c", desc: "continue aborted upload"
   method_option :threads, type: :numeric, default: 8, aliases: "-t", desc: "specify threads number"
-  def upload_all(dir = File.basename(Dir.getwd))
+  def upload(dir = File.basename(Dir.getwd))
     require_credentials
 
     inside(dir, verbose: true) do
@@ -49,6 +49,33 @@ class PicasaUploader < Thor
         end
       end.each(&:join)
       say "Finished uploading #{number} photos"
+    end
+  end
+
+  desc "resize [-w <number>] [-h <number>] DIR", "Resizes photos to given dimensions if exceeded"
+  method_option :width, type: :numeric, default: 2048, aliases: "-w", desc: "max width"
+  method_option :height, type: :numeric, default: 2048, aliases: "-h", desc: "max height"
+  def resize(dir = ".")
+    # Requires imagemagick library
+    require "RMagick"
+    inside(dir, verbose: true) do
+      entries = Dir.entries(".").select { |e| e =~ /\.(jpg|jpeg|png|gif|bmp)$/i }.sort
+      processed = 0
+      entries.each do |file|
+        photo = Magick::Image.read(file).first
+        processed += 1
+        GC.start # problems with memory leaking by RMagick
+        if photo.columns > options[:width] || photo.rows > options[:height]
+          say "Resizing #{file} to fit #{options[:width]}x#{options[:height]} - #{processed}/#{entries.size}"
+
+          photo.resize_to_fit!(options[:width], options[:height])
+          photo.write(File.basename(file))
+          # Release memory
+          photo.destroy!
+        else
+          say "Skipping #{file} - #{processed}/#{entries.size}"
+        end
+      end
     end
   end
 

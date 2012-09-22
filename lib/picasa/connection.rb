@@ -1,5 +1,4 @@
 require "net/https"
-require "cgi"
 require "uri"
 
 module Picasa
@@ -10,9 +9,9 @@ module Picasa
     # @option params [String] :query request url query
     # @option params [String] :headers request headers
     def get(params = {})
+      params[:host]    ||= API_URL
       params[:headers] ||= {}
-      params[:query] ||= {}
-      params[:host] ||= API_URL
+      params[:query]   ||= {}
 
       path = path_with_query(params[:path], params[:query])
       request = Net::HTTP::Get.new(path, headers.merge(params[:headers]))
@@ -26,8 +25,8 @@ module Picasa
     # @option params [String] :query request url query
     # @option params [String] :headers request headers
     def post(params = {})
+      params[:host]    ||= API_URL
       params[:headers] ||= {}
-      params[:host] ||= API_URL
 
       request = Net::HTTP::Post.new(params[:path], headers.merge(params[:headers]))
       request.body = params[:body]
@@ -40,18 +39,13 @@ module Picasa
     # @option params [String] :query request url query
     # @option params [String] :headers request headers
     def delete(params = {})
+      params[:host]    ||= API_URL
       params[:headers] ||= {}
-      params[:host] ||= API_URL
 
       request = Net::HTTP::Delete.new(params[:path], headers.merge(params[:headers]))
       handle_response(http(params[:host]).request(request))
     end
 
-    # @param [Hash] params request arguments
-    # @option params [String] :host host of request
-    # @option params [String] :path request path
-    # @option params [String] :query request url query
-    # @option params [String] :headers request headers
     def path_with_query(path, query = {})
       path = path + "?" + Utils.inline_query(query) unless query.empty?
       URI.parse(path).to_s
