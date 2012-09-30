@@ -40,7 +40,7 @@ module Picasa
 
       # @return [String]
       def content
-        @content ||= safe_retrieve(parsed_body, "content", "__content__")
+        @content ||= safe_retrieve(parsed_body, "content", "__content__") || safe_retrieve(parsed_body, "content")
       end
 
       # @return [String]

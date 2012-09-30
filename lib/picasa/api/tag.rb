@@ -28,7 +28,7 @@ module Picasa
       # Creates a tag for a photo.
       #
       # @param [Hash]
-      # @option options [String] :album_id id pof album
+      # @option options [String] :album_id id of album
       # @option options [String] :photo_id id of photo
       # @option options [String] :title name of tag
       #
