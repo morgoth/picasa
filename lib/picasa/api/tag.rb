@@ -47,6 +47,24 @@ module Picasa
 
         Presenter::Tag.new(MultiXml.parse(response.body)["entry"])
       end
+
+      # Removes a tag from given photo.
+      #
+      # @param [String] tag_id tag name (title)
+      # @param [Hash]
+      # @option options [String] :album_id id pof album
+      # @option options [String] :photo_id id of photo
+      #
+      # @return [true]
+      def destroy(tag_id, params = {})
+        album_id = params.delete(:album_id) || raise(ArgumentError, "You must specify album_id")
+        photo_id = params.delete(:photo_id) || raise(ArgumentError, "You must specify photo_id")
+
+        uri = URI.parse("/data/entry/api/user/#{user_id}/albumid/#{album_id}/photoid/#{photo_id}/tag/#{tag_id}")
+        Connection.new.delete(:path => uri.path, :headers => auth_header)
+        true
+      end
+      alias :delete :destroy
     end
   end
 end
