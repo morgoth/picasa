@@ -48,6 +48,18 @@ module Picasa
       API::Tag.new(credentials)
     end
 
+    # @return [API::Comment]
+    #
+    # @example
+    #   client = Picasa::Client.new(user_id: "my.email@google.com")
+    #   comment_list = client.comment.list(album_id: "988", photo_id: "123")
+    #   comment_list.entries.map &:content
+    #   # => "nice photo!"
+    def comment
+      authenticate if authenticates?
+      API::Comment.new(credentials)
+    end
+
     # @return [String]
     def authenticate
       response = Connection.new.post(
