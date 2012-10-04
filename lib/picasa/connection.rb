@@ -55,8 +55,12 @@ module Picasa
 
     def http(url = API_URL)
       uri = URI.parse(url)
-      proxy = URI(ENV['https_proxy'] || ENV['http_proxy'] || '')
-      http = Net::HTTP::Proxy(proxy.host, proxy.port).new(uri.host, uri.port)
+
+      if proxy?
+        http = Net::HTTP::Proxy(proxy_uri.host, proxy_uri.port, proxy_uri.user, proxy_uri.password).new(uri.host, uri.port)
+      else
+        http = Net::HTTP.new(uri.host, uri.port)
+      end
       http.use_ssl = true
       http
     end
@@ -82,6 +86,14 @@ module Picasa
         "GData-Version" => API_VERSION,
         "Content-Type"  => "application/atom+xml"
       }
+    end
+
+    def proxy_uri
+      @proxy_uri ||= URI.parse(ENV["https_proxy"] || ENV["HTTPS_PROXY"])
+    end
+
+    def proxy?
+      ENV.has_key?("https_proxy") || ENV.has_key?("HTTPS_PROXY")
     end
   end
 end

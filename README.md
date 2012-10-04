@@ -40,6 +40,10 @@ Or by setting custom authorization header, i.e. taken from OAuth authentication:
 client = Picasa::Client.new(user_id: "some.user@gmail.com", authorization_header: "OAuth token")
 ```
 
+### Proxy
+
+You can connect via proxy server setting `https_proxy` or `HTTPS_PROXY` environment variable to valid URL.
+
 ## Extra
 
 You can install thor script for uploading all photos from given directory:
@@ -97,6 +101,7 @@ MultiXml.parser = :libxml
 * [jsaak](https://github.com/jsaak)
 * [Javier Guerra](https://github.com/javierg)
 * [Eiichi Takebuchi](https://github.com/GRGSIBERIA)
+* [TADA Tadashi](https://github.com/tdtds)
 
 ## Copyright
 
