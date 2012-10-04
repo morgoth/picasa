@@ -55,7 +55,8 @@ module Picasa
 
     def http(url = API_URL)
       uri = URI.parse(url)
-      http = Net::HTTP.new(uri.host, uri.port)
+      proxy = URI(ENV['https_proxy'] || ENV['http_proxy'] || '')
+      http = Net::HTTP::Proxy(proxy.host, proxy.port).new(uri.host, uri.port)
       http.use_ssl = true
       http
     end
