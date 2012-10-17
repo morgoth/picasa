@@ -37,7 +37,7 @@ client = Picasa::Client.new(user_id: "some.user@gmail.com", password: "secret")
 Or by setting custom authorization header, i.e. taken from OAuth authentication:
 
 ```ruby
-client = Picasa::Client.new(user_id: "some.user@gmail.com", authorization_header: "OAuth token")
+client = Picasa::Client.new(user_id: "some.user@gmail.com", authorization_header: "Bearer access-token")
 ```
 
 ### Proxy
