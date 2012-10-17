@@ -4,10 +4,7 @@ require "mocha"
 
 require "picasa"
 
-xml_parser = ENV["XML_PARSER"] || "libxml"
-
-require xml_parser if ["nokogiri", "libxml", "ox"].include?(xml_parser)
-MultiXml.parser = xml_parser
+MultiXml.parser = ENV["XML_PARSER"] || "libxml"
 
 class MiniTest::Unit::TestCase
   def setup
