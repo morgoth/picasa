@@ -19,10 +19,9 @@ module Picasa
         path << "/albumid/#{album_id}" if album_id
         path << "/photoid/#{photo_id}" if photo_id
 
-        uri = URI.parse(path)
-        response = Connection.new.get(:path => uri.path, :query => options.merge(:kind => "comment"), :headers => auth_header)
+        response = Connection.new.get(:path => path, :query => options.merge(:kind => "comment"), :headers => auth_header)
 
-        Presenter::CommentList.new(MultiXml.parse(response.body)["feed"])
+        Presenter::CommentList.new(response.parsed_response["feed"])
       end
 
       # Creates a comment for a photo.
@@ -42,10 +41,9 @@ module Picasa
 
         template = Template.new("new_comment", params)
 
-        uri = URI.parse(path)
-        response = Connection.new.post(:path => uri.path, :body => template.render, :headers => auth_header)
+        response = Connection.new.post(:path => path, :body => template.render, :headers => auth_header)
 
-        Presenter::Comment.new(MultiXml.parse(response.body)["entry"])
+        Presenter::Comment.new(response.parsed_response["entry"])
       end
 
       # Removes a comment from given photo.
@@ -60,8 +58,8 @@ module Picasa
         album_id = params.delete(:album_id) || raise(ArgumentError, "You must specify album_id")
         photo_id = params.delete(:photo_id) || raise(ArgumentError, "You must specify photo_id")
 
-        uri = URI.parse("/data/entry/api/user/#{user_id}/albumid/#{album_id}/photoid/#{photo_id}/commentid/#{comment_id}")
-        Connection.new.delete(:path => uri.path, :headers => auth_header)
+        path = "/data/entry/api/user/#{user_id}/albumid/#{album_id}/photoid/#{photo_id}/commentid/#{comment_id}"
+        Connection.new.delete(:path => path, :headers => auth_header)
         true
       end
       alias :delete :destroy

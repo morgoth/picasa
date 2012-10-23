@@ -19,10 +19,9 @@ module Picasa
         path << "/albumid/#{album_id}" if album_id
         path << "/photoid/#{photo_id}" if photo_id
 
-        uri = URI.parse(path)
-        response = Connection.new.get(:path => uri.path, :query => options.merge(:kind => "tag"), :headers => auth_header)
+        response = Connection.new.get(:path => path, :query => options.merge(:kind => "tag"), :headers => auth_header)
 
-        Presenter::TagList.new(MultiXml.parse(response.body)["feed"])
+        Presenter::TagList.new(response.parsed_response["feed"])
       end
 
       # Creates a tag for a photo.
@@ -42,10 +41,9 @@ module Picasa
 
         template = Template.new("new_tag", params)
 
-        uri = URI.parse(path)
-        response = Connection.new.post(:path => uri.path, :body => template.render, :headers => auth_header)
+        response = Connection.new.post(:path => path, :body => template.render, :headers => auth_header)
 
-        Presenter::Tag.new(MultiXml.parse(response.body)["entry"])
+        Presenter::Tag.new(response.parsed_response["entry"])
       end
 
       # Removes a tag from given photo.
@@ -60,8 +58,8 @@ module Picasa
         album_id = params.delete(:album_id) || raise(ArgumentError, "You must specify album_id")
         photo_id = params.delete(:photo_id) || raise(ArgumentError, "You must specify photo_id")
 
-        uri = URI.parse("/data/entry/api/user/#{user_id}/albumid/#{album_id}/photoid/#{photo_id}/tag/#{tag_id}")
-        Connection.new.delete(:path => uri.path, :headers => auth_header)
+        path = "/data/entry/api/user/#{user_id}/albumid/#{album_id}/photoid/#{photo_id}/tag/#{tag_id}"
+        Connection.new.delete(:path => path, :headers => auth_header)
         true
       end
       alias :delete :destroy

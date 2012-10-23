@@ -22,10 +22,10 @@ module Picasa
         template = Template.new(:new_photo, params)
         headers = auth_header.merge({"Content-Type" => "multipart/related; boundary=\"#{params[:boundary]}\""})
 
-        uri = URI.parse("/data/feed/api/user/#{user_id}/albumid/#{album_id}")
-        response = Connection.new.post(:path => uri.path, :body => template.render, :headers => headers)
+        path = "/data/feed/api/user/#{user_id}/albumid/#{album_id}"
+        response = Connection.new.post(:path => path, :body => template.render, :headers => headers)
 
-        Presenter::Photo.new(MultiXml.parse(response.body)["entry"])
+        Presenter::Photo.new(response.parsed_response["entry"])
       end
 
       # Destroys given photo
@@ -40,8 +40,8 @@ module Picasa
       # @raise [PreconditionFailedError] raised when ETag does not match
       def destroy(album_id, photo_id, options = {})
         headers = auth_header.merge({"If-Match" => options.fetch(:etag, "*")})
-        uri = URI.parse("/data/entry/api/user/#{user_id}/albumid/#{album_id}/photoid/#{photo_id}")
-        Connection.new.delete(:path => uri.path, :headers => headers)
+        path = "/data/entry/api/user/#{user_id}/albumid/#{album_id}/photoid/#{photo_id}"
+        Connection.new.delete(:path => path, :headers => headers)
         true
       end
       alias :delete :destroy

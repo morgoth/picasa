@@ -33,8 +33,7 @@ module Picasa
     def exec_request(params, &block)
       uri = "#{params.delete(:host)}#{params.delete(:path)}"
       params.delete_if { |key, value| value.nil? || value.empty? } 
-      request = yield uri, params
-      handle_response(request.response)
+      handle_response(yield(uri, params))
     end
 
     def handle_response(response)

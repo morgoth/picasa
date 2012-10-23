@@ -13,10 +13,10 @@ module Picasa
       #
       # @return [Presenter::AlbumList]
       def list(options = {})
-        uri = URI.parse("/data/feed/api/user/#{user_id}")
-        response = Connection.new.get(:path => uri.path, :query => options, :headers => auth_header)
+        path = "/data/feed/api/user/#{user_id}"
+        response = Connection.new.get(:path => path, :query => options, :headers => auth_header)
 
-        Presenter::AlbumList.new(MultiXml.parse(response.body)["feed"])
+        Presenter::AlbumList.new(response.parsed_response["feed"])
       end
 
       # Returns photo list for given album
@@ -30,10 +30,10 @@ module Picasa
       # @return [Presenter::Album]
       # @raise [NotFoundError] raised when album cannot be found
       def show(album_id, options = {})
-        uri = URI.parse("/data/feed/api/user/#{user_id}/albumid/#{album_id}")
-        response = Connection.new.get(:path => uri.path, :query => options, :headers => auth_header)
+        path = "/data/feed/api/user/#{user_id}/albumid/#{album_id}"
+        response = Connection.new.get(:path => path, :query => options, :headers => auth_header)
 
-        Presenter::Album.new(MultiXml.parse(response.body)["feed"])
+        Presenter::Album.new(response.parsed_response["feed"])
       end
 
       # Creates album
@@ -52,10 +52,10 @@ module Picasa
         params[:access] ||= "private"
 
         template = Template.new(:new_album, params)
-        uri = URI.parse("/data/feed/api/user/#{user_id}")
-        response = Connection.new.post(:path => uri.path, :body => template.render, :headers => auth_header)
+        path = "/data/feed/api/user/#{user_id}"
+        response = Connection.new.post(:path => path, :body => template.render, :headers => auth_header)
 
-        Presenter::Album.new(MultiXml.parse(response.body)["entry"])
+        Presenter::Album.new(response.parsed_response["entry"])
       end
 
       # Destroys given album
@@ -69,8 +69,8 @@ module Picasa
       # @raise [PreconditionFailedError] raised when ETag does not match
       def destroy(album_id, options = {})
         headers = auth_header.merge({"If-Match" => options.fetch(:etag, "*")})
-        uri = URI.parse("/data/entry/api/user/#{user_id}/albumid/#{album_id}")
-        Connection.new.delete(:path => uri.path, :headers => headers)
+        path = "/data/entry/api/user/#{user_id}/albumid/#{album_id}"
+        Connection.new.delete(:path => path, :headers => headers)
         true
       end
       alias :delete :destroy
