@@ -1,6 +1,3 @@
-require "net/https"
-require "uri"
-
 module Picasa
   class Connection
     # @param [Hash] params request arguments
@@ -9,13 +6,7 @@ module Picasa
     # @option params [String] :query request url query
     # @option params [String] :headers request headers
     def get(params = {})
-      params[:host]    ||= API_URL
-      params[:headers] ||= {}
-      params[:query]   ||= {}
-
-      path = path_with_query(params[:path], params[:query])
-      request = Net::HTTP::Get.new(path, headers.merge(params[:headers]))
-      handle_response(http(params[:host]).request(request))
+      exec_request(params) { |uri, options| HTTP.get(uri, options) } 
     end
 
     # @param [Hash] params request arguments
@@ -25,12 +16,7 @@ module Picasa
     # @option params [String] :query request url query
     # @option params [String] :headers request headers
     def post(params = {})
-      params[:host]    ||= API_URL
-      params[:headers] ||= {}
-
-      request = Net::HTTP::Post.new(params[:path], headers.merge(params[:headers]))
-      request.body = params[:body]
-      handle_response(http(params[:host]).request(request))
+      exec_request(params) { |uri, options| HTTP.post(uri, options) } 
     end
 
     # @param [Hash] params request arguments
@@ -39,30 +25,16 @@ module Picasa
     # @option params [String] :query request url query
     # @option params [String] :headers request headers
     def delete(params = {})
-      params[:host]    ||= API_URL
-      params[:headers] ||= {}
-
-      request = Net::HTTP::Delete.new(params[:path], headers.merge(params[:headers]))
-      handle_response(http(params[:host]).request(request))
-    end
-
-    def path_with_query(path, query = {})
-      path = path + "?" + Utils.inline_query(query) unless query.empty?
-      URI.parse(path).to_s
+      exec_request(params) { |uri, options| HTTP.delete(uri, options) } 
     end
 
     private
 
-    def http(url = API_URL)
-      uri = URI.parse(url)
-
-      if proxy?
-        http = Net::HTTP::Proxy(proxy_uri.host, proxy_uri.port, proxy_uri.user, proxy_uri.password).new(uri.host, uri.port)
-      else
-        http = Net::HTTP.new(uri.host, uri.port)
-      end
-      http.use_ssl = true
-      http
+    def exec_request(params, &block)
+      uri = "#{params.delete(:host)}#{params.delete(:path)}"
+      params.delete_if { |key, value| value.nil? || value.empty? } 
+      request = yield uri, params
+      handle_response(request.response)
     end
 
     def handle_response(response)
@@ -78,22 +50,6 @@ module Picasa
       else
         raise ResponseError.new(response.body, response)
       end
-    end
-
-    def headers
-      {
-        "User-Agent"    => "ruby-gem-v#{VERSION}",
-        "GData-Version" => API_VERSION,
-        "Content-Type"  => "application/atom+xml"
-      }
-    end
-
-    def proxy_uri
-      @proxy_uri ||= URI.parse(ENV["https_proxy"] || ENV["HTTPS_PROXY"])
-    end
-
-    def proxy?
-      ENV.has_key?("https_proxy") || ENV.has_key?("HTTPS_PROXY")
     end
   end
 end

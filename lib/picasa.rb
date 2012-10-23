@@ -3,6 +3,7 @@ require "multi_xml"
 require "picasa/version"
 require "picasa/utils"
 require "picasa/exceptions"
+require "picasa/http"
 require "picasa/connection"
 require "picasa/client"
 require "picasa/file"
@@ -25,9 +26,3 @@ require "picasa/presenter/photo"
 require "picasa/presenter/tag"
 require "picasa/presenter/tag_list"
 require "picasa/presenter/thumbnail"
-
-module Picasa
-  API_URL      = "https://picasaweb.google.com"
-  API_AUTH_URL = "https://www.google.com"
-  API_VERSION  = "2"
-end

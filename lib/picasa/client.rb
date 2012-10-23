@@ -63,7 +63,7 @@ module Picasa
     # @return [String]
     def authenticate
       response = Connection.new.post(
-        :host => API_AUTH_URL,
+        :host => HTTP::API_AUTH_URL,
         :headers => {"Content-Type" => "application/x-www-form-urlencoded"},
         :path => "/accounts/ClientLogin",
         :body => Utils.inline_query(
@@ -71,7 +71,7 @@ module Picasa
           "Email"       => user_id,
           "Passwd"      => password,
           "service"     => "lh2",
-          "source"      => "ruby-gem-v#{VERSION}"
+          "source"      => "ruby-gem-picasa-v#{VERSION}"
         )
       )
 

@@ -5,18 +5,6 @@ describe Picasa::Connection do
     @connection = Picasa::Connection.new
   end
 
-  describe "#path_with_query" do
-    it "returns path when no params provided" do
-      path = @connection.path_with_query("/data/feed/api")
-      assert_equal "/data/feed/api", path
-    end
-
-    it "adds params to path" do
-      path = @connection.path_with_query("/data/feed/api", {:q => "bomb"})
-      assert_equal "/data/feed/api?q=bomb", path
-    end
-  end
-
   it "raises NotFound exception when 404 returned" do
     connection = Picasa::Connection.new
     uri        = URI.parse("/data/feed/api/user/some.user/albumid/non-existing")
