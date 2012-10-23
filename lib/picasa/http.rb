@@ -1,14 +1,14 @@
-require 'httparty'
-require 'uri'
+require "httparty"
+require "uri"
 
 module Picasa
   class HTTP
     API_URL      = "https://picasaweb.google.com"
     API_AUTH_URL = "https://www.google.com"
     API_VERSION  = "2"
-    
+
     def self.proxy
-      proxy_uri ||= URI.parse(ENV["https_proxy"] || ENV["HTTPS_PROXY"] || '')
+      proxy_uri ||= URI.parse(ENV["https_proxy"] || ENV["HTTPS_PROXY"] || "")
       { :addr => proxy_uri.host,
         :port => proxy_uri.port,
         :user => proxy_uri.user,

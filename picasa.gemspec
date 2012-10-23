@@ -15,7 +15,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version = Picasa::VERSION
 
-  gem.add_dependency "multi_xml"
+  gem.add_dependency "httparty"
 
   gem.add_development_dependency "webmock"
   gem.add_development_dependency "mocha"

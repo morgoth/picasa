@@ -1,5 +1,3 @@
-require "multi_xml"
-
 require "picasa/version"
 require "picasa/utils"
 require "picasa/exceptions"
