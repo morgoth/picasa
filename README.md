@@ -102,6 +102,7 @@ MultiXml.parser = :libxml
 * [Javier Guerra](https://github.com/javierg)
 * [Eiichi Takebuchi](https://github.com/GRGSIBERIA)
 * [TADA Tadashi](https://github.com/tdtds)
+* [Vinicius Teles](https://github.com/viniciusteles)
 
 ## Copyright
 
