@@ -22,7 +22,5 @@ module Picasa
                "Accept-Encoding" => "gzip, deflate"
 
     http_proxy *proxy
-
-    format     :xml
   end
 end

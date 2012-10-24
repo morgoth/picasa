@@ -6,7 +6,7 @@ module Picasa
     # @option params [String] :query request url query
     # @option params [String] :headers request headers
     def get(params = {})
-      exec_request(params) { |uri, options| HTTP.get(uri, options) } 
+      exec_request(params) { |uri, options| HTTPRead.get(uri, options) } 
     end
 
     # @param [Hash] params request arguments
@@ -16,7 +16,7 @@ module Picasa
     # @option params [String] :query request url query
     # @option params [String] :headers request headers
     def post(params = {})
-      exec_request(params) { |uri, options| HTTP.post(uri, options) } 
+      exec_request(params) { |uri, options| HTTPWrite.post(uri, options) } 
     end
 
     # @param [Hash] params request arguments
@@ -25,7 +25,7 @@ module Picasa
     # @option params [String] :query request url query
     # @option params [String] :headers request headers
     def delete(params = {})
-      exec_request(params) { |uri, options| HTTP.delete(uri, options) } 
+      exec_request(params) { |uri, options| HTTPWrite.delete(uri, options) } 
     end
 
     private

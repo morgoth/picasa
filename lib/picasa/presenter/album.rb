@@ -36,7 +36,7 @@ module Picasa
 
       # @return [String]
       def etag
-        @etag ||= safe_retrieve(parsed_body, "etag")
+        @etag ||= safe_retrieve(parsed_body, "gd$etag")
       end
 
       # @return [String]
@@ -56,42 +56,42 @@ module Picasa
 
       # @return [String]
       def id
-        @id ||= array_wrap(safe_retrieve(parsed_body, "id")).last
+        @id ||= safe_retrieve(parsed_body, "gphoto$id")
       end
 
       # @return [String]
       def name
-        @name ||= safe_retrieve(parsed_body, "name")
+        @name ||= safe_retrieve(parsed_body, "gphoto$name")
       end
 
       # @return [String]
       def location
-        @location ||= safe_retrieve(parsed_body, "location")
+        @location ||= safe_retrieve(parsed_body, "gphoto$location")
       end
 
       # @return [String]
       def access
-        @access ||= safe_retrieve(parsed_body, "access")
+        @access ||= safe_retrieve(parsed_body, "gphoto$access")
       end
 
       # @return [String]
       def timestamp
-        @timestamp ||= safe_retrieve(parsed_body, "timestamp")
+        @timestamp ||= safe_retrieve(parsed_body, "gphoto$timestamp")
       end
 
       # @return [String]
       def numphotos
-        @numphotos ||= map_to_integer(safe_retrieve(parsed_body, "numphotos"))
+        @numphotos ||= map_to_integer(safe_retrieve(parsed_body, "gphoto$numphotos"))
       end
 
       # @return [String]
       def user
-        @user ||= safe_retrieve(parsed_body, "user")
+        @user ||= safe_retrieve(parsed_body, "gphoto$user")
       end
 
       # @return [String]
       def nickname
-        @nickname ||= safe_retrieve(parsed_body, "nickname")
+        @nickname ||= safe_retrieve(parsed_body, "gphoto$nickname")
       end
 
       # @return [true, false, nil]

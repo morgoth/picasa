@@ -11,3 +11,7 @@ gem "debugger", :platform => :ruby_19
 gem "nokogiri"
 gem "libxml-ruby"
 gem "ox"
+
+# JSON parsers
+gem "multi_json"
+gem "oj"
