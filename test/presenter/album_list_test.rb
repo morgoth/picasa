@@ -3,7 +3,7 @@ require "helper"
 
 describe Picasa::Presenter::AlbumList do
   before do
-    body = MultiXml.parse(fixture("presenters/album_list.xml"))
+    body = MultiJson.load(fixture("presenters/album_list.json"))
     @album_list = Picasa::Presenter::AlbumList.new(body["feed"])
   end
 
@@ -24,7 +24,7 @@ describe Picasa::Presenter::AlbumList do
   end
 
   it "has updated" do
-    assert_equal "2011-11-19T07:47:33+00:00", @album_list.updated.to_s
+    assert_equal "2012-10-22T11:02:22+00:00", @album_list.updated.to_s
   end
 
   it "has icon" do
@@ -37,7 +37,7 @@ describe Picasa::Presenter::AlbumList do
   end
 
   it "has total_results" do
-    assert_equal 2, @album_list.total_results
+    assert_equal 1, @album_list.total_results
   end
 
   it "has start_index" do
@@ -62,6 +62,6 @@ describe Picasa::Presenter::AlbumList do
   end
 
   it "has entries" do
-    assert_equal 2, @album_list.entries.size
+    assert_equal 1, @album_list.entries.size
   end
 end

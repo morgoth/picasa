@@ -4,7 +4,7 @@ require "helper"
 describe Picasa::Presenter::Album do
   describe "album from album list" do
     before do
-      body = MultiXml.parse(fixture("presenters/album_list.xml"))
+      body = MultiJson.load(fixture("presenters/album_list.json"))
       @album = Picasa::Presenter::Album.new(body["feed"]["entry"][0])
     end
 
@@ -21,31 +21,39 @@ describe Picasa::Presenter::Album do
     end
 
     it "has etag" do
-      assert_equal "\"YDkqeyI.\"", @album.etag
+      assert_equal "\"WSp7ImA9\"", @album.etag
     end
 
     it "has media credit" do
       assert_equal "Wojciech Wnętrzak", @album.media.credit
     end
 
+    it "has media description" do
+      assert_equal "Opis albumu", @album.media.description
+    end
+
+    it "has media title" do
+      assert_equal "test", @album.media.title
+    end
+
     it "has media thumbnail url" do
-      assert_equal "https://lh6.googleusercontent.com/-u_2FJXbbliU/SMU_eBetTXE/AAAAAAAAAkU/3XThNVnAM-4/s160-c/Test2.jpg", @album.media.thumbnails[0].url
+      assert_equal "https://lh6.googleusercontent.com/-ZqXRf3HicvI/SLakNnjixrE/AAAAAAAAAkc/3EAZ0eF3-CQ/s160-c/Test.jpg", @album.media.thumbnails[0].url
     end
 
     it "has published" do
-      assert_equal "2008-09-08T07:00:00+00:00", @album.published.to_s
+      assert_equal "2008-08-28T07:00:00+00:00", @album.published.to_s
     end
 
     it "has updated" do
-      assert_equal "2011-07-28T18:26:00+00:00", @album.updated.to_s
+      assert_equal "2011-12-12T17:09:21+00:00", @album.updated.to_s
     end
 
     it "has title" do
-      assert_equal "test2", @album.title
+      assert_equal "test", @album.title
     end
 
     it "has summary" do
-      assert_nil @album.summary
+      assert_equal "Opis albumu", @album.summary
     end
 
     it "has rights" do
@@ -53,15 +61,15 @@ describe Picasa::Presenter::Album do
     end
 
     it "has id" do
-      assert_equal "5243667126168669553", @album.id
+      assert_equal "5239555770355467953", @album.id
     end
 
     it "has name" do
-      assert_equal "Test2", @album.name
+      assert_equal "Test", @album.name
     end
 
     it "has location" do
-      assert_nil @album.location
+      assert_equal "gdzieś", @album.location
     end
 
     it "has access" do
@@ -69,11 +77,11 @@ describe Picasa::Presenter::Album do
     end
 
     it "has timestamp" do
-      assert_equal "1220857200000", @album.timestamp
+      assert_equal "1219906800000", @album.timestamp
     end
 
     it "has numphotos" do
-      assert_equal 3, @album.numphotos
+      assert_equal 6, @album.numphotos
     end
 
     it "has user" do
@@ -91,7 +99,7 @@ describe Picasa::Presenter::Album do
 
   describe "album from album show" do
     before do
-      body = MultiXml.parse(fixture("presenters/album_show.xml"))
+      body = MultiJson.load(fixture("presenters/album_show.json"))
       @album = Picasa::Presenter::Album.new(body["feed"])
     end
 
@@ -112,11 +120,11 @@ describe Picasa::Presenter::Album do
     end
 
     it "has updated" do
-      assert_equal "2011-07-28T18:26:00+00:00", @album.updated.to_s
+      assert_equal "2012-09-30T08:49:33+00:00", @album.updated.to_s
     end
 
     it "has title" do
-      assert_equal "test2", @album.title
+      assert_equal "test", @album.title
     end
 
     it "has summary" do
@@ -128,19 +136,19 @@ describe Picasa::Presenter::Album do
     end
 
     it "has id" do
-      assert_equal "5243667126168669553", @album.id
+      assert_equal "5239555770355467953", @album.id
     end
 
     it "has etag" do
-      assert_equal "W/\"DUICQX0_fSp7ImA9WhdSGEo.\"", @album.etag
+      assert_equal "W/\"Dk4DQn49eip7ImA9WhJbGUQ.\"", @album.etag
     end
 
     it "has name" do
-      assert_equal "Test2", @album.name
+      assert_equal "Test", @album.name
     end
 
     it "has location" do
-      assert_nil @album.location
+      assert_equal "gdzieś", @album.location
     end
 
     it "has access" do
@@ -148,11 +156,11 @@ describe Picasa::Presenter::Album do
     end
 
     it "has timestamp" do
-      assert_equal "1220857200000", @album.timestamp
+      assert_equal "1219906800000", @album.timestamp
     end
 
     it "has numphotos" do
-      assert_equal 3, @album.numphotos
+      assert_equal 6, @album.numphotos
     end
 
     it "has user" do
@@ -164,7 +172,7 @@ describe Picasa::Presenter::Album do
     end
 
     it "has photo entries" do
-      assert_equal 3, @album.entries.size
+      assert_equal 6, @album.entries.size
     end
 
     it "has allow_prints" do

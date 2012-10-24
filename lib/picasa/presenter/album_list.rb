@@ -5,7 +5,7 @@ module Picasa
     class AlbumList < Base
       # @return [Presenter::Author]
       def author
-        @author ||= Author.new(safe_retrieve(parsed_body, "author"))
+        @author ||= Author.new(parsed_body["author"][0])
       end
 
       # @return [Array<Presenter::Album>]

@@ -5,7 +5,7 @@ module Picasa
     class Album < Base
       # @return [Presenter::Author]
       def author
-        @author ||= Author.new(safe_retrieve(parsed_body, "author"))
+        @author ||= Author.new(parsed_body["author"][0])
       end
 
       # @return [Array<Presenter::Photo>]
@@ -21,7 +21,7 @@ module Picasa
 
       # @return [Presenter::Media]
       def media
-        @media ||= Media.new(safe_retrieve(parsed_body, "group"))
+        @media ||= Media.new(safe_retrieve(parsed_body, "media$group"))
       end
 
       # @return [DateTime]
@@ -96,12 +96,12 @@ module Picasa
 
       # @return [true, false, nil]
       def allow_prints
-        @allow_prints ||= map_to_boolean(safe_retrieve(parsed_body, "allowPrints"))
+        @allow_prints ||= map_to_boolean(safe_retrieve(parsed_body, "gphoto$allowPrints"))
       end
 
       # @return [true, false, nil]
       def allow_downloads
-        @allow_downloads ||= map_to_boolean(safe_retrieve(parsed_body, "allowDownloads"))
+        @allow_downloads ||= map_to_boolean(safe_retrieve(parsed_body, "gphoto$allowDownloads"))
       end
     end
   end
