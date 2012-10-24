@@ -3,7 +3,7 @@ require "helper"
 
 describe Picasa::Presenter::Photo do
   before do
-    body = MultiXml.parse(fixture("presenters/album_show.xml"))
+    body = MultiJson.load(fixture("presenters/album_show.json"))
     @photo = Picasa::Presenter::Photo.new(body["feed"]["entry"][0])
   end
 
@@ -12,7 +12,7 @@ describe Picasa::Presenter::Photo do
   end
 
   it "has content src" do
-    expected = "https://lh4.googleusercontent.com/-O0AOpTAPGBQ/SMU_j4ADl9I/AAAAAAAAAFs/DRnmROPuRVU/Kashmir%252520range.jpg"
+    expected = "https://lh3.googleusercontent.com/-nyHpFHvhL5o/SLakm2WdYhI/AAAAAAAAAEM/DuJDO5CflfY/lena2.jpg"
     assert_equal expected, @photo.content.src
   end
 
@@ -25,27 +25,27 @@ describe Picasa::Presenter::Photo do
   end
 
   it "has id" do
-    assert_equal "5243667226703402962", @photo.id
+    assert_equal "5239556203823850002", @photo.id
   end
 
   it "has published" do
-    assert_equal "2008-09-08T15:06:55+00:00", @photo.published.to_s
+    assert_equal "2008-08-28T13:14:03+00:00", @photo.published.to_s
   end
 
   it "has updated" do
-    assert_equal "2009-06-24T15:59:48+00:00", @photo.updated.to_s
+    assert_equal "2009-06-24T05:19:50+00:00", @photo.updated.to_s
   end
 
   it "has title" do
-    assert_equal "Kashmir range.jpg", @photo.title
+    assert_equal "lena2.jpg", @photo.title
   end
 
   it "has summary" do
-    assert_nil @photo.summary
+    assert_equal "", @photo.summary
   end
 
   it "has album_id" do
-    assert_equal "5243667126168669553", @photo.album_id
+    assert_equal "5239555770355467953", @photo.album_id
   end
 
   it "has access" do
@@ -53,27 +53,27 @@ describe Picasa::Presenter::Photo do
   end
 
   it "has width" do
-    assert_equal 717, @photo.width
+    assert_equal 1084, @photo.width
   end
 
   it "has height" do
-    assert_equal 468, @photo.height
+    assert_equal 2318, @photo.height
   end
 
   it "has size" do
-    assert_equal 79465, @photo.size
+    assert_equal 570958, @photo.size
   end
 
   it "has checksum" do
-    assert_nil @photo.checksum
+    assert_equal '',  @photo.checksum
   end
 
   it "has timestamp" do
-    assert_equal "1220886415000", @photo.timestamp
+    assert_equal "1219929243000", @photo.timestamp
   end
 
   it "has image_version" do
-    assert_equal 91, @photo.image_version
+    assert_equal 67, @photo.image_version
   end
 
   it "has commenting_enabled" do
@@ -85,6 +85,6 @@ describe Picasa::Presenter::Photo do
   end
 
   it "has license" do
-    assert_equal "ALL_RIGHTS_RESERVED", @photo.license
+    assert_equal "All Rights Reserved", @photo.license
   end
 end

@@ -20,7 +20,7 @@ module Picasa
 
       # @return [String]
       def keywords
-        @keywords ||= safe_retrieve(parsed_body, "media$keywords")
+        @keywords ||= safe_retrieve(parsed_body, "media$keywords", "$t")
       end
 
       # @return [String]

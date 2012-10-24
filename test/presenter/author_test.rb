@@ -3,8 +3,8 @@ require "helper"
 
 describe Picasa::Presenter::Author do
   before do
-    body = MultiXml.parse(fixture("presenters/album_list.xml"))
-    @author = Picasa::Presenter::Author.new(body["feed"]["author"])
+    body = MultiJson.load(fixture("presenters/album_list.json"))
+    @author = Picasa::Presenter::Author.new(body["feed"]["author"][0])
   end
 
   it "has name" do

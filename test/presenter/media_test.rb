@@ -3,8 +3,8 @@ require "helper"
 
 describe Picasa::Presenter::Media do
   before do
-    body = MultiXml.parse(fixture("presenters/album_show.xml"))
-    @media = Picasa::Presenter::Media.new(body["feed"]["entry"][0]["group"])
+    body = MultiJson.load(fixture("presenters/album_show.json"))
+    @media = Picasa::Presenter::Media.new(body["feed"]["entry"][0]["media$group"])
   end
 
   it "has credit" do
@@ -12,7 +12,7 @@ describe Picasa::Presenter::Media do
   end
 
   it "has description" do
-    assert_nil @media.description
+    assert_equal "", @media.description
   end
 
   it "has keywords" do
@@ -20,7 +20,7 @@ describe Picasa::Presenter::Media do
   end
 
   it "has title" do
-    assert_equal "Kashmir range.jpg", @media.title
+    assert_equal "lena2.jpg", @media.title
   end
 
   it "has thumbnails" do
