@@ -6,12 +6,12 @@
   "xmlns$gphoto": "http://schemas.google.com/photos/2007",
   "xmlns$openSearch": "http://a9.com/-/spec/opensearch/1.1/",
   "xmlns$gd": "http://schemas.google.com/g/2005",
-  "gd$etag": "W/\"CUAAQ30zfSp7ImA9WhNTGU0.\"",
+  "gd$etag": "W/\"D0YDQ3s-fyp7ImA9WhNSEU8.\"",
   "id": {
    "$t": "https://picasaweb.google.com/data/feed/user/106136347770555028022"
   },
   "updated": {
-   "$t": "2012-10-22T11:02:22.385Z"
+   "$t": "2012-10-25T00:32:52.557Z"
   },
   "category": [
    {
@@ -85,12 +85,12 @@
   },
   "entry": [
    {
-    "gd$etag": "W/\"CUAAQ30zfSp7ImA9WhNTGU0.\"",
+    "gd$etag": "W/\"D0YDQ3s-fyp7ImA9WhNSEU8.\"",
     "id": {
      "$t": "https://picasaweb.google.com/data/entry/user/106136347770555028022/tag/nature"
     },
     "updated": {
-     "$t": "2012-10-22T11:02:22.385Z"
+     "$t": "2012-10-25T00:32:52.557Z"
     },
     "category": [
      {

@@ -1,3 +1,21 @@
+HTTP/1.1 200 OK
+Expires: Thu, 25 Oct 2012 03:10:34 GMT
+Date: Thu, 25 Oct 2012 03:10:34 GMT
+Cache-Control: private, max-age=0, must-revalidate, no-transform
+Set-Cookie: _rtok=GUP4LZqejgFr; Path=/; Secure; HttpOnly
+Set-Cookie: S=photos_html=c1OcGBiUB9AG2aX844JnFA; Domain=.google.com; Path=/; Secure; HttpOnly
+Content-Type: application/json; charset=UTF-8
+Access-Control-Allow-Origin: *
+Vary: Accept, X-GData-Authorization, GData-Version, Cookie
+GData-Version: 2.0
+ETag: W/"D0YDQ3s-fyp7ImA9WhNSEU8."
+Last-Modified: Thu, 25 Oct 2012 00:32:52 GMT
+X-Content-Type-Options: nosniff
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1; mode=block
+Server: GSE
+Transfer-Encoding: chunked
+
 {
  "version": "1.0",
  "encoding": "UTF-8",
