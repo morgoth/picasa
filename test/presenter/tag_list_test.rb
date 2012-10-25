@@ -3,7 +3,7 @@ require "helper"
 
 describe Picasa::Presenter::TagList do
   before do
-    body = MultiXml.parse(fixture("presenters/tag_list.xml"))
+    body = MultiJson.load(fixture("presenters/tag_list.json"))
     @tag_list = Picasa::Presenter::TagList.new(body["feed"])
   end
 
@@ -24,7 +24,7 @@ describe Picasa::Presenter::TagList do
   end
 
   it "has updated" do
-    assert_equal "2012-08-17T08:40:24+00:00", @tag_list.updated.to_s
+    assert_equal "2012-10-22T11:02:22+00:00", @tag_list.updated.to_s
   end
 
   it "has icon" do
@@ -37,7 +37,7 @@ describe Picasa::Presenter::TagList do
   end
 
   it "has total_results" do
-    assert_equal 2, @tag_list.total_results
+    assert_equal 1, @tag_list.total_results
   end
 
   it "has start_index" do
@@ -62,6 +62,6 @@ describe Picasa::Presenter::TagList do
   end
 
   it "has entries" do
-    assert_equal 2, @tag_list.entries.size
+    assert_equal 1, @tag_list.entries.size
   end
 end

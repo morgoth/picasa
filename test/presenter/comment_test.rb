@@ -4,53 +4,53 @@ require "helper"
 describe Picasa::Presenter::Comment do
   describe "comment from comment list" do
     before do
-      body = MultiXml.parse(fixture("presenters/comment_list.xml"))
-      @comment = Picasa::Presenter::Comment.new(body["feed"]["entry"])
+      body = MultiJson.load(fixture("presenters/comment_list.json"))
+      @comment = Picasa::Presenter::Comment.new(body["feed"]["entry"][0])
     end
 
     it "has author name" do
-      assert_equal "Wojciech Wnętrzak", @comment.author.name
+      assert_equal "Vinicius Teles", @comment.author.name
     end
 
     it "has author uri" do
-      assert_equal "https://picasaweb.google.com/106136347770555028022", @comment.author.uri
+      assert_equal "https://picasaweb.google.com/104662451283465127832", @comment.author.uri
     end
 
     it "has links" do
-      assert_equal 3, @comment.links.size
+      assert_equal 2, @comment.links.size
     end
 
     it "has published" do
-      assert_equal "2012-09-30T09:02:57+00:00", @comment.published.to_s
+      assert_equal "2012-10-25T00:32:51+00:00", @comment.published.to_s
     end
 
     it "has updated" do
-      assert_equal "2012-09-30T09:02:57+00:00", @comment.updated.to_s
+      assert_equal "2012-10-25T00:32:51+00:00", @comment.updated.to_s
     end
 
     it "has edited" do
-      assert_equal "2012-09-30T09:02:57+00:00", @comment.edited.to_s
+      assert_equal "", @comment.edited.to_s
     end
 
     it "has etag" do
-      assert_equal "W/\"D0ADRn04fCp7ImA9WhJbGUQ.\"", @comment.etag
+      assert_equal "W/\"D0YDQHkyfyp7ImA9WhNSEU8.\"", @comment.etag
     end
 
     it "has title" do
-      assert_equal "Wojciech Wnętrzak", @comment.title
+      assert_equal "Vinicius Teles", @comment.title
     end
 
     it "has content" do
-      assert_equal "testing comment", @comment.content
+      assert_equal "beautiful place", @comment.content
     end
 
     it "has id" do
-      expected = "z13stn0rtrvkvpnbm04cgjbgjkmwyr5ot4g-1348995777334000"
+      expected = "z13fufdr3znxifia004cgjbgjkmwyr5ot4g-1351125171797000"
       assert_equal expected, @comment.id
     end
 
     it "has photo_id" do
-      assert_equal "5793892628357238194", @comment.photo_id
+      assert_equal "5243694064984357442", @comment.photo_id
     end
   end
 end

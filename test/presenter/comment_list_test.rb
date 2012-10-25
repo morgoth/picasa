@@ -3,7 +3,7 @@ require "helper"
 
 describe Picasa::Presenter::CommentList do
   before do
-    body = MultiXml.parse(fixture("presenters/comment_list.xml"))
+    body = MultiJson.load(fixture("presenters/comment_list.json"))
     @comment_list = Picasa::Presenter::CommentList.new(body["feed"])
   end
 
@@ -24,7 +24,7 @@ describe Picasa::Presenter::CommentList do
   end
 
   it "has updated" do
-    assert_equal "2012-09-30T09:02:57+00:00", @comment_list.updated.to_s
+    assert_equal "2012-10-25T00:32:52+00:00", @comment_list.updated.to_s
   end
 
   it "has icon" do

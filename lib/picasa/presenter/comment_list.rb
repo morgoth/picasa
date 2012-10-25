@@ -5,7 +5,7 @@ module Picasa
     class CommentList < Base
       # @return [Presenter::Author]
       def author
-        @author ||= Author.new(safe_retrieve(parsed_body, "author"))
+        @author ||= Author.new(parsed_body["author"][0])
       end
 
       # @return [Array<Presenter::Comment>]
@@ -36,37 +36,37 @@ module Picasa
 
       # @return [String]
       def generator
-        @generator ||= safe_retrieve(parsed_body, "generator", "__content__")
+        @generator ||= safe_retrieve(parsed_body, "generator", "$t")
       end
 
       # @return [Integer]
       def total_results
-        @total_results ||= map_to_integer(safe_retrieve(parsed_body, "totalResults"))
+        @total_results ||= map_to_integer(safe_retrieve(parsed_body, "openSearch$totalResults"))
       end
 
       # @return [Integer]
       def start_index
-        @start_index ||= map_to_integer(safe_retrieve(parsed_body, "startIndex"))
+        @start_index ||= map_to_integer(safe_retrieve(parsed_body, "openSearch$startIndex"))
       end
 
       # @return [Integer]
       def items_per_page
-        @items_per_page ||= map_to_integer(safe_retrieve(parsed_body, "itemsPerPage"))
+        @items_per_page ||= map_to_integer(safe_retrieve(parsed_body, "openSearch$itemsPerPage"))
       end
 
       # @return [String]
       def user
-        @user ||= safe_retrieve(parsed_body, "user")
+        @user ||= safe_retrieve(parsed_body, "gphoto$user")
       end
 
       # @return [String]
       def nickname
-        @nickname ||= safe_retrieve(parsed_body, "nickname")
+        @nickname ||= safe_retrieve(parsed_body, "gphoto$nickname")
       end
 
       # @return [String]
       def thumbnail
-        @thumbnail ||= safe_retrieve(parsed_body, "thumbnail")
+        @thumbnail ||= safe_retrieve(parsed_body, "gphoto$thumbnail")
       end
     end
   end

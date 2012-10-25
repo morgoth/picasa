@@ -186,7 +186,7 @@ describe Picasa::Presenter::Album do
 
   describe "album from show with single photo" do
     before do
-      body = MultiXml.parse(fixture("presenters/album_show_with_one_photo.xml"))
+      body = MultiJson.load(fixture("presenters/album_show_with_one_photo.json"))
       @album = Picasa::Presenter::Album.new(body["feed"])
     end
 

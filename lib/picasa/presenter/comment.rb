@@ -5,7 +5,7 @@ module Picasa
     class Comment < Base
       # @return [Presenter::Author]
       def author
-        @author ||= Author.new(safe_retrieve(parsed_body, "author"))
+        @author ||= Author.new(parsed_body["author"][0])
       end
 
       # @return [Array<Presenter::Link>]
@@ -35,22 +35,22 @@ module Picasa
 
       # @return [String]
       def etag
-        @etag ||= safe_retrieve(parsed_body, "etag")
+        @etag ||= safe_retrieve(parsed_body, "gd$etag")
       end
 
       # @return [String]
       def content
-        @content ||= safe_retrieve(parsed_body, "content", "__content__") || safe_retrieve(parsed_body, "content")
+        @content ||= safe_retrieve(parsed_body, "content", "$t")
       end
 
       # @return [String]
       def id
-        @id ||= array_wrap(safe_retrieve(parsed_body, "id")).last
+        @id ||= safe_retrieve(parsed_body, "gphoto$id")
       end
 
       # @return [String]
       def photo_id
-        @photo_id ||= safe_retrieve(parsed_body, "photoid")
+        @photo_id ||= safe_retrieve(parsed_body, "gphoto$photoid")
       end
     end
   end

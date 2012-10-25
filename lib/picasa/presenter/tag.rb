@@ -5,7 +5,7 @@ module Picasa
     class Tag < Base
       # @return [Presenter::Author]
       def author
-        @author ||= Author.new(safe_retrieve(parsed_body, "author"))
+        @author ||= Author.new(parsed_body["author"][0])
       end
 
       # @return [Array<Presenter::Link>]
@@ -25,7 +25,7 @@ module Picasa
 
       # @return [String]
       def etag
-        @etag ||= safe_retrieve(parsed_body, "etag")
+        @etag ||= safe_retrieve(parsed_body, "gd$etag")
       end
 
       # @return [String]

@@ -3,12 +3,12 @@ require "helper"
 
 describe Picasa::Presenter::Content do
   before do
-    body = MultiXml.parse(fixture("presenters/album_show.xml"))
+    body = MultiJson.load(fixture("presenters/album_show.json"))
     @content = Picasa::Presenter::Content.new(body["feed"]["entry"][0]["content"])
   end
 
   it "has src" do
-    expected = "https://lh4.googleusercontent.com/-O0AOpTAPGBQ/SMU_j4ADl9I/AAAAAAAAAFs/DRnmROPuRVU/Kashmir%252520range.jpg"
+    expected = "https://lh3.googleusercontent.com/-nyHpFHvhL5o/SLakm2WdYhI/AAAAAAAAAEM/DuJDO5CflfY/lena2.jpg"
     assert_equal expected, @content.src
   end
 
