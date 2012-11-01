@@ -1,0 +1,107 @@
+--- 
+http_interactions: 
+- request: 
+    method: post
+    uri: https://picasaweb.google.com/data/feed/api/user/w.wnetrzak@gmail.com?alt=json
+    body: 
+      encoding: UTF-8
+      string: |
+        <entry xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:gphoto="http://schemas.google.com/photos/2007">
+          <title type="text">gem-test</title>
+          
+          <summary type="text">created from test suite</summary>
+          
+          
+          <gphoto:location>Gilowice</gphoto:location>
+          
+          
+          <gphoto:access>protected</gphoto:access>
+          
+          <gphoto:timestamp>1351796169</gphoto:timestamp>
+          
+          <media:group>
+            <media:keywords>test</media:keywords>
+          </media:group>
+          
+          <category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#album"></category>
+        </entry>
+
+    headers: 
+      User-Agent: 
+      - ruby-gem-picasa-v0.5.4 (gzip)
+      Gdata-Version: 
+      - "2"
+      Accept-Encoding: 
+      - gzip, deflate
+      Content-Type: 
+      - application/atom+xml
+      Authorization: 
+      - <FILTERED>
+  response: 
+    status: 
+      code: 201
+      message: Created
+    headers: 
+      Expires: 
+      - Thu, 01 Nov 2012 18:56:12 GMT
+      Date: 
+      - Thu, 01 Nov 2012 18:56:12 GMT
+      Cache-Control: 
+      - private, max-age=0, must-revalidate, no-transform
+      Set-Cookie: 
+      - S=photos_html=golvv-gaNGfZY5DEa9qDsg; Domain=.google.com; Path=/; Secure; HttpOnly
+      - _rtok=HfA4HWwa_mUI; Path=/; Secure; HttpOnly
+      Content-Type: 
+      - application/json; charset=UTF-8
+      Access-Control-Allow-Origin: 
+      - "*"
+      Vary: 
+      - Accept, X-GData-Authorization, GData-Version
+      Gdata-Version: 
+      - "2.0"
+      Etag: 
+      - "\"YD0qeyI.\""
+      Location: 
+      - https://picasaweb.google.com/data/entry/api/user/106136347770555028022/albumid/5805920347758933777?alt=json
+      Content-Location: 
+      - https://picasaweb.google.com/data/entry/api/user/106136347770555028022/albumid/5805920347758933777?alt=json
+      Content-Encoding: 
+      - gzip
+      Transfer-Encoding: 
+      - chunked
+      X-Content-Type-Options: 
+      - nosniff
+      X-Frame-Options: 
+      - SAMEORIGIN
+      X-Xss-Protection: 
+      - 1; mode=block
+      Server: 
+      - GSE
+    body: 
+      encoding: ASCII-8BIT
+      string: !binary |
+        H4sIAAAAAAAAAM1W4W7bNhB+FUPVv9kSKUW2ZWAYijUNVgTFfiQo0nUYaOos
+        MSZFjaRqe0EeZO+zBytJ2Zay2YMxdED1S+J95H13991RT8FnUJrJOlgEOELB
+        OICayoLVpV24v3s7mfslo3bB4inYCl7rkDSNNVbGNIs43mw20SaNpCrjBKFZ
+        7IzjDngOlMWvjRQHVFg2lTSyB2tagSA6KqUsOURUitgjtHdw3CagYGSwC4ii
+        VbQjlZR+j1Bax72T4l8ddLx6tOAvycsG6pLpqAYTO+MRCNK6eYnt1nywe/M4
+        KIsQDHE5/RQ8vEG/w+6n6FNgDaxweQ3N/ghtz2gYJZpsYDkkWBBDYl+HuNWg
+        YoymOJ2mV7PZDGVZhpI5SpKY8GUrWBFnc5TlCXLmbJ6nqUUFz+OgaZec6Qp6
+        nzifoQnCEzy9w9kiyRfZNEIIfXTotrFOB9gE4WSCsYXf4bkFLjCOkvTKY23V
+        Q1uPS+HUHlxKp6lfngJfDrigPK/WrC5szgwocalcXvmUBM+/2m3McDjSK0FM
+        DGjj6OhWCNIp3NuoAhf5aKWkGDnQSLc2NgdVrKyMPiIbJQ1QF7a1cVavfUQK
+        +CXhrAB8OLvGRW9TyG3lje3FmNj++G7rdVYpWF0kDnea7T72H/XxA+Hm+0dt
+        B8Hz+BCBXQJV21T0LA1sTVyZi6md5nED4s6mFaUDZxr46utlo2uVr5sOJ/Bv
+        m+F5yRHK9/1AKWj9o7TeJb9l+huKyJEcRGVblrSmksr3VE1E37wf5CNlQKvR
+        h/qvP436g6z9wFLssmF6klnw7Dx2l1E4GMtnZuke+ILWUNYHAJddRnsQ43LD
+        KAwwXU1OD5U9xDBhTyai6Ud3muFZPrXTekinFd3wO8DQCZuy4mC1v+I7ELaH
+        9Ljlzo68ez0Y5UMPrrQ9h9OJ7F0yur6gcP4qD0slWx9e90mtRK2ifPFbxQc1
+        5VW6r6Yjs8f5wk4eblV5s7qG6RbF9+9u3+6yd+z99jp+vX/etDpmn2/Eb8V7
+        mj1c94MoemzKvhOYICXEjw24NUenFYdVr8s9Q+UngiN4NrgjuABNFWteSOHc
+        PXPk0XBbqD5Da9htpCpccY9rpmrFsiaM/7+J0niKJvQf+arA3YdWQVM0Djas
+        MJV/78M+c+n+PUInGf+vFG4qUH6D/c0Kf5bMKaD7aHpVB1d5NMM4T/J8hPMo
+        xShxXemeL10f7f/RCgAA
+
+    http_version: 
+  recorded_at: Thu, 01 Nov 2012 18:56:11 GMT
+recorded_with: VCR 2.3.0

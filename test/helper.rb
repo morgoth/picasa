@@ -10,10 +10,13 @@ require "picasa"
 
 MultiXml.parser = ENV["XML_PARSER"] || "libxml"
 
+AuthHeader = ENV["PICASA_AUTH_HEADER"] || "GoogleLogin auth=token"
+
 VCR.configure do |c|
   c.cassette_library_dir = "test/cassettes"
   c.hook_into :webmock
   c.default_cassette_options = {:serialize_with => :syck} # Avoid stroing headers as binary
+  c.filter_sensitive_data("<FILTERED>") { AuthHeader }
 end
 
 class MiniTest::Unit::TestCase

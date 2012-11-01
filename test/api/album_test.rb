@@ -167,6 +167,16 @@ describe Picasa::API::Album do
   end
 
   describe "#create" do
+    it "creates album" do
+      VCR.use_cassette("album-create") do
+        attributes = {:title => "gem-test", :summary => "created from test suite", :access => "protected",
+                      :location => "Gilowice", :keywords => "test"}
+        album = Picasa::API::Album.new(:user_id => "w.wnetrzak@gmail.com", :authorization_header => AuthHeader).create(attributes)
+
+        assert_equal "gem-test", album.title
+      end
+    end
+
     it "gives correct parsed body fragment" do
       skip
       stub_request(:post, "https://www.google.com/accounts/ClientLogin").to_return(fixture("auth/success.txt"))
@@ -180,6 +190,7 @@ describe Picasa::API::Album do
 
   describe "#destroy" do
     it "gives true when success" do
+      skip
       stub_request(:post, "https://www.google.com/accounts/ClientLogin").to_return(fixture("auth/success.txt"))
       stub_request(:delete, "https://picasaweb.google.com/data/entry/api/user/w.wnetrzak@gmail.com/albumid/123").to_return(:status => 200, :body => "")
 

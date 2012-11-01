@@ -6,7 +6,9 @@ module Picasa
     # @option params [String] :query request url query
     # @option params [String] :headers request headers
     def get(params = {})
-      exec_request(params) { |uri, options| HTTPRead.get(uri, options) } 
+      # FIXME: how to add headers to default ones instead of replacing?
+      params[:headers] = Picasa::HTTPRead.headers.merge(params[:headers]) if params.has_key?(:headers)
+      exec_request(params) { |uri, options| HTTPRead.get(uri, options) }
     end
 
     # @param [Hash] params request arguments
@@ -16,7 +18,8 @@ module Picasa
     # @option params [String] :query request url query
     # @option params [String] :headers request headers
     def post(params = {})
-      exec_request(params) { |uri, options| HTTPWrite.post(uri, options) } 
+      params[:headers] = Picasa::HTTPWrite.headers.merge(params[:headers]) if params.has_key?(:headers)
+      exec_request(params) { |uri, options| HTTPWrite.post(uri, options) }
     end
 
     # @param [Hash] params request arguments
@@ -25,14 +28,15 @@ module Picasa
     # @option params [String] :query request url query
     # @option params [String] :headers request headers
     def delete(params = {})
-      exec_request(params) { |uri, options| HTTPWrite.delete(uri, options) } 
+      params[:headers] = Picasa::HTTPWrite.headers.merge(params[:headers]) if params.has_key?(:headers)
+      exec_request(params) { |uri, options| HTTPWrite.delete(uri, options) }
     end
 
     private
 
     def exec_request(params, &block)
       uri = "#{params.delete(:host)}#{params.delete(:path)}"
-      params.delete_if { |key, value| value.nil? || value.empty? } 
+      params.delete_if { |key, value| value.nil? || value.empty? }
       handle_response(yield(uri, params))
     end
 
