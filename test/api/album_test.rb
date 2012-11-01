@@ -4,21 +4,21 @@ require "helper"
 describe Picasa::API::Album do
   describe "#list" do
     it "gives correct parsed body fragment" do
-      stub_request(:get, "https://picasaweb.google.com/data/feed/api/user/w.wnetrzak?alt=json&v=2").to_return(fixture("album/album_list.json"))
+      VCR.use_cassette("album-list") do
+        album_list = Picasa::API::Album.new(:user_id => "w.wnetrzak").list
 
-      album_list = Picasa::API::Album.new(:user_id => "w.wnetrzak").list
-
-      assert_equal 1, album_list.total_results
+        assert_equal 1, album_list.total_results
+      end
     end
   end
 
   describe "#show" do
     it "gives correct parsed body fragment" do
-      stub_request(:get, "https://picasaweb.google.com/data/feed/api/user/w.wnetrzak/albumid/5243667126168669553?alt=json&v=2").to_return(fixture("album/album_show.json"))
+      VCR.use_cassette("album-show") do
+        album_show = Picasa::API::Album.new(:user_id => "w.wnetrzak").show("5239555770355467953")
 
-      album_show = Picasa::API::Album.new(:user_id => "w.wnetrzak").show("5243667126168669553")
-
-      assert_equal "Wojciech Wnętrzak", album_show.author.name
+        assert_equal "Wojciech Wnętrzak", album_show.author.name
+      end
     end
   end
 
