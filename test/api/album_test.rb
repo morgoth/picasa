@@ -3,22 +3,156 @@ require "helper"
 
 describe Picasa::API::Album do
   describe "#list" do
-    it "gives correct parsed body fragment" do
+    before do
       VCR.use_cassette("album-list") do
-        album_list = Picasa::API::Album.new(:user_id => "w.wnetrzak").list
-
-        assert_equal 1, album_list.total_results
+        @album_list = Picasa::API::Album.new(:user_id => "w.wnetrzak").list
       end
+    end
+
+    it "has author name" do
+      assert_equal "Wojciech Wnętrzak", @album_list.author.name
+    end
+
+    it "has author uri" do
+      assert_equal "https://picasaweb.google.com/106136347770555028022", @album_list.author.uri
+    end
+
+    it "has links" do
+      assert_equal 4, @album_list.links.size
+    end
+
+    it "has title" do
+      assert_equal "106136347770555028022", @album_list.title
+    end
+
+    it "has updated" do
+      assert_equal "2012-11-01T04:47:09+00:00", @album_list.updated.to_s
+    end
+
+    it "has icon" do
+      expected = "https://lh3.googleusercontent.com/-6ezHc54U8x0/AAAAAAAAAAI/AAAAAAAAAAA/PBuxm7Ehn6E/s64-c/106136347770555028022.jpg"
+      assert_equal expected, @album_list.icon
+    end
+
+    it "has generator" do
+      assert_equal "Picasaweb", @album_list.generator
+    end
+
+    it "has total_results" do
+      assert_equal 1, @album_list.total_results
+    end
+
+    it "has start_index" do
+      assert_equal 1, @album_list.start_index
+    end
+
+    it "has items_per_page" do
+      assert_equal 1000, @album_list.items_per_page
+    end
+
+    it "has user" do
+      assert_equal "106136347770555028022", @album_list.user
+    end
+
+    it "has nickname" do
+      assert_equal "Wojciech Wnętrzak", @album_list.nickname
+    end
+
+    it "has thumbnail" do
+      expected = "https://lh3.googleusercontent.com/-6ezHc54U8x0/AAAAAAAAAAI/AAAAAAAAAAA/PBuxm7Ehn6E/s64-c/106136347770555028022.jpg"
+      assert_equal expected, @album_list.thumbnail
+    end
+
+    it "has entries" do
+      assert_equal 1, @album_list.entries.size
     end
   end
 
   describe "#show" do
-    it "gives correct parsed body fragment" do
+    before do
       VCR.use_cassette("album-show") do
-        album_show = Picasa::API::Album.new(:user_id => "w.wnetrzak").show("5239555770355467953")
-
-        assert_equal "Wojciech Wnętrzak", album_show.author.name
+        @album = Picasa::API::Album.new(:user_id => "w.wnetrzak").show("5239555770355467953")
       end
+    end
+
+    it "has author name" do
+      assert_equal "Wojciech Wnętrzak", @album.author.name
+    end
+
+    it "has author uri" do
+      assert_equal "https://picasaweb.google.com/106136347770555028022", @album.author.uri
+    end
+
+    it "has links" do
+      assert_equal 5, @album.links.size
+    end
+
+    it "has published" do
+      assert_nil @album.published
+    end
+
+    it "has updated" do
+      assert_equal "2012-10-25T00:32:52+00:00", @album.updated.to_s
+    end
+
+    it "has title" do
+      assert_equal "test", @album.title
+    end
+
+    it "has summary" do
+      assert_nil @album.summary
+    end
+
+    it "has rights" do
+      assert_equal "public", @album.rights
+    end
+
+    it "has id" do
+      assert_equal "5239555770355467953", @album.id
+    end
+
+    it "has etag" do
+      assert_equal "W/\"D0YDQ3s-fyp7ImA9WhNSEU8.\"", @album.etag
+    end
+
+    it "has name" do
+      assert_equal "Test", @album.name
+    end
+
+    it "has location" do
+      assert_equal "gdzieś", @album.location
+    end
+
+    it "has access" do
+      assert_equal "public", @album.access
+    end
+
+    it "has timestamp" do
+      assert_equal "1219906800000", @album.timestamp
+    end
+
+    it "has numphotos" do
+      assert_equal 6, @album.numphotos
+    end
+
+    it "has user" do
+      assert_equal "106136347770555028022", @album.user
+    end
+
+    it "has nickname" do
+      assert_equal "Wojciech Wnętrzak", @album.nickname
+    end
+
+    it "has photo entries" do
+      assert_equal 6, @album.entries.size
+    end
+
+    it "has allow_prints" do
+      assert_equal true, @album.allow_prints
+    end
+
+    it "has allow_downloads" do
+      assert_equal true, @album.allow_downloads
     end
   end
 

@@ -1,80 +1,59 @@
----
-http_interactions:
-- request:
+--- 
+http_interactions: 
+- request: 
     method: get
     uri: https://picasaweb.google.com/data/feed/api/user/w.wnetrzak?alt=json&v=2
-    body:
+    body: 
       encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
+      string: ""
+    headers: 
+      User-Agent: 
       - ruby-gem-picasa-v0.5.4 (gzip)
-      Gdata-Version:
-      - '2'
-      Accept-Encoding:
+      Gdata-Version: 
+      - "2"
+      Accept-Encoding: 
       - gzip, deflate
-  response:
-    status:
+  response: 
+    status: 
       code: 200
-      message: !binary |-
-        T0s=
-    headers:
-      !binary "RXhwaXJlcw==":
-      - !binary |-
-        VGh1LCAwMSBOb3YgMjAxMiAxMzo0MTo0MCBHTVQ=
-      !binary "RGF0ZQ==":
-      - !binary |-
-        VGh1LCAwMSBOb3YgMjAxMiAxMzo0MTo0MCBHTVQ=
-      !binary "Q2FjaGUtQ29udHJvbA==":
-      - !binary |-
-        cHJpdmF0ZSwgbWF4LWFnZT0wLCBtdXN0LXJldmFsaWRhdGUsIG5vLXRyYW5z
-        Zm9ybQ==
-      !binary "U2V0LUNvb2tpZQ==":
-      - !binary |-
-        Uz1waG90b3NfaHRtbD0zZjgzWDBMYjd5UmYwc2pUQmpXb0hnOyBEb21haW49
-        Lmdvb2dsZS5jb207IFBhdGg9LzsgU2VjdXJlOyBIdHRwT25seQ==
-      - !binary |-
-        X3J0b2s9T3dqVFJZYzdrMGx4OyBQYXRoPS87IFNlY3VyZTsgSHR0cE9ubHk=
-      !binary "Q29udGVudC1UeXBl":
-      - !binary |-
-        YXBwbGljYXRpb24vanNvbjsgY2hhcnNldD1VVEYtOA==
-      !binary "QWNjZXNzLUNvbnRyb2wtQWxsb3ctT3JpZ2lu":
-      - !binary |-
-        Kg==
-      !binary "VmFyeQ==":
-      - !binary |-
-        QWNjZXB0LCBYLUdEYXRhLUF1dGhvcml6YXRpb24sIEdEYXRhLVZlcnNpb24s
-        IENvb2tpZQ==
-      !binary "R2RhdGEtVmVyc2lvbg==":
-      - !binary |-
-        Mi4w
-      !binary "RXRhZw==":
-      - !binary |-
-        Vy8iRDBVR1NIZzVmQ3A3SW1BOVdoTlNGMGsuIg==
-      !binary "TGFzdC1Nb2RpZmllZA==":
-      - !binary |-
-        VGh1LCAwMSBOb3YgMjAxMiAwNDo0NzowOSBHTVQ=
-      !binary "Q29udGVudC1FbmNvZGluZw==":
-      - !binary |-
-        Z3ppcA==
-      !binary "VHJhbnNmZXItRW5jb2Rpbmc=":
-      - !binary |-
-        Y2h1bmtlZA==
-      !binary "WC1Db250ZW50LVR5cGUtT3B0aW9ucw==":
-      - !binary |-
-        bm9zbmlmZg==
-      !binary "WC1GcmFtZS1PcHRpb25z":
-      - !binary |-
-        U0FNRU9SSUdJTg==
-      !binary "WC1Yc3MtUHJvdGVjdGlvbg==":
-      - !binary |-
-        MTsgbW9kZT1ibG9jaw==
-      !binary "U2VydmVy":
-      - !binary |-
-        R1NF
-    body:
+      message: OK
+    headers: 
+      Expires: 
+      - Thu, 01 Nov 2012 14:31:50 GMT
+      Date: 
+      - Thu, 01 Nov 2012 14:31:50 GMT
+      Cache-Control: 
+      - private, max-age=0, must-revalidate, no-transform
+      Set-Cookie: 
+      - S=photos_html=n3JhK806iNKtG93-qPb2Yw; Domain=.google.com; Path=/; Secure; HttpOnly
+      - _rtok=nghMdsMYoaB7; Path=/; Secure; HttpOnly
+      Content-Type: 
+      - application/json; charset=UTF-8
+      Access-Control-Allow-Origin: 
+      - "*"
+      Vary: 
+      - Accept, X-GData-Authorization, GData-Version, Cookie
+      Gdata-Version: 
+      - "2.0"
+      Etag: 
+      - W/"D0UGSHg5fCp7ImA9WhNSF0k."
+      Last-Modified: 
+      - Thu, 01 Nov 2012 04:47:09 GMT
+      Content-Encoding: 
+      - gzip
+      Transfer-Encoding: 
+      - chunked
+      X-Content-Type-Options: 
+      - nosniff
+      X-Frame-Options: 
+      - SAMEORIGIN
+      X-Xss-Protection: 
+      - 1; mode=block
+      Server: 
+      - GSE
+    body: 
       encoding: ASCII-8BIT
-      string: !binary |-
+      string: !binary |
         H4sIAAAAAAAAANVXbW/bNhD+K4Xq5MsikZIs+QUwCrdNmgBDl+YFGbLsAy3R
         EmO9jaRiJ0F+yNC/s/2vHSlbkgs79YClwQwhco4Pj3fPHZ9LHo07ygXLM2No
         2BY2DgyaBXnIsggMlxdHZh9MU0pDY/hoLNIkE2CPpSyGCM3nc2vuWjmPkIOx
@@ -100,6 +79,7 @@ http_interactions:
         mX3ObtmCHzbKPQuQezi+xvTINT980f2rJbpuWpbCmEK3BVU2FUmZrqy6jZbB
         cXhVsW3NqwbD31UBZ8Va+dpSVJ9dJIRlDSEzej/PeaiqUNta8+wleRG2j2Gk
         teiJqVJLmNw+PjDmLJSx/t5kuUGCv00MbsXT0z+lCNavAA8AAA==
+
     http_version: 
-  recorded_at: Thu, 01 Nov 2012 13:41:40 GMT
+  recorded_at: Thu, 01 Nov 2012 14:31:50 GMT
 recorded_with: VCR 2.3.0
