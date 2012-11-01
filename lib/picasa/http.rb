@@ -16,10 +16,6 @@ module Picasa
 
     base_uri   API_URL
 
-    headers    "User-Agent"      => "ruby-gem-picasa-v#{VERSION} (gzip)",
-               "GData-Version"   => API_VERSION,
-               "Accept-Encoding" => "gzip, deflate"
-
     http_proxy *proxy
   end
 end
