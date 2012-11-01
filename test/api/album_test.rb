@@ -156,8 +156,19 @@ describe Picasa::API::Album do
     end
   end
 
+  describe "exceptions" do
+    it "raises NotFound exception when album does not exist" do
+      VCR.use_cassette("album-404") do
+        assert_raises Picasa::NotFoundError, "Invalid entity id: non-existing" do
+          Picasa::API::Album.new(:user_id => "w.wnetrzak").show("non-exisiting")
+        end
+      end
+    end
+  end
+
   describe "#create" do
     it "gives correct parsed body fragment" do
+      skip
       stub_request(:post, "https://www.google.com/accounts/ClientLogin").to_return(fixture("auth/success.txt"))
       stub_request(:post, "https://picasaweb.google.com/data/feed/api/user/w.wnetrzak@gmail.com").to_return(fixture("album/album-create.txt"))
 

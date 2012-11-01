@@ -4,6 +4,7 @@ require "helper"
 describe Picasa::API::Photo do
   describe "#create" do
     it "gives correct parsed body fragment" do
+      skip
       stub_request(:post, "https://www.google.com/accounts/ClientLogin").to_return(fixture("auth/success.txt"))
       stub_request(:post, "https://picasaweb.google.com/data/feed/api/user/w.wnetrzak@gmail.com/albumid/123").to_return(fixture("photo/photo-created.txt"))
 

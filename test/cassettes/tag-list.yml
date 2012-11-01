@@ -1,0 +1,79 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: https://picasaweb.google.com/data/feed/api/user/w.wnetrzak?alt=json&kind=tag&v=2
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      User-Agent: 
+      - ruby-gem-picasa-v0.5.4 (gzip)
+      Gdata-Version: 
+      - "2"
+      Accept-Encoding: 
+      - gzip, deflate
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Expires: 
+      - Thu, 01 Nov 2012 17:26:25 GMT
+      Date: 
+      - Thu, 01 Nov 2012 17:26:25 GMT
+      Cache-Control: 
+      - private, max-age=0, must-revalidate, no-transform
+      Set-Cookie: 
+      - S=photos_html=8eaxzVvcRG3MoQYx2wnWQg; Domain=.google.com; Path=/; Secure; HttpOnly
+      - _rtok=511JCZCLo4RP; Path=/; Secure; HttpOnly
+      Content-Type: 
+      - application/json; charset=UTF-8
+      Access-Control-Allow-Origin: 
+      - "*"
+      Vary: 
+      - Accept, X-GData-Authorization, GData-Version, Cookie
+      Gdata-Version: 
+      - "2.0"
+      Etag: 
+      - W/"D0UGSHg5fCp7ImA9WhNSF0k."
+      Last-Modified: 
+      - Thu, 01 Nov 2012 04:47:09 GMT
+      Content-Encoding: 
+      - gzip
+      Transfer-Encoding: 
+      - chunked
+      X-Content-Type-Options: 
+      - nosniff
+      X-Frame-Options: 
+      - SAMEORIGIN
+      X-Xss-Protection: 
+      - 1; mode=block
+      Server: 
+      - GSE
+    body: 
+      encoding: ASCII-8BIT
+      string: !binary |
+        H4sIAAAAAAAAAM1W227aQBD9lcohvDT2rrkmSFZEmutLhXIRUps+LGawN9he
+        d3cdk0R8SP+nH9ZZczGkJOGhUWqQjdZn58ycmZ3hyboHqbhIrI7lOtTasyDx
+        xZAnAS7cXJ/a+7g0AhhanSdrEkeJwvVQ67RDSJ7nTl53hAxIjdIm6WoRI7pA
+        VYI0FFqUYOWHEDPlBEIEETi+iEmBUGZve7lNpJBcAZN+WG5lBwXcJioFnxiE
+        KhDEdVxSEg5fJZv5iOhgWAHNTHh9cmsd05uzq/OgOfqSti/i7kE//Hp1SsfO
+        rYVQXkRd0XPDCi2n3GeK5TBYtT1kmhEjEskUSOLSlltv1Rvtdps2m01a26e1
+        mjXds7IUkVAarVG3ZruuTd1r2ug02h164LRqjW8G6yMyEPLB6nx/sop4YIv4
+        dsY8GaLnGmS8rfY7xmlr+gN3cR3B0rsXw1DZYB1pFrlvauiZWlFYn5MaDkRo
+        SPQsmS14PPebjZv9CSXd5XWx8rtLekfZJG6fhEnrhKhWw/Y3S+vcpYFxIeLJ
+        uJBLQrSNVkVZY9QPqZGWpWmEydV4FgjDSv6MZYVvQwmj7fPPUv5KDRyySHt3
+        CoWa7i28xCWQCSa79ETDRJNQb03/UqLeFmK1ClTEh6BCkW+WZGLjO3+cs3uw
+        RxFT4ZbOKeKTAU/I0ryj8tFhKJT2NuGrl2dHHp3Q4qoaTb3C/G69u1s7xe+m
+        TbhsUoAPswEfmAa8m0TgY6M8u/VTVH63fiyVWpFKQTT6mJKoKs2ktvH4wsRz
+        qzGb2BJUFmnlNVEJc64907bMOWWZDoUsSj1hcXkO++LO5+CHn/rJ719aPrJx
+        0XUk366NvVBHhjGABCRKIJeWegsLKMjaCDEzpKBc1N1GLuNY2esrWmgWXc7i
+        XVC465BCnwsjzwsAriFWPZA9FiwlQekQNJtFlaLPvdnd5uCE++MtxJ2jdZjF
+        g4Tx6INbINqej4z3GnMFwysFTZCUYD/LJPzHI29xktbnWOm2yuKYGU/+evNs
+        yPyD9h2FZPZ/ZiBFruDwpzdjq6bK986qmalCb6PW1RE39B59tw42y/brLWwl
+        4ysD7gPaFH6mfwCS2xOI0AoAAA==
+
+    http_version: 
+  recorded_at: Thu, 01 Nov 2012 17:26:25 GMT
+recorded_with: VCR 2.3.0
