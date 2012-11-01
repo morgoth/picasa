@@ -14,21 +14,21 @@ describe Picasa::Client do
 
   describe "#authenticate" do
     it "successfully authenticates" do
-      client = Picasa::Client.new(:user_id => "john.doe@domain.com", :password => "secret")
+      VCR.use_cassette("auth-success") do
+        client = Picasa::Client.new(:user_id => "w.wnetrzak@gmail.com", :password => Password)
+        client.authenticate
 
-      stub_request(:post, "https://www.google.com/accounts/ClientLogin").to_return(fixture("auth/success.txt"))
-
-      client.authenticate
-      refute_nil client.authorization_header
+        refute_nil client.authorization_header
+      end
     end
 
     it "raises an ForbiddenError when authentication failed" do
-      client = Picasa::Client.new(:user_id => "john.doe@domain.com", :password => "invalid")
+      VCR.use_cassette("auth-failed") do
+        client = Picasa::Client.new(:user_id => "w.wnetrzak@gmail.com", :password => "invalid")
 
-      stub_request(:post, "https://www.google.com/accounts/ClientLogin").to_return(fixture("exceptions/forbidden.txt"))
-
-      assert_raises(Picasa::ForbiddenError) do
-        client.authenticate
+        assert_raises(Picasa::ForbiddenError) do
+          client.authenticate
+        end
       end
     end
   end

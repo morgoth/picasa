@@ -36,6 +36,7 @@ describe Picasa::API::Photo do
     end
 
     it "guesses required attributes from file path" do
+      skip
       stub_request(:post, "https://www.google.com/accounts/ClientLogin").to_return(fixture("auth/success.txt"))
       stub_request(:post, "https://picasaweb.google.com/data/feed/api/user/w.wnetrzak@gmail.com/albumid/123").to_return(fixture("photo/photo-created.txt"))
 

@@ -114,6 +114,7 @@ describe Picasa::API::Comment do
     end
 
     it "gives true when success" do
+      skip
       stub_request(:post, "https://www.google.com/accounts/ClientLogin").to_return(fixture("auth/success.txt"))
       stub_request(:delete, "https://picasaweb.google.com/data/entry/api/user/w.wnetrzak@gmail.com/albumid/123/photoid/456/commentid/987").to_return(:status => 200, :body => "")
 

@@ -1,0 +1,50 @@
+--- 
+http_interactions: 
+- request: 
+    method: post
+    uri: https://www.google.com/accounts/ClientLogin?alt=json
+    body: 
+      encoding: US-ASCII
+      string: accountType=HOSTED_OR_GOOGLE&Email=w.wnetrzak%40gmail.com&Passwd=invalid&service=lh2&source=ruby-gem-picasa-v0.5.4
+    headers: 
+      User-Agent: 
+      - ruby-gem-picasa-v0.5.4 (gzip)
+      Gdata-Version: 
+      - "2"
+      Content-Type: 
+      - application/x-www-form-urlencoded
+      Accept-Encoding: 
+      - gzip, deflate
+  response: 
+    status: 
+      code: 403
+      message: Forbidden
+    headers: 
+      Content-Type: 
+      - text/plain
+      Cache-Control: 
+      - no-cache, no-store
+      Pragma: 
+      - no-cache
+      Expires: 
+      - Mon, 01-Jan-1990 00:00:00 GMT
+      Content-Encoding: 
+      - gzip
+      Date: 
+      - Thu, 01 Nov 2012 19:20:53 GMT
+      X-Content-Type-Options: 
+      - nosniff
+      X-Xss-Protection: 
+      - 1; mode=block
+      Content-Length: 
+      - "44"
+      Server: 
+      - GSE
+    body: 
+      encoding: ASCII-8BIT
+      string: !binary |
+        H4sIAAAAAAAAAHMtKsovsnVKTHEsLclIzSvJTE4syczP4wIAm+kHYxgAAAA=
+
+    http_version: 
+  recorded_at: Thu, 01 Nov 2012 19:20:52 GMT
+recorded_with: VCR 2.3.0
