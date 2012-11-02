@@ -10,13 +10,13 @@ module Picasa
 
       # @return [Array<Presenter::Tag>]
       def entries
-        @entries ||= array_wrap(safe_retrieve(parsed_body, "entry")).map { |entry| Tag.new(entry) }
+        @entries ||= safe_retrieve(parsed_body, "entry").map { |entry| Tag.new(entry) }
       end
       alias :tags :entries
 
       # @return [Array<Presenter::Link>]
       def links
-        @links ||= array_wrap(safe_retrieve(parsed_body, "link")).map { |link| Link.new(link) }
+        @links ||= safe_retrieve(parsed_body, "link").map { |link| Link.new(link) }
       end
 
       # @return [String]

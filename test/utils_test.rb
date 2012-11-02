@@ -43,12 +43,6 @@ describe Picasa::Utils do
     end
   end
 
-  describe "#array_wrap" do
-    it "wraps hash into array" do
-      assert_equal [{:wt => :f}], Picasa::Utils.array_wrap({:wt => :f})
-    end
-  end
-
   describe "#map_to_integer" do
     it "does not convert nil value" do
       assert_nil Picasa::Utils.map_to_integer(nil)

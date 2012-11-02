@@ -5,7 +5,7 @@ module Picasa
     class Photo < Base
       # @return [Array<Presenter::Link>]
       def links
-        @links ||= array_wrap(safe_retrieve(parsed_body, "link")).map { |link| Link.new(link) }
+        @links ||= safe_retrieve(parsed_body, "link").map { |link| Link.new(link) }
       end
 
       # @return [Presenter::Media]
@@ -20,7 +20,7 @@ module Picasa
 
       # @return [String]
       def id
-        @id ||= array_wrap(safe_retrieve(parsed_body, "gphoto$id")).last
+        @id ||= safe_retrieve(parsed_body, "gphoto$id").last
       end
 
       # @return [String]
