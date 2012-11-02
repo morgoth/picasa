@@ -44,6 +44,8 @@ module Picasa
       case response.code.to_i
       when 200...300
         response
+      when 400
+        raise BadRequestError.new(response.body, response)
       when 403
         raise ForbiddenError.new(response.body, response)
       when 404

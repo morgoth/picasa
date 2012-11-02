@@ -1,0 +1,88 @@
+--- 
+http_interactions: 
+- request: 
+    method: post
+    uri: https://picasaweb.google.com/data/feed/api/user/w.wnetrzak@gmail.com/albumid/5793892606777564353/photoid/5806295577614146146?alt=json
+    body: 
+      encoding: UTF-8
+      base64_string: |
+        PGVudHJ5IHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDA1L0F0b20iPgog
+        IDxjb250ZW50PsW8w7PFgsSHPC9jb250ZW50PgogIDxjYXRlZ29yeSBzY2hl
+        bWU9Imh0dHA6Ly9zY2hlbWFzLmdvb2dsZS5jb20vZy8yMDA1I2tpbmQiIHRl
+        cm09Imh0dHA6Ly9zY2hlbWFzLmdvb2dsZS5jb20vcGhvdG9zLzIwMDcjY29t
+        bWVudCIvPgo8L2VudHJ5Pgo=
+
+    headers: 
+      User-Agent: 
+      - ruby-gem-picasa-v0.5.4 (gzip)
+      Gdata-Version: 
+      - "2"
+      Content-Type: 
+      - application/atom+xml
+      Accept-Encoding: 
+      - gzip, deflate
+      Authorization: 
+      - <FILTERED>
+  response: 
+    status: 
+      code: 201
+      message: Created
+    headers: 
+      Expires: 
+      - Fri, 02 Nov 2012 22:41:19 GMT
+      Date: 
+      - Fri, 02 Nov 2012 22:41:19 GMT
+      Cache-Control: 
+      - private, max-age=0, must-revalidate, no-transform
+      Set-Cookie: 
+      - S=photos_html=FYLg5heZciYhgsnEwKwbIQ; Domain=.google.com; Path=/; Secure; HttpOnly
+      - _rtok=UnQ-T6NqsPY6; Path=/; Secure; HttpOnly
+      Content-Type: 
+      - application/json; charset=UTF-8
+      Access-Control-Allow-Origin: 
+      - "*"
+      Vary: 
+      - Accept, X-GData-Authorization, GData-Version
+      Gdata-Version: 
+      - "2.0"
+      Etag: 
+      - W/"DEcDRng7cSp7ImA9WhNSGEQ."
+      Location: 
+      - https://picasaweb.google.com/data/entry/api/user/106136347770555028022/albumid/5793892606777564353/photoid/5806295577614146146/commentid/0?alt=json&authkey=Gv1sRgCNmigd3KrbOHLA
+      Content-Location: 
+      - https://picasaweb.google.com/data/entry/api/user/106136347770555028022/albumid/5793892606777564353/photoid/5806295577614146146/commentid/0?alt=json&authkey=Gv1sRgCNmigd3KrbOHLA
+      Content-Encoding: 
+      - gzip
+      Transfer-Encoding: 
+      - chunked
+      X-Content-Type-Options: 
+      - nosniff
+      X-Frame-Options: 
+      - SAMEORIGIN
+      X-Xss-Protection: 
+      - 1; mode=block
+      Server: 
+      - GSE
+    body: 
+      encoding: ASCII-8BIT
+      base64_string: |
+        H4sIAAAAAAAAAN1Uy27bMBD8lUI1emksUm/bQFA4jhsHbZLmVQNteqAlRmRM
+        kYJE2Y6DXHrpN/Q7eu2tyX+VlBVbQJNGl16qAyFwhzszu0veGDOc5VRwo2dY
+        JjS2DMxDEVEeq43zs7ftTrkls2ujd2MsEsbzFkpTFSRSpj0A5vO5OXdMkcXA
+        hjAAOri1Aj4F8kBfiuQB1YpTIqTYgPOQ4ATlZixEzLAZigSUiLwk2ByL/npk
+        xaTQcdTCEmk7Y3Bh7A7D3RMeB+FpGuwn/e6YHJ7uDY/NC0NBaaRNtmSVOFeZ
+        UxqiHM3xpJ47QhKBsiigyHEGLOhbju+4QRBAz/Og3YG2DRCbFAmNgBd0nU7X
+        9qGv4p7vOp6zMqRjHejbXc8LAt9yLVctPlAMiUquotC43TLSYsJoTvBGmw0t
+        u21ZbWif2XbPtXpWYPqw+0mji1SJa4hVrWrhiDaFhypxLPQgfL4xyorjBh14
+        OaU8UrWVOEua9vhlVQLj9os6SCXDa4FjcRVSHJIXY373XWZLNC2lCS41/gF1
+        //PXj/uvd990jFE+LSVnmKkQYkoJV1a0putUW5B4IQGRCVNbJMOXz7WfkZVY
+        UCwPZqOdwf7EmY4+Ekz3juzjweA8mh0cM3bgoIF7KpYynlARKyUPCnLMLjfk
+        qglMkUh1BQFS1+L1orGO2hiilP7jUXyjCrd9lQv+ChWSTPH19t7Myk/iwWFC
+        48h5l02ORu/7NZt6sv5fm2owNUBk5WhxlDw3okVGmz0uj1rTGVbvZIvTcNqA
+        r0JLUiQTjij7g5wRp6LVFa1uUKmg7ePlKPTc884Cgv7626/998GHnWKRBEPC
+        /SHI3U47fFy4eZXGNTmaaq3kCae6thW89iDDWpaql+vYIz1VaW5/A0ngZYjc
+        BgAA
+
+    http_version: 
+  recorded_at: Fri, 02 Nov 2012 22:41:19 GMT
+recorded_with: VCR 2.3.0

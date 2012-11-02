@@ -3,15 +3,14 @@ require "helper"
 
 describe Picasa::API::Photo do
   describe "#create" do
-    it "gives correct parsed body fragment" do
-      skip
-      stub_request(:post, "https://www.google.com/accounts/ClientLogin").to_return(fixture("auth/success.txt"))
-      stub_request(:post, "https://picasaweb.google.com/data/feed/api/user/w.wnetrzak@gmail.com/albumid/123").to_return(fixture("photo/photo-created.txt"))
+    it "creates photo" do
+      VCR.use_cassette("photo-create") do
+        attributes = {:file_path => image_path("lena.jpg"), :title => "Lena"}
 
-      photo = Picasa::API::Photo.new(:user_id => "w.wnetrzak@gmail.com", :password => "secret")
-      photo_create = photo.create("123", :title => "test", :binary => "binary", :content_type => "image/png")
+        photo = Picasa::API::Photo.new(:user_id => "w.wnetrzak@gmail.com", :authorization_header => AuthHeader).create("5793892606777564353", attributes)
 
-      assert_equal 27040, photo_create.size
+        assert_equal "Lena", photo.title
+      end
     end
 
     it "raises ArgumentError when no title" do

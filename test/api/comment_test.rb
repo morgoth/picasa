@@ -73,9 +73,24 @@ describe Picasa::API::Comment do
     it "has content" do
       assert_equal "beautiful place", @comment_list.entries.first.content
     end
+
+    it "has id" do
+      expected = "z13fufdr3znxifia004cgjbgjkmwyr5ot4g-1351125171797000"
+      assert_equal expected, @comment_list.entries.first.id
+    end
   end
 
   describe "#create" do
+    it "creates comment" do
+      VCR.use_cassette("comment-create") do
+        attributes = {:album_id => "5793892606777564353", :photo_id => "5806295577614146146", :content => "żółć"}
+
+        comment = Picasa::API::Comment.new(:user_id => "w.wnetrzak@gmail.com", :authorization_header => AuthHeader).create(attributes)
+
+        assert_equal "żółć", comment.content
+      end
+    end
+
     it "raises ArgumentError when no album_id" do
       comment = Picasa::API::Comment.new(:user_id => "w.wnetrzak@gmail.com", :password => "secret")
       assert_raises Picasa::ArgumentError, /album_id/ do
@@ -99,6 +114,17 @@ describe Picasa::API::Comment do
   end
 
   describe "#destroy" do
+    it "destroys comment" do
+      VCR.use_cassette("comment-destroy") do
+        comment_id = "z13aebo5hvi5gjtj004cgjbgjkmwyr5ot4g-1351896079590000"
+        attributes = {:album_id => "5793892606777564353", :photo_id => "5806295577614146146"}
+
+        result = Picasa::API::Comment.new(:user_id => "w.wnetrzak@gmail.com", :authorization_header => AuthHeader).destroy(comment_id, attributes)
+
+        assert_equal true, result
+      end
+    end
+
     it "raises ArgumentError when no photo_id" do
       comment = Picasa::API::Comment.new(:user_id => "w.wnetrzak@gmail.com", :password => "secret")
       assert_raises Picasa::ArgumentError, /photo_id/ do
@@ -112,15 +138,18 @@ describe Picasa::API::Comment do
         comment.destroy("wtf", :photo_id => "455")
       end
     end
+  end
 
-    it "gives true when success" do
-      skip
-      stub_request(:post, "https://www.google.com/accounts/ClientLogin").to_return(fixture("auth/success.txt"))
-      stub_request(:delete, "https://picasaweb.google.com/data/entry/api/user/w.wnetrzak@gmail.com/albumid/123/photoid/456/commentid/987").to_return(:status => 200, :body => "")
+  describe "exceptions" do
+    it "raises BadRequest exception when bad comment id given" do
+      VCR.use_cassette("comment-400") do
+        comment_id = "13fufdr3znxifia004cgjbgjkmwyr5ot4g-1351125171797000"
+        attributes = {:album_id => "5793892606777564353", :photo_id => "5806295577614146146"}
 
-      result = Picasa::API::Comment.new(:user_id => "w.wnetrzak@gmail.com", :password => "secret").destroy("987", :album_id => "123", :photo_id => "456")
-
-      assert_equal true, result
+        assert_raises Picasa::BadRequestError, "Invalid entity id: non-existing" do
+          Picasa::API::Comment.new(:user_id => "w.wnetrzak@gmail.com", :authorization_header => AuthHeader).destroy(comment_id, attributes)
+        end
+      end
     end
   end
 end

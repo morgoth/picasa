@@ -15,6 +15,7 @@ module Picasa
     end
   end
 
+  class BadRequestError < ResponseError; end
   class NotFoundError < ResponseError; end
   class ForbiddenError < ResponseError; end
   class PreconditionFailedError < ResponseError; end
