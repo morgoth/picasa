@@ -1,0 +1,58 @@
+--- 
+http_interactions: 
+- request: 
+    method: delete
+    uri: https://picasaweb.google.com/data/entry/api/user/w.wnetrzak@gmail.com/albumid/5793892606777564353/photoid/5806295577614146146?alt=json
+    body: 
+      encoding: US-ASCII
+      base64_string: ""
+    headers: 
+      User-Agent: 
+      - ruby-gem-picasa-v0.5.4 (gzip)
+      Gdata-Version: 
+      - "2"
+      Content-Type: 
+      - application/atom+xml
+      Accept-Encoding: 
+      - gzip, deflate
+      Authorization: 
+      - <FILTERED>
+      If-Match: 
+      - Not-Fresh
+  response: 
+    status: 
+      code: 412
+      message: Precondition Failed
+    headers: 
+      Expires: 
+      - Fri, 02 Nov 2012 23:09:54 GMT
+      Date: 
+      - Fri, 02 Nov 2012 23:09:54 GMT
+      Cache-Control: 
+      - private, max-age=0, must-revalidate
+      Set-Cookie: 
+      - S=photos_html=_iZyNb7j7zQcGDVnv8XOqw; Domain=.google.com; Path=/; Secure; HttpOnly
+      - _rtok=7YbwaVa9QV3n; Path=/; Secure; HttpOnly
+      Content-Type: 
+      - text/html; charset=UTF-8
+      Content-Encoding: 
+      - gzip
+      Transfer-Encoding: 
+      - chunked
+      X-Content-Type-Options: 
+      - nosniff
+      X-Frame-Options: 
+      - SAMEORIGIN
+      X-Xss-Protection: 
+      - 1; mode=block
+      Server: 
+      - GSE
+    body: 
+      encoding: ASCII-8BIT
+      base64_string: |
+        H4sIAAAAAAAAAPPNLM5NLEnOsFJILUlML1awVYj2yy/RdStKLc6I1VEoSy0q
+        zszPAwlbxAIADLKlkCwAAAA=
+
+    http_version: 
+  recorded_at: Fri, 02 Nov 2012 23:09:54 GMT
+recorded_with: VCR 2.3.0

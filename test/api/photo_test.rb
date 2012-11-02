@@ -33,15 +33,30 @@ describe Picasa::API::Photo do
         photo.create("123", :title => "test", :binary => "binary")
       end
     end
+  end
 
-    it "guesses required attributes from file path" do
-      skip
-      stub_request(:post, "https://www.google.com/accounts/ClientLogin").to_return(fixture("auth/success.txt"))
-      stub_request(:post, "https://picasaweb.google.com/data/feed/api/user/w.wnetrzak@gmail.com/albumid/123").to_return(fixture("photo/photo-created.txt"))
+  describe "#destroy" do
+    it "destroys photo" do
+      VCR.use_cassette("photo-destroy") do
+        album_id = "5793892606777564353"
+        photo_id = "5806295577614146146"
+        result = Picasa::API::Photo.new(:user_id => "w.wnetrzak@gmail.com", :authorization_header => AuthHeader).destroy(album_id, photo_id)
 
-      photo = Picasa::API::Photo.new(:user_id => "w.wnetrzak@gmail.com", :password => "secret")
+        assert_equal true, result
+      end
+    end
+  end
 
-      assert photo.create("123", :file_path => image_path("lena.jpg"))
+  describe "exceptions" do
+    it "raises PreconditionFailedError exception when photo not fresh" do
+      VCR.use_cassette("photo-412") do
+        album_id = "5793892606777564353"
+        photo_id = "5806295577614146146"
+
+        assert_raises Picasa::PreconditionFailedError, "Mismatch: etags = [Not-Fresh], version = [8]" do
+          Picasa::API::Photo.new(:user_id => "w.wnetrzak@gmail.com", :authorization_header => AuthHeader).destroy(album_id, photo_id, :etag => "Not-Fresh")
+        end
+      end
     end
   end
 end

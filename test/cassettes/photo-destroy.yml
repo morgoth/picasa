@@ -1,0 +1,55 @@
+--- 
+http_interactions: 
+- request: 
+    method: delete
+    uri: https://picasaweb.google.com/data/entry/api/user/w.wnetrzak@gmail.com/albumid/5793892606777564353/photoid/5806295577614146146?alt=json
+    body: 
+      encoding: US-ASCII
+      base64_string: ""
+    headers: 
+      User-Agent: 
+      - ruby-gem-picasa-v0.5.4 (gzip)
+      Gdata-Version: 
+      - "2"
+      Content-Type: 
+      - application/atom+xml
+      Accept-Encoding: 
+      - gzip, deflate
+      Authorization: 
+      - <FILTERED>
+      If-Match: 
+      - "*"
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Expires: 
+      - Fri, 02 Nov 2012 23:12:10 GMT
+      Date: 
+      - Fri, 02 Nov 2012 23:12:10 GMT
+      Cache-Control: 
+      - private, max-age=0, must-revalidate
+      Set-Cookie: 
+      - S=photos_html=tC03KtdPGN2r7-aSZe3qSA; Domain=.google.com; Path=/; Secure; HttpOnly
+      - _rtok=aD7_4rBeOlyy; Path=/; Secure; HttpOnly
+      Gdata-Version: 
+      - "2.0"
+      X-Content-Type-Options: 
+      - nosniff
+      X-Frame-Options: 
+      - SAMEORIGIN
+      X-Xss-Protection: 
+      - 1; mode=block
+      Content-Length: 
+      - "0"
+      Server: 
+      - GSE
+      Content-Type: 
+      - text/html; charset=UTF-8
+    body: 
+      encoding: US-ASCII
+      base64_string: ""
+    http_version: 
+  recorded_at: Fri, 02 Nov 2012 23:12:10 GMT
+recorded_with: VCR 2.3.0
