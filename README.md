@@ -78,19 +78,6 @@ If you run out of quota and want to resize images to fit Picasa free storage lim
 thor imagery:resize path-to-folder-with-photos
 ```
 
-## Caveats
-
-Currently picasa wont work with `ox` xml parser.
-
-Using `rexml` parser wont return `etag` attribute properly.
-
-I recommend to use `libxml` or `nokogiri`.
-You can set it by:
-
-```ruby
-MultiXml.parser = :libxml
-```
-
 ## Continuous Integration
 [![Build Status](https://secure.travis-ci.org/morgoth/picasa.png)](http://travis-ci.org/morgoth/picasa)
 

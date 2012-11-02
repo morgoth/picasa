@@ -1,9 +1,6 @@
 require "picasa"
 require "thread"
 
-# Temporary requirement
-MultiXml.parser = :libxml
-
 class Imagery < Thor
   include Thor::Actions
 

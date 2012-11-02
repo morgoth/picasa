@@ -8,8 +8,6 @@ require "mocha"
 
 require "picasa"
 
-MultiXml.parser = ENV["XML_PARSER"] || "libxml"
-
 AuthHeader = ENV["PICASA_AUTH_HEADER"] || "GoogleLogin auth=token"
 Password   = ENV["PICASA_PASSWORD"]    || "secret"
 
