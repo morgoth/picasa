@@ -7,8 +7,8 @@ module Picasa
     # @option params [String] :headers request headers
     def get(params = {})
       # FIXME: how to add headers to default ones instead of replacing?
-      params[:headers] = Picasa::HTTPRead.headers.merge(params[:headers]) if params.has_key?(:headers)
-      exec_request(params) { |uri, options| HTTPRead.get(uri, options) }
+      params[:headers] = Picasa::HTTP.headers.merge(params[:headers]) if params.has_key?(:headers)
+      exec_request(params) { |uri, options| HTTP.get(uri, options) }
     end
 
     # @param [Hash] params request arguments
@@ -18,8 +18,10 @@ module Picasa
     # @option params [String] :query request url query
     # @option params [String] :headers request headers
     def post(params = {})
-      params[:headers] = Picasa::HTTPWrite.headers.merge(params[:headers]) if params.has_key?(:headers)
-      exec_request(params) { |uri, options| HTTPWrite.post(uri, options) }
+      params[:headers] ||= {}
+      params[:headers]["Content-Type"] ||= "application/atom+xml"
+      params[:headers] = Picasa::HTTP.headers.merge(params[:headers])
+      exec_request(params) { |uri, options| HTTP.post(uri, options) }
     end
 
     # @param [Hash] params request arguments
@@ -28,8 +30,8 @@ module Picasa
     # @option params [String] :query request url query
     # @option params [String] :headers request headers
     def delete(params = {})
-      params[:headers] = Picasa::HTTPWrite.headers.merge(params[:headers]) if params.has_key?(:headers)
-      exec_request(params) { |uri, options| HTTPWrite.delete(uri, options) }
+      params[:headers] = Picasa::HTTP.headers.merge(params[:headers]) if params.has_key?(:headers)
+      exec_request(params) { |uri, options| HTTP.delete(uri, options) }
     end
 
     private

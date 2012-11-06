@@ -1,52 +1,52 @@
---- 
-http_interactions: 
-- request: 
+---
+http_interactions:
+- request:
     method: get
-    uri: https://picasaweb.google.com/data/feed/api/user/w.wnetrzak/albumid/non-exisiting?alt=json&v=2
-    body: 
+    uri: https://picasaweb.google.com/data/feed/api/user/w.wnetrzak/albumid/non-exisiting?alt=json
+    body:
       encoding: US-ASCII
       string: ""
-    headers: 
-      User-Agent: 
+    headers:
+      User-Agent:
       - ruby-gem-picasa-v0.5.4 (gzip)
-      Gdata-Version: 
+      Gdata-Version:
       - "2"
-      Accept-Encoding: 
+      Accept-Encoding:
       - gzip, deflate
-  response: 
-    status: 
+  response:
+    status:
       code: 404
       message: Not Found
-    headers: 
-      Expires: 
+    headers:
+      Expires:
       - Thu, 01 Nov 2012 17:36:00 GMT
-      Date: 
+      Date:
       - Thu, 01 Nov 2012 17:36:00 GMT
-      Cache-Control: 
+      Cache-Control:
       - private, max-age=0, must-revalidate
-      Set-Cookie: 
+      Set-Cookie:
       - S=photos_html=yr90XvcNl-RafmB_xUSpLA; Domain=.google.com; Path=/; Secure; HttpOnly
       - _rtok=QXpwfVIvZqu0; Path=/; Secure; HttpOnly
-      Content-Type: 
+      Content-Type:
       - text/html; charset=UTF-8
-      Content-Encoding: 
+      Content-Encoding:
       - gzip
-      Transfer-Encoding: 
+      Transfer-Encoding:
       - chunked
-      X-Content-Type-Options: 
+      X-Content-Type-Options:
       - nosniff
-      X-Frame-Options: 
+      X-Frame-Options:
       - SAMEORIGIN
-      X-Xss-Protection: 
+      X-Xss-Protection:
       - 1; mode=block
-      Server: 
+      Server:
       - GSE
-    body: 
+    body:
       encoding: ASCII-8BIT
       string: !binary |
         H4sIAAAAAAAAAPPMK0vMyUxRSM0rySypVMhMsVLIy8/TTa3ILM4sycxLBwAA
         kNBzIAAAAA==
 
-    http_version: 
+    http_version:
   recorded_at: Thu, 01 Nov 2012 17:36:00 GMT
 recorded_with: VCR 2.3.0

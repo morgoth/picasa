@@ -14,8 +14,15 @@ module Picasa
       [proxy_uri.host, proxy_uri.port, proxy_uri.user, proxy_uri.password]
     end
 
-    base_uri   API_URL
+    format         :json
+    default_params :alt => :json
 
-    http_proxy *proxy
+    headers        "User-Agent"      => "ruby-gem-picasa-v#{VERSION} (gzip)",
+                   "GData-Version"   => API_VERSION,
+                   "Accept-Encoding" => "gzip, deflate"
+
+    base_uri       API_URL
+
+    http_proxy     *proxy
   end
 end

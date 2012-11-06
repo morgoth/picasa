@@ -1,57 +1,57 @@
---- 
-http_interactions: 
-- request: 
+---
+http_interactions:
+- request:
     method: get
-    uri: https://picasaweb.google.com/data/feed/api/user/w.wnetrzak?alt=json&v=2
-    body: 
+    uri: https://picasaweb.google.com/data/feed/api/user/w.wnetrzak?alt=json
+    body:
       encoding: US-ASCII
       string: ""
-    headers: 
-      User-Agent: 
+    headers:
+      User-Agent:
       - ruby-gem-picasa-v0.5.4 (gzip)
-      Gdata-Version: 
+      Gdata-Version:
       - "2"
-      Accept-Encoding: 
+      Accept-Encoding:
       - gzip, deflate
-  response: 
-    status: 
+  response:
+    status:
       code: 200
       message: OK
-    headers: 
-      Expires: 
+    headers:
+      Expires:
       - Thu, 01 Nov 2012 14:31:50 GMT
-      Date: 
+      Date:
       - Thu, 01 Nov 2012 14:31:50 GMT
-      Cache-Control: 
+      Cache-Control:
       - private, max-age=0, must-revalidate, no-transform
-      Set-Cookie: 
+      Set-Cookie:
       - S=photos_html=n3JhK806iNKtG93-qPb2Yw; Domain=.google.com; Path=/; Secure; HttpOnly
       - _rtok=nghMdsMYoaB7; Path=/; Secure; HttpOnly
-      Content-Type: 
+      Content-Type:
       - application/json; charset=UTF-8
-      Access-Control-Allow-Origin: 
+      Access-Control-Allow-Origin:
       - "*"
-      Vary: 
+      Vary:
       - Accept, X-GData-Authorization, GData-Version, Cookie
-      Gdata-Version: 
+      Gdata-Version:
       - "2.0"
-      Etag: 
+      Etag:
       - W/"D0UGSHg5fCp7ImA9WhNSF0k."
-      Last-Modified: 
+      Last-Modified:
       - Thu, 01 Nov 2012 04:47:09 GMT
-      Content-Encoding: 
+      Content-Encoding:
       - gzip
-      Transfer-Encoding: 
+      Transfer-Encoding:
       - chunked
-      X-Content-Type-Options: 
+      X-Content-Type-Options:
       - nosniff
-      X-Frame-Options: 
+      X-Frame-Options:
       - SAMEORIGIN
-      X-Xss-Protection: 
+      X-Xss-Protection:
       - 1; mode=block
-      Server: 
+      Server:
       - GSE
-    body: 
+    body:
       encoding: ASCII-8BIT
       string: !binary |
         H4sIAAAAAAAAANVXbW/bNhD+K4Xq5MsikZIs+QUwCrdNmgBDl+YFGbLsAy3R
@@ -80,6 +80,6 @@ http_interactions:
         cXhVsW3NqwbD31UBZ8Va+dpSVJ9dJIRlDSEzej/PeaiqUNta8+wleRG2j2Gk
         teiJqVJLmNw+PjDmLJSx/t5kuUGCv00MbsXT0z+lCNavAA8AAA==
 
-    http_version: 
+    http_version:
   recorded_at: Thu, 01 Nov 2012 14:31:50 GMT
 recorded_with: VCR 2.3.0
