@@ -13,11 +13,11 @@ module Picasa
       # @option options [String] :binary binary data (i.e. File.open("my-photo.png", "rb").read)
       # @option options [String] :content_type ["image/jpeg", "image/png", "image/bmp", "image/gif"] content type of given image
       def create(album_id, params = {})
-        file = params[:file_path] ? File.new(params.delete(:file_path)) : nil
+        file = params[:file_path] ? File.new(params.delete(:file_path)) : File::Null.new
         params[:boundary]     ||= "===============PicasaRubyGem=="
-        params[:title]        ||= (file && file.name) || raise(ArgumentError.new("title must be specified"))
-        params[:binary]       ||= (file && file.binary) || raise(ArgumentError.new("binary must be specified"))
-        params[:content_type] ||= (file && file.content_type) || raise(ArgumentError.new("content_type must be specified"))
+        params[:title]        ||= file.name || raise(ArgumentError.new("title must be specified"))
+        params[:binary]       ||= file.binary || raise(ArgumentError.new("binary must be specified"))
+        params[:content_type] ||= file.content_type || raise(ArgumentError.new("content_type must be specified"))
 
         template = Template.new(:new_photo, params)
         headers = auth_header.merge({"Content-Type" => "multipart/related; boundary=\"#{params[:boundary]}\""})

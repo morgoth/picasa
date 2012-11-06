@@ -1,5 +1,13 @@
 module Picasa
   class File
+    class Null
+      def path; end
+      def name; end
+      def extension; end
+      def binary; end
+      def content_type; end
+    end
+
     attr_reader :path
 
     def initialize(path)
