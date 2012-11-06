@@ -78,6 +78,10 @@ If you run out of quota and want to resize images to fit Picasa free storage lim
 thor imagery:resize path-to-folder-with-photos
 ```
 
+### Boost
+
+Picasa uses gzipped requests to speedup fetching results. Benchmarks are available on [Vinicius Teles gist](https://gist.github.com/4012466)
+
 ## Continuous Integration
 [![Build Status](https://secure.travis-ci.org/morgoth/picasa.png)](http://travis-ci.org/morgoth/picasa)
 
