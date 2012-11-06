@@ -2,10 +2,13 @@ source "https://rubygems.org"
 
 gemspec
 
-gem "thor"
 gem "rake"
 gem "minitest", "3.5.0", :platform => :ruby_18
-gem "debugger", :platform => :ruby_19
+
+group :development do
+  gem "thor"
+  gem "debugger", :platform => :ruby_19
+end
 
 # JSON parsers
 gem "oj"
