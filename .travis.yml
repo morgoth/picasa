@@ -3,3 +3,8 @@ notifications:
 rvm:
   - 1.8.7
   - 1.9.3
+
+env:
+  - JSON_PARSER=oj
+  - JSON_PARSER=yajl
+  - JSON_PARSER=json_pure

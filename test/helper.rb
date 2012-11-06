@@ -11,6 +11,8 @@ require "picasa"
 AuthHeader = ENV["PICASA_AUTH_HEADER"] || "GoogleLogin auth=token"
 Password   = ENV["PICASA_PASSWORD"]    || "secret"
 
+MultiJson.adapter = ENV["JSON_PARSER"] || "oj"
+
 VCR.configure do |c|
   c.cassette_library_dir = "test/cassettes"
   c.hook_into :webmock
