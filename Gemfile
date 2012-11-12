@@ -5,7 +5,7 @@ gemspec
 gem "rake"
 gem "minitest", "3.5.0", :platform => :ruby_18
 
-group :development do
+group :extra do
   gem "thor"
   gem "debugger", :platform => :ruby_19
 end

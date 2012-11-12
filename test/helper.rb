@@ -4,7 +4,7 @@ require "zlib"
 require "minitest/autorun"
 require "webmock/minitest"
 require "vcr"
-require "mocha"
+require "mocha/setup"
 
 require "picasa"
 
