@@ -20,7 +20,7 @@ module Picasa
 
       # @return [String]
       def id
-        @id ||= safe_retrieve(parsed_body, "gphoto$id").last
+        @id ||= safe_retrieve(parsed_body, "gphoto$id")
       end
 
       # @return [String]
