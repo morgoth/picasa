@@ -16,7 +16,7 @@ MultiJson.adapter = ENV["JSON_PARSER"] || "oj"
 VCR.configure do |c|
   c.cassette_library_dir = "test/cassettes"
   c.hook_into :webmock
-  c.default_cassette_options = {:serialize_with => :syck, :preserve_exact_body_bytes => true} # Avoid stroing headers as binary
+  c.default_cassette_options = {:preserve_exact_body_bytes => true} # Avoid stroing headers as binary
   c.filter_sensitive_data("<FILTERED>") { AuthHeader }
   c.filter_sensitive_data("<FILTERED>") { Password }
 end
