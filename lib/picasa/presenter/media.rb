@@ -5,7 +5,7 @@ module Picasa
     class Media < Base
       # @return [Array<Presenter::Thumbnail>]
       def thumbnails
-        @thumbnails ||= safe_retrieve(parsed_body, "media$thumbnail").map { |thumbnail| Thumbnail.new(thumbnail) }
+        @thumbnails ||= array_wrap(safe_retrieve(parsed_body, "media$thumbnail")).map { |thumbnail| Thumbnail.new(thumbnail) }
       end
 
       # @return [String]

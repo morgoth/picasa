@@ -12,6 +12,7 @@ module Picasa
       end
     end
 
+
     def retrieve(hash, keys)
       return if !hash.kind_of?(Hash) || !hash.has_key?(keys.first)
 
@@ -19,6 +20,17 @@ module Picasa
         hash[keys.first]
       elsif keys.size > 1
         Utils.retrieve(hash[keys.first], keys[1..-1])
+      end
+    end
+
+    # Ported from activesupport gem
+    def array_wrap(object)
+      if object.nil?
+        []
+      elsif object.respond_to?(:to_ary)
+        object.to_ary || [object]
+      else
+        [object]
       end
     end
 
@@ -45,6 +57,6 @@ module Picasa
       end.join("&")
     end
 
-    module_function :safe_retrieve, :retrieve, :map_to_integer, :map_to_boolean, :map_to_date, :inline_query
+    module_function :safe_retrieve, :retrieve, :array_wrap, :map_to_integer, :map_to_boolean, :map_to_date, :inline_query
   end
 end

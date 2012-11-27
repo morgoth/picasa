@@ -5,7 +5,7 @@ module Picasa
     class Photo < Base
       # @return [Array<Presenter::Link>]
       def links
-        @links ||= safe_retrieve(parsed_body, "link").map { |link| Link.new(link) }
+        @links ||= array_wrap(safe_retrieve(parsed_body, "link")).map { |link| Link.new(link) }
       end
 
       # @return [Presenter::Media]
