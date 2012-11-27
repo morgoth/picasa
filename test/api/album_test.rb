@@ -66,6 +66,10 @@ describe Picasa::API::Album do
     it "has entries" do
       assert_equal 1, @album_list.entries.size
     end
+
+    it "has no photo entries" do
+      assert_equal [], @album_list.entries.first.photos
+    end
   end
 
   describe "#show" do
