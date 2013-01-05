@@ -2,7 +2,6 @@ source "https://rubygems.org"
 
 gemspec
 
-gem "vcr", :github => "myronmarston/vcr"
 gem "rake"
 gem "minitest", "3.5.0", :platform => :ruby_18
 
