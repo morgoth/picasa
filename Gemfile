@@ -2,6 +2,7 @@ source "https://rubygems.org"
 
 gemspec
 
+gem "multi_json", "1.3.7" # https://github.com/intridea/multi_json/pull/74
 gem "rake"
 gem "minitest", "3.5.0", :platform => :ruby_18
 
