@@ -12,6 +12,20 @@ describe Picasa::Client do
     assert_equal "OAuth token", client.authorization_header
   end
 
+  it "allows to set password on instance" do
+    client = Picasa::Client.new(:user_id => "john.doe", :password => "unknown")
+    client.password = "secret"
+
+    assert_equal "secret", client.password
+  end
+
+  it "allows to set authorization_header on instance" do
+    client = Picasa::Client.new(:user_id => "john.doe")
+    client.authorization_header = "Bearer some-token"
+
+    assert_equal "Bearer some-token", client.authorization_header
+  end
+
   describe "#authenticate" do
     it "successfully authenticates" do
       VCR.use_cassette("auth-success") do
