@@ -1,5 +1,7 @@
 module Picasa
   class File
+    KnownExtensions = %w{jpg jpeg png gif bmp 3gp mp4 mpeg mov wmv asf avi}
+
     class Null
       def path; end
       def name; end
@@ -36,8 +38,23 @@ module Picasa
         "image/png"
       when /^bmp$/i
         "image/bmp"
+      # Videos
+      when /^3gp$/i
+        "video/3gpp"
+      when /^mp4$/i
+        "video/mp4"
+      when /^mpeg$/i
+        "video/mpeg"
+      when /^mov$/i
+        "video/quicktime"
+      when /^wmv$/i
+        "video/x-ms-wmv"
+      when /^asf$/i
+        "video/x-ms-asf"
+      when /^avi$/i
+        "video/avi"
       else
-        raise StandarError.new("Content type cannot be guessed from file extension: #{extension}")
+        raise UnknownContentType.new("Content type cannot be guessed from file extension: #{extension}")
       end
     end
   end

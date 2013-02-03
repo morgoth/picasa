@@ -26,7 +26,7 @@ class MiniTest::Unit::TestCase
     WebMock.disable_net_connect!
   end
 
-  def image_path(filename)
+  def fixture_path(filename)
     File.join("test", "fixtures", filename)
   end
 

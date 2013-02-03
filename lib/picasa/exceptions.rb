@@ -6,6 +6,8 @@ module Picasa
 
   class ArgumentError < StandardError; end
 
+  class UnknownContentType < StandardError; end
+
   class ResponseError < StandardError
     attr_reader :response
 

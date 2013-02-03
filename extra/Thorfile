@@ -4,16 +4,16 @@ require "thread"
 class Imagery < Thor
   include Thor::Actions
 
-  desc "upload [-c] [-t <number>] DIR", "Uploads all photos from given directory (pass --continue to continue uploading)"
+  desc "upload [-c] [-t <number>] DIR", "Uploads all photos and videos from given directory (pass --continue to continue uploading)"
   method_option :continue, type: :boolean, default: false, aliases: "-c", desc: "continue aborted upload"
   method_option :threads, type: :numeric, default: 8, aliases: "-t", desc: "specify threads number"
   def upload(dir = File.basename(Dir.getwd))
     require_credentials
 
     inside(dir, verbose: true) do
-      entries       = Dir.entries(".").select { |e| e =~ /\.(jpg|jpeg|png|gif|bmp)$/i }.sort
-      album_name    = File.basename(dir)
-      photos_number = 0
+      extensions = Picasa::File::KnownExtensions.join("|")
+      entries    = Dir.entries(".").select { |e| e =~ /\.(#{extensions})$/i }.sort
+      album_name = File.basename(dir)
 
       if options[:continue]
         # We're looking for existing album and photos already uploaded
@@ -40,12 +40,12 @@ class Imagery < Thor
         Thread.new(entries) do |files|
           while file = mutex.synchronize { files.pop }
             mutex.synchronize { number += 1 }
-            say("Uploading photo #{file} to album #{album.title} - #{number}/#{entries_size}")
-            create_photo(album, file)
+            say("Uploading file #{file} to album #{album.title} - #{number}/#{entries_size}")
+            create_photo(album, file_path: file, mime_type: guess_mime_type(file))
           end
         end
       end.each(&:join)
-      say "Finished uploading #{number} photos"
+      say "Finished uploading #{number} files"
     end
   end
 
@@ -94,8 +94,13 @@ class Imagery < Thor
       client.album.create(title: title)
     end
 
-    def create_photo(album, path)
-      client.photo.create(album.id, file_path: path)
+    def create_photo(album, options = {})
+      client.photo.create(album.id, options)
+    end
+
+    def guess_mime_type(file)
+      %x{file --mime-type -b #{file}}.chomp
+    rescue
     end
   end
 end

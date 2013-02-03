@@ -102,6 +102,11 @@ module Picasa
       def license
         @license ||= safe_retrieve(parsed_body, "gphoto$license", "name")
       end
+
+      # @return ["pending", "ready", "final", "failed", nil]
+      def video_status
+        @video_status ||= safe_retrieve(parsed_body, "gphoto$videostatus")
+      end
     end
   end
 end
