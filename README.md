@@ -46,7 +46,7 @@ You can connect via proxy server setting `https_proxy` or `HTTPS_PROXY` environm
 
 ## Extra
 
-You can install thor script for uploading all photos from given directory:
+You can install thor script for uploading all photos and videos from given directory:
 
 ```
 thor install https://github.com/morgoth/picasa/raw/master/extra/Thorfile --as imagery --force

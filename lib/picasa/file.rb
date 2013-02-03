@@ -28,6 +28,9 @@ module Picasa
       @binary ||= ::File.open(path, "rb").read
     end
 
+    # Returns content type based on file extension
+    # You should use something like: `file -b --mime-type path/to/file.avi` to
+    # be sure what is the proper content type
     def content_type
       @content_type ||= case extension
       when /^jpe?g$/i
