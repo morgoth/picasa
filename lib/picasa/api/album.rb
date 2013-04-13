@@ -51,6 +51,8 @@ module Picasa
         params[:timestamp] ||= Time.now.to_i
         params[:access] ||= "private"
 
+        params[:timestamp] *= 1000
+
         template = Template.new(:new_album, params)
         path = "/data/feed/api/user/#{user_id}"
         response = Connection.new.post(:path => path, :body => template.render, :headers => auth_header)
