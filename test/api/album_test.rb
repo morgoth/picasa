@@ -132,7 +132,7 @@ describe Picasa::API::Album do
     end
 
     it "has timestamp" do
-      assert_equal "1219906800000", @album.timestamp
+      assert_equal "1219906800", @album.timestamp
     end
 
     it "has numphotos" do
@@ -267,7 +267,7 @@ describe Picasa::API::Album do
         assert_equal "created from test suite", album.summary
         assert_equal "protected", album.access
         assert_equal "Gilowice", album.location
-        assert_equal 13, album.timestamp.length
+        assert_equal 10, album.timestamp.length
       end
     end
   end
