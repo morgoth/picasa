@@ -264,6 +264,10 @@ describe Picasa::API::Album do
         album = Picasa::API::Album.new(:user_id => "w.wnetrzak@gmail.com", :authorization_header => AuthHeader).create(attributes)
 
         assert_equal "gem-test", album.title
+        assert_equal "created from test suite", album.summary
+        assert_equal "protected", album.access
+        assert_equal "Gilowice", album.location
+        assert_equal 13, album.timestamp.length
       end
     end
   end

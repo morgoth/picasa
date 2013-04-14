@@ -17,7 +17,7 @@ http_interactions:
           
           <gphoto:access>protected</gphoto:access>
           
-          <gphoto:timestamp>1351796169</gphoto:timestamp>
+          <gphoto:timestamp>1351796169000</gphoto:timestamp>
           
           <media:group>
             <media:keywords>test</media:keywords>
