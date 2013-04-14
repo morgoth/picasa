@@ -48,10 +48,9 @@ module Picasa
       # @return [Presenter::Album]
       def create(params = {})
         params[:title] || raise(ArgumentError, "You must specify title")
-        params[:timestamp] ||= Time.now.to_i
+        # API takes timestamp with milliseconds
+        params[:timestamp] = (params[:timestamp] || Time.now.to_i) * 1000
         params[:access] ||= "private"
-
-        params[:timestamp] *= 1000
 
         template = Template.new(:new_album, params)
         path = "/data/feed/api/user/#{user_id}"

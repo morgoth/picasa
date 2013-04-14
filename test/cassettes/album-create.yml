@@ -1,107 +1,140 @@
---- 
-http_interactions: 
-- request: 
+---
+http_interactions:
+- request:
     method: post
     uri: https://picasaweb.google.com/data/feed/api/user/w.wnetrzak@gmail.com?alt=json
-    body: 
+    body:
       encoding: UTF-8
-      string: |
-        <entry xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:gphoto="http://schemas.google.com/photos/2007">
-          <title type="text">gem-test</title>
-          
-          <summary type="text">created from test suite</summary>
-          
-          
-          <gphoto:location>Gilowice</gphoto:location>
-          
-          
-          <gphoto:access>protected</gphoto:access>
-          
-          <gphoto:timestamp>1351796169000</gphoto:timestamp>
-          
-          <media:group>
-            <media:keywords>test</media:keywords>
-          </media:group>
-          
-          <category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#album"></category>
-        </entry>
-
-    headers: 
-      User-Agent: 
-      - ruby-gem-picasa-v0.5.4 (gzip)
-      Gdata-Version: 
-      - "2"
-      Accept-Encoding: 
+      base64_string: |
+        PGVudHJ5IHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDA1L0F0b20iIHht
+        bG5zOm1lZGlhPSJodHRwOi8vc2VhcmNoLnlhaG9vLmNvbS9tcnNzLyIgeG1s
+        bnM6Z3Bob3RvPSJodHRwOi8vc2NoZW1hcy5nb29nbGUuY29tL3Bob3Rvcy8y
+        MDA3Ij4KICA8dGl0bGUgdHlwZT0idGV4dCI+Z2VtLXRlc3Q8L3RpdGxlPgog
+        IAogIDxzdW1tYXJ5IHR5cGU9InRleHQiPmNyZWF0ZWQgZnJvbSB0ZXN0IHN1
+        aXRlPC9zdW1tYXJ5PgogIAogIAogIDxncGhvdG86bG9jYXRpb24+R2lsb3dp
+        Y2U8L2dwaG90bzpsb2NhdGlvbj4KICAKICAKICA8Z3Bob3RvOmFjY2Vzcz5w
+        cm90ZWN0ZWQ8L2dwaG90bzphY2Nlc3M+CiAgCiAgPGdwaG90bzp0aW1lc3Rh
+        bXA+MTM2NTkyNTc4NTAwMDwvZ3Bob3RvOnRpbWVzdGFtcD4KICAKICA8bWVk
+        aWE6Z3JvdXA+CiAgICA8bWVkaWE6a2V5d29yZHM+dGVzdDwvbWVkaWE6a2V5
+        d29yZHM+CiAgPC9tZWRpYTpncm91cD4KICAKICA8Y2F0ZWdvcnkgc2NoZW1l
+        PSJodHRwOi8vc2NoZW1hcy5nb29nbGUuY29tL2cvMjAwNSNraW5kIiB0ZXJt
+        PSJodHRwOi8vc2NoZW1hcy5nb29nbGUuY29tL3Bob3Rvcy8yMDA3I2FsYnVt
+        Ij48L2NhdGVnb3J5Pgo8L2VudHJ5Pgo=
+    headers:
+      User-Agent:
+      - ruby-gem-picasa-v0.6.4 (gzip)
+      Gdata-Version:
+      - '2'
+      Accept-Encoding:
       - gzip, deflate
-      Content-Type: 
-      - application/atom+xml
-      Authorization: 
+      Authorization:
       - <FILTERED>
-  response: 
-    status: 
+      Content-Type:
+      - application/atom+xml
+  response:
+    status:
       code: 201
       message: Created
-    headers: 
-      Expires: 
-      - Thu, 01 Nov 2012 18:56:12 GMT
-      Date: 
-      - Thu, 01 Nov 2012 18:56:12 GMT
-      Cache-Control: 
+    headers:
+      Expires:
+      - Sun, 14 Apr 2013 07:49:47 GMT
+      Date:
+      - Sun, 14 Apr 2013 07:49:47 GMT
+      Cache-Control:
       - private, max-age=0, must-revalidate, no-transform
-      Set-Cookie: 
-      - S=photos_html=golvv-gaNGfZY5DEa9qDsg; Domain=.google.com; Path=/; Secure; HttpOnly
-      - _rtok=HfA4HWwa_mUI; Path=/; Secure; HttpOnly
-      Content-Type: 
+      Set-Cookie:
+      - S=photos_html=wPYIvP1f6GCWgBHeazZQIA; Domain=.google.com; Path=/; Secure;
+        HttpOnly
+      - _rtok=V5mEdZU8Fw09; Path=/; Secure; HttpOnly
+      Content-Type:
       - application/json; charset=UTF-8
-      Access-Control-Allow-Origin: 
-      - "*"
-      Vary: 
+      Access-Control-Allow-Origin:
+      - '*'
+      Vary:
       - Accept, X-GData-Authorization, GData-Version
-      Gdata-Version: 
-      - "2.0"
-      Etag: 
-      - "\"YD0qeyI.\""
-      Location: 
-      - https://picasaweb.google.com/data/entry/api/user/106136347770555028022/albumid/5805920347758933777?alt=json
-      Content-Location: 
-      - https://picasaweb.google.com/data/entry/api/user/106136347770555028022/albumid/5805920347758933777?alt=json
-      Content-Encoding: 
-      - gzip
-      Transfer-Encoding: 
+      Gdata-Version:
+      - '2.0'
+      Etag:
+      - '"YD0qeyI."'
+      Location:
+      - https://picasaweb.google.com/data/entry/api/user/106136347770555028022/albumid/5866606580604743121?alt=json
+      Content-Location:
+      - https://picasaweb.google.com/data/entry/api/user/106136347770555028022/albumid/5866606580604743121?alt=json
+      Transfer-Encoding:
       - chunked
-      X-Content-Type-Options: 
+      X-Content-Type-Options:
       - nosniff
-      X-Frame-Options: 
+      X-Frame-Options:
       - SAMEORIGIN
-      X-Xss-Protection: 
+      X-Xss-Protection:
       - 1; mode=block
-      Server: 
+      Server:
       - GSE
-    body: 
+    body:
       encoding: ASCII-8BIT
-      string: !binary |
-        H4sIAAAAAAAAAM1W4W7bNhB+FUPVv9kSKUW2ZWAYijUNVgTFfiQo0nUYaOos
-        MSZFjaRqe0EeZO+zBytJ2Zay2YMxdED1S+J95H13991RT8FnUJrJOlgEOELB
-        OICayoLVpV24v3s7mfslo3bB4inYCl7rkDSNNVbGNIs43mw20SaNpCrjBKFZ
-        7IzjDngOlMWvjRQHVFg2lTSyB2tagSA6KqUsOURUitgjtHdw3CagYGSwC4ii
-        VbQjlZR+j1Bax72T4l8ddLx6tOAvycsG6pLpqAYTO+MRCNK6eYnt1nywe/M4
-        KIsQDHE5/RQ8vEG/w+6n6FNgDaxweQ3N/ghtz2gYJZpsYDkkWBBDYl+HuNWg
-        YoymOJ2mV7PZDGVZhpI5SpKY8GUrWBFnc5TlCXLmbJ6nqUUFz+OgaZec6Qp6
-        nzifoQnCEzy9w9kiyRfZNEIIfXTotrFOB9gE4WSCsYXf4bkFLjCOkvTKY23V
-        Q1uPS+HUHlxKp6lfngJfDrigPK/WrC5szgwocalcXvmUBM+/2m3McDjSK0FM
-        DGjj6OhWCNIp3NuoAhf5aKWkGDnQSLc2NgdVrKyMPiIbJQ1QF7a1cVavfUQK
-        +CXhrAB8OLvGRW9TyG3lje3FmNj++G7rdVYpWF0kDnea7T72H/XxA+Hm+0dt
-        B8Hz+BCBXQJV21T0LA1sTVyZi6md5nED4s6mFaUDZxr46utlo2uVr5sOJ/Bv
-        m+F5yRHK9/1AKWj9o7TeJb9l+huKyJEcRGVblrSmksr3VE1E37wf5CNlQKvR
-        h/qvP436g6z9wFLssmF6klnw7Dx2l1E4GMtnZuke+ILWUNYHAJddRnsQ43LD
-        KAwwXU1OD5U9xDBhTyai6Ud3muFZPrXTekinFd3wO8DQCZuy4mC1v+I7ELaH
-        9Ljlzo68ez0Y5UMPrrQ9h9OJ7F0yur6gcP4qD0slWx9e90mtRK2ifPFbxQc1
-        5VW6r6Yjs8f5wk4eblV5s7qG6RbF9+9u3+6yd+z99jp+vX/etDpmn2/Eb8V7
-        mj1c94MoemzKvhOYICXEjw24NUenFYdVr8s9Q+UngiN4NrgjuABNFWteSOHc
-        PXPk0XBbqD5Da9htpCpccY9rpmrFsiaM/7+J0niKJvQf+arA3YdWQVM0Djas
-        MJV/78M+c+n+PUInGf+vFG4qUH6D/c0Kf5bMKaD7aHpVB1d5NMM4T/J8hPMo
-        xShxXemeL10f7f/RCgAA
-
+      base64_string: |
+        eyJ2ZXJzaW9uIjoiMS4wIiwiZW5jb2RpbmciOiJVVEYtOCIsImVudHJ5Ijp7
+        InhtbG5zJGFwcCI6Imh0dHA6Ly93d3cudzMub3JnLzIwMDcvYXBwIiwieG1s
+        bnMiOiJodHRwOi8vd3d3LnczLm9yZy8yMDA1L0F0b20iLCJ4bWxucyRncGhv
+        dG8iOiJodHRwOi8vc2NoZW1hcy5nb29nbGUuY29tL3Bob3Rvcy8yMDA3Iiwi
+        eG1sbnMkbWVkaWEiOiJodHRwOi8vc2VhcmNoLnlhaG9vLmNvbS9tcnNzLyIs
+        InhtbG5zJGdkIjoiaHR0cDovL3NjaGVtYXMuZ29vZ2xlLmNvbS9nLzIwMDUi
+        LCJ4bWxucyRnbWwiOiJodHRwOi8vd3d3Lm9wZW5naXMubmV0L2dtbCIsInht
+        bG5zJGdlb3JzcyI6Imh0dHA6Ly93d3cuZ2VvcnNzLm9yZy9nZW9yc3MiLCJn
+        ZCRldGFnIjoiXCJZRDBxZXlJLlwiIiwiaWQiOnsiJHQiOiJodHRwczovL3Bp
+        Y2FzYXdlYi5nb29nbGUuY29tL2RhdGEvZW50cnkvdXNlci8xMDYxMzYzNDc3
+        NzA1NTUwMjgwMjIvYWxidW1pZC81ODY2NjA2NTgwNjA0NzQzMTIxIn0sInB1
+        Ymxpc2hlZCI6eyIkdCI6IjIwMTMtMDQtMTRUMDc6NDk6NDUuMDAwWiJ9LCJ1
+        cGRhdGVkIjp7IiR0IjoiMjAxMy0wNC0xNFQwNzo0OTo0Ni4zNTlaIn0sImFw
+        cCRlZGl0ZWQiOnsiJHQiOiIyMDEzLTA0LTE0VDA3OjQ5OjQ2LjM1OVoifSwi
+        Y2F0ZWdvcnkiOlt7InNjaGVtZSI6Imh0dHA6Ly9zY2hlbWFzLmdvb2dsZS5j
+        b20vZy8yMDA1I2tpbmQiLCJ0ZXJtIjoiaHR0cDovL3NjaGVtYXMuZ29vZ2xl
+        LmNvbS9waG90b3MvMjAwNyNhbGJ1bSJ9XSwidGl0bGUiOnsiJHQiOiJnZW0t
+        dGVzdCJ9LCJzdW1tYXJ5Ijp7IiR0IjoiY3JlYXRlZCBmcm9tIHRlc3Qgc3Vp
+        dGUifSwicmlnaHRzIjp7IiR0IjoicHJvdGVjdGVkIn0sImxpbmsiOlt7InJl
+        bCI6Imh0dHA6Ly9zY2hlbWFzLmdvb2dsZS5jb20vZy8yMDA1I2ZlZWQiLCJ0
+        eXBlIjoiYXBwbGljYXRpb24vYXRvbSt4bWwiLCJocmVmIjoiaHR0cHM6Ly9w
+        aWNhc2F3ZWIuZ29vZ2xlLmNvbS9kYXRhL2ZlZWQvYXBpL3VzZXIvMTA2MTM2
+        MzQ3NzcwNTU1MDI4MDIyL2FsYnVtaWQvNTg2NjYwNjU4MDYwNDc0MzEyMT9h
+        bHQ9anNvbiJ9LHsicmVsIjoiYWx0ZXJuYXRlIiwidHlwZSI6InRleHQvaHRt
+        bCIsImhyZWYiOiJodHRwczovL3BpY2FzYXdlYi5nb29nbGUuY29tLzEwNjEz
+        NjM0Nzc3MDU1NTAyODAyMi9HZW1UZXN0In0seyJyZWwiOiJzZWxmIiwidHlw
+        ZSI6ImFwcGxpY2F0aW9uL2F0b20reG1sIiwiaHJlZiI6Imh0dHBzOi8vcGlj
+        YXNhd2ViLmdvb2dsZS5jb20vZGF0YS9lbnRyeS9hcGkvdXNlci8xMDYxMzYz
+        NDc3NzA1NTUwMjgwMjIvYWxidW1pZC81ODY2NjA2NTgwNjA0NzQzMTIxP2Fs
+        dD1qc29uIn0seyJyZWwiOiJlZGl0IiwidHlwZSI6ImFwcGxpY2F0aW9uL2F0
+        b20reG1sIiwiaHJlZiI6Imh0dHBzOi8vcGljYXNhd2ViLmdvb2dsZS5jb20v
+        ZGF0YS9lbnRyeS9hcGkvdXNlci8xMDYxMzYzNDc3NzA1NTUwMjgwMjIvYWxi
+        dW1pZC81ODY2NjA2NTgwNjA0NzQzMTIxP2FsdD1qc29uIn0seyJyZWwiOiJo
+        dHRwOi8vc2NoZW1hcy5nb29nbGUuY29tL2FjbC8yMDA3I2FjY2Vzc0NvbnRy
+        b2xMaXN0IiwidHlwZSI6ImFwcGxpY2F0aW9uL2F0b20reG1sIiwiaHJlZiI6
+        Imh0dHBzOi8vcGljYXNhd2ViLmdvb2dsZS5jb20vZGF0YS9lbnRyeS9hcGkv
+        dXNlci8xMDYxMzYzNDc3NzA1NTUwMjgwMjIvYWxidW1pZC81ODY2NjA2NTgw
+        NjA0NzQzMTIxL2FjbD9hbHQ9anNvbiJ9XSwiYXV0aG9yIjpbeyJuYW1lIjp7
+        IiR0IjoiV29qY2llY2ggV27EmXRyemFrIn0sInVyaSI6eyIkdCI6Imh0dHBz
+        Oi8vcGljYXNhd2ViLmdvb2dsZS5jb20vMTA2MTM2MzQ3NzcwNTU1MDI4MDIy
+        In19XSwiZ3Bob3RvJGlkIjp7IiR0IjoiNTg2NjYwNjU4MDYwNDc0MzEyMSJ9
+        LCJncGhvdG8kbmFtZSI6eyIkdCI6IkdlbVRlc3QifSwiZ3Bob3RvJGxvY2F0
+        aW9uIjp7IiR0IjoiR2lsb3dpY2UifSwiZ3Bob3RvJGFjY2VzcyI6eyIkdCI6
+        InByb3RlY3RlZCJ9LCJncGhvdG8kdGltZXN0YW1wIjp7IiR0IjoiMTM2NTky
+        NTc4NTAwMCJ9LCJncGhvdG8kbnVtcGhvdG9zIjp7IiR0IjowfSwiZ3Bob3Rv
+        JG51bXBob3Rvc3JlbWFpbmluZyI6eyIkdCI6MTAwMH0sImdwaG90byRieXRl
+        c1VzZWQiOnsiJHQiOiIwIn0sImdwaG90byR1c2VyIjp7IiR0IjoiMTA2MTM2
+        MzQ3NzcwNTU1MDI4MDIyIn0sImdwaG90byRuaWNrbmFtZSI6eyIkdCI6Ildv
+        amNpZWNoIFduxJl0cnphayJ9LCJtZWRpYSRncm91cCI6eyJtZWRpYSRjb250
+        ZW50IjpbeyJ1cmwiOiJodHRwczovL2xoNi5nb29nbGV1c2VyY29udGVudC5j
+        b20vLUwxZExYMk9sb25jL1VXcGZtam5xTGRFL0FBQUFBQUFBRHowLzU2bGdM
+        NUUtX0xZL0dlbVRlc3QuanBnIiwidHlwZSI6ImltYWdlL2pwZWciLCJtZWRp
+        dW0iOiJpbWFnZSJ9XSwibWVkaWEkY3JlZGl0IjpbeyIkdCI6IldvamNpZWNo
+        IFduxJl0cnphayJ9XSwibWVkaWEkZGVzY3JpcHRpb24iOnsiJHQiOiJjcmVh
+        dGVkIGZyb20gdGVzdCBzdWl0ZSIsInR5cGUiOiJwbGFpbiJ9LCJtZWRpYSRr
+        ZXl3b3JkcyI6e30sIm1lZGlhJHRodW1ibmFpbCI6W3sidXJsIjoiaHR0cHM6
+        Ly9saDYuZ29vZ2xldXNlcmNvbnRlbnQuY29tLy1MMWRMWDJPbG9uYy9VV3Bm
+        bWpucUxkRS9BQUFBQUFBQUR6MC81NmxnTDVFLV9MWS9zMTYwLWMvR2VtVGVz
+        dC5qcGciLCJoZWlnaHQiOjE2MCwid2lkdGgiOjE2MH1dLCJtZWRpYSR0aXRs
+        ZSI6eyIkdCI6ImdlbS10ZXN0IiwidHlwZSI6InBsYWluIn19LCJnZW9yc3Mk
+        d2hlcmUiOnsiZ21sJFBvaW50Ijp7ImdtbCRwb3MiOnsiJHQiOiI0OS43MTE5
+        Mjk5IDE5LjMxMDI3NyJ9fX19fQ==
     http_version: 
-  recorded_at: Thu, 01 Nov 2012 18:56:11 GMT
-recorded_with: VCR 2.3.0
+  recorded_at: Sun, 14 Apr 2013 07:49:47 GMT
+recorded_with: VCR 2.4.0
