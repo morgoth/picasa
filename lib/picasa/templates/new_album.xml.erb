@@ -1,18 +1,18 @@
 <entry xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:gphoto="http://schemas.google.com/photos/2007">
-  <title type="text"><%= title %></title>
+  <title type="text"><%= h title %></title>
   <% if summary %>
-  <summary type="text"><%= summary %></summary>
+  <summary type="text"><%= h summary %></summary>
   <% end %>
   <% if location %>
-  <gphoto:location><%= location %></gphoto:location>
+  <gphoto:location><%= h location %></gphoto:location>
   <% end %>
   <% if access %>
-  <gphoto:access><%= access %></gphoto:access>
+  <gphoto:access><%= h access %></gphoto:access>
   <% end %>
-  <gphoto:timestamp><%= timestamp %></gphoto:timestamp>
+  <gphoto:timestamp><%= h timestamp %></gphoto:timestamp>
   <% if keywords %>
   <media:group>
-    <media:keywords><%= keywords %></media:keywords>
+    <media:keywords><%= h keywords %></media:keywords>
   </media:group>
   <% end %>
   <category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#album"></category>

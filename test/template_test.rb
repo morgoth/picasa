@@ -21,5 +21,10 @@ describe Picasa::Template do
       template = Picasa::Template.new(:new_album, {:summary => "My summary"})
       assert_match %q{<summary type="text">My summary</summary>}, template.render
     end
+
+    it "escapes special characters" do
+      template = Picasa::Template.new(:new_album, {:summary => "Marge & Homer"})
+      assert_match %q{<summary type="text">Marge &amp; Homer</summary>}, template.render
+    end
   end
 end

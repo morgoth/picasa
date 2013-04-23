@@ -15,7 +15,7 @@ module Picasa
     end
 
     def struct
-      @struct ||= OpenStruct.new(params)
+      @struct ||= OpenStruct.new(params).extend(ERB::Util)
     end
 
     def render

@@ -2,14 +2,14 @@
 Content-type: application/atom+xml
 
 <entry xmlns="http://www.w3.org/2005/Atom">
-  <title><%= title %></title>
+  <title><%= h title %></title>
   <% if summary %>
-  <summary><%= summary %></summary>
+  <summary><%= h summary %></summary>
   <% end %>
   <category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#photo"/>
 </entry>
 --<%= boundary %>
-Content-type: <%= content_type %>
+Content-type: <%= h content_type %>
 
 <%= binary %>
 --<%= boundary %>
