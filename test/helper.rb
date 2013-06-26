@@ -21,7 +21,7 @@ VCR.configure do |c|
   c.filter_sensitive_data("<FILTERED>") { Password }
 end
 
-class MiniTest::Unit::TestCase
+class MiniTest::Test
   def setup
     WebMock.disable_net_connect!
   end

@@ -4,7 +4,6 @@ gemspec
 
 gem "multi_json"
 gem "rake"
-gem "minitest", "3.5.0", :platform => :ruby_18
 
 group :extra do
   gem "thor"
