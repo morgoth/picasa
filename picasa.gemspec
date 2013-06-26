@@ -22,4 +22,6 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "webmock"
   gem.add_development_dependency "mocha", ">= 0.13.0"
   gem.add_development_dependency "vcr", ">= 2.4.0"
+
+  gem.post_install_message = "Version 0.7.0 of picasa gem will require Ruby 1.9.3 or greater. If you still need 1.8.7 freeze gem version to ~> 0.6.7"
 end
