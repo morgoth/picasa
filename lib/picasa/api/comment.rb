@@ -19,7 +19,7 @@ module Picasa
         path << "/albumid/#{album_id}" if album_id
         path << "/photoid/#{photo_id}" if photo_id
 
-        response = Connection.new.get(:path => path, :query => options.merge(:kind => "comment"), :headers => auth_header)
+        response = Connection.new.get(path: path, query: options.merge(kind: "comment"), headers: auth_header)
 
         Presenter::CommentList.new(response.parsed_response["feed"])
       end
@@ -41,7 +41,7 @@ module Picasa
 
         template = Template.new("new_comment", params)
 
-        response = Connection.new.post(:path => path, :body => template.render, :headers => auth_header)
+        response = Connection.new.post(path: path, body: template.render, headers: auth_header)
 
         Presenter::Comment.new(response.parsed_response["entry"])
       end
@@ -59,7 +59,7 @@ module Picasa
         photo_id = params.delete(:photo_id) || raise(ArgumentError, "You must specify photo_id")
 
         path = "/data/entry/api/user/#{user_id}/albumid/#{album_id}/photoid/#{photo_id}/commentid/#{comment_id}"
-        Connection.new.delete(:path => path, :headers => auth_header)
+        Connection.new.delete(path: path, headers: auth_header)
         true
       end
       alias :delete :destroy

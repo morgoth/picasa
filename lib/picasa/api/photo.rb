@@ -23,7 +23,7 @@ module Picasa
         headers = auth_header.merge({"Content-Type" => "multipart/related; boundary=\"#{params[:boundary]}\""})
 
         path = "/data/feed/api/user/#{user_id}/albumid/#{album_id}"
-        response = Connection.new.post(:path => path, :body => template.render, :headers => headers)
+        response = Connection.new.post(path: path, body: template.render, headers: headers)
 
         Presenter::Photo.new(response.parsed_response["entry"])
       end
@@ -41,7 +41,7 @@ module Picasa
       def destroy(album_id, photo_id, options = {})
         headers = auth_header.merge({"If-Match" => options.fetch(:etag, "*")})
         path = "/data/entry/api/user/#{user_id}/albumid/#{album_id}/photoid/#{photo_id}"
-        Connection.new.delete(:path => path, :headers => headers)
+        Connection.new.delete(path: path, headers: headers)
         true
       end
       alias :delete :destroy

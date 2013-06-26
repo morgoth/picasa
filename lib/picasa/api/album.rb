@@ -14,7 +14,7 @@ module Picasa
       # @return [Presenter::AlbumList]
       def list(options = {})
         path = "/data/feed/api/user/#{user_id}"
-        response = Connection.new.get(:path => path, :query => options, :headers => auth_header)
+        response = Connection.new.get(path: path, query: options, headers: auth_header)
 
         Presenter::AlbumList.new(response.parsed_response["feed"])
       end
@@ -31,7 +31,7 @@ module Picasa
       # @raise [NotFoundError] raised when album cannot be found
       def show(album_id, options = {})
         path = "/data/feed/api/user/#{user_id}/albumid/#{album_id}"
-        response = Connection.new.get(:path => path, :query => options, :headers => auth_header)
+        response = Connection.new.get(path: path, query: options, headers: auth_header)
 
         Presenter::Album.new(response.parsed_response["feed"])
       end
@@ -54,7 +54,7 @@ module Picasa
 
         template = Template.new(:new_album, params)
         path = "/data/feed/api/user/#{user_id}"
-        response = Connection.new.post(:path => path, :body => template.render, :headers => auth_header)
+        response = Connection.new.post(path: path, body: template.render, headers: auth_header)
 
         Presenter::Album.new(response.parsed_response["entry"])
       end
@@ -71,7 +71,7 @@ module Picasa
       def destroy(album_id, options = {})
         headers = auth_header.merge({"If-Match" => options.fetch(:etag, "*")})
         path = "/data/entry/api/user/#{user_id}/albumid/#{album_id}"
-        Connection.new.delete(:path => path, :headers => headers)
+        Connection.new.delete(path: path, headers: headers)
         true
       end
       alias :delete :destroy

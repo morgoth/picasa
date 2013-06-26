@@ -64,10 +64,10 @@ module Picasa
     # @return [String]
     def authenticate
       response = Connection.new.post(
-        :host => HTTP::API_AUTH_URL,
-        :headers => {"Content-Type" => "application/x-www-form-urlencoded"},
-        :path => "/accounts/ClientLogin",
-        :body => Utils.inline_query(
+        host:    HTTP::API_AUTH_URL,
+        headers: {"Content-Type" => "application/x-www-form-urlencoded"},
+        path:    "/accounts/ClientLogin",
+        body:    Utils.inline_query(
           "accountType" => "HOSTED_OR_GOOGLE",
           "Email"       => user_id,
           "Passwd"      => password,
@@ -87,7 +87,7 @@ module Picasa
     end
 
     def credentials
-      {:user_id => user_id}.tap do |credentials|
+      {user_id: user_id}.tap do |credentials|
         credentials[:authorization_header] = authorization_header if authorization_header
       end
     end

@@ -21,8 +21,7 @@ module Picasa
       private
 
       def methods_to_inspect
-        # Ruby 1.8.7 workaround
-        (public_methods - Object.methods).map { |m| m.to_sym } - [:parsed_body, :entries]
+        public_methods - Object.methods - [:parsed_body, :entries]
       end
     end
   end
