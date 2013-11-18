@@ -12,7 +12,6 @@ module Picasa
       end
     end
 
-
     def retrieve(hash, keys)
       return if !hash.kind_of?(Hash) || !hash.has_key?(keys.first)
 
