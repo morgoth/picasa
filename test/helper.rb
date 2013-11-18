@@ -1,5 +1,6 @@
 require "yaml"
 require "zlib"
+require "multi_json"
 
 require "minitest/autorun"
 require "webmock/minitest"

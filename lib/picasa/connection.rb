@@ -6,8 +6,6 @@ module Picasa
     # @option params [String] :query request url query
     # @option params [String] :headers request headers
     def get(params = {})
-      # FIXME: how to add headers to default ones instead of replacing?
-      params[:headers] = Picasa::HTTP.headers.merge(params[:headers]) if params.has_key?(:headers)
       exec_request(params) { |uri, options| HTTP.get(uri, options) }
     end
 
@@ -20,7 +18,6 @@ module Picasa
     def post(params = {})
       params[:headers] ||= {}
       params[:headers]["Content-Type"] ||= "application/atom+xml"
-      params[:headers] = Picasa::HTTP.headers.merge(params[:headers])
       exec_request(params) { |uri, options| HTTP.post(uri, options) }
     end
 
@@ -30,15 +27,26 @@ module Picasa
     # @option params [String] :query request url query
     # @option params [String] :headers request headers
     def delete(params = {})
-      params[:headers] = Picasa::HTTP.headers.merge(params[:headers]) if params.has_key?(:headers)
       exec_request(params) { |uri, options| HTTP.delete(uri, options) }
     end
 
     private
 
+    # Additional params for HTTParty gem can be passed
+    # https://github.com/jnunemaker/httparty/blob/v0.12.0/lib/httparty.rb#L43
     def exec_request(params, &block)
       uri = "#{params.delete(:host)}#{params.delete(:path)}"
-      params.delete_if { |key, value| value.nil? || value.empty? }
+
+      params.tap do |p|
+        p[:headers] = HTTP.headers.merge(p.fetch(:headers, {}))
+        if p.keys.none? { |name| [:http_proxyaddr, :http_proxyport, :http_proxyuser, :http_proxypass].include?(name) }
+          p[:http_proxyaddr] = proxy_uri.host
+          p[:http_proxyport] = proxy_uri.port
+          p[:http_proxyuser] = proxy_uri.user
+          p[:http_proxypass] = proxy_uri.password
+        end
+      end
+
       handle_response(yield(uri, params))
     end
 
@@ -57,6 +65,10 @@ module Picasa
       else
         raise ResponseError.new(response.body, response)
       end
+    end
+
+    def proxy_uri
+      @proxy_uri ||= URI.parse(ENV["https_proxy"] || ENV["HTTPS_PROXY"] || "")
     end
   end
 end
