@@ -12,7 +12,7 @@ describe Picasa::API::Album do
         original_timestamp = album.timestamp
 
         album = api.show(album.id)
-        assert_equal "created from test suite", album.summary
+        assert_equal "created from test suite", album.subtitle
 
         album = api.update(album.id, :summary => "updated")
 
@@ -24,7 +24,7 @@ describe Picasa::API::Album do
         album = api.show(album.id)
 
         assert_equal "Sydney", album.location
-        assert_equal "updated", album.summary
+        assert_equal "updated", album.subtitle
         assert_equal "protected", album.access
 
         new_timestamp = 1385553052

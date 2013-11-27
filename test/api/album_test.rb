@@ -107,6 +107,10 @@ describe Picasa::API::Album do
       assert_nil @album.summary
     end
 
+    it "has subtitle" do
+      assert_equal "Opis albumu", @album.subtitle
+    end
+
     it "has rights" do
       assert_equal "public", @album.rights
     end
@@ -260,7 +264,7 @@ describe Picasa::API::Album do
     it "creates album" do
       VCR.use_cassette("album-create") do
         attributes = {:title => "gem-test", :summary => "created from test suite <&>", :access => "protected",
-                      :location => "Gilowice", :keywords => "test"}
+          :location => "Gilowice", :keywords => "test"}
         album = Picasa::API::Album.new(:user_id => "w.wnetrzak@gmail.com", :authorization_header => AuthHeader).create(attributes)
 
         assert_equal "gem-test", album.title

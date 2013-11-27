@@ -46,7 +46,13 @@ module Picasa
 
       # @return [String]
       def summary
-        @summary ||= safe_retrieve(parsed_body, "summary") || safe_retrieve(parsed_body, "subtitle")
+        @summary ||= safe_retrieve(parsed_body, "summary")
+      end
+
+      # Picasa API is not consistent - in show API this field contains summary
+      # @return [String]
+      def subtitle
+        @subtitle ||= safe_retrieve(parsed_body, "subtitle")
       end
 
       # @return [String]
