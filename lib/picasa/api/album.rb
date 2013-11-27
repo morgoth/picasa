@@ -74,9 +74,9 @@ module Picasa
       # @return [Presenter::Album]
       def update(album_id, params = {})
         if params.has_key?(:timestamp)
-            params[:timestamp] = params[:timestamp] * 1000
+          params[:timestamp] = params[:timestamp] * 1000
         end
-        headers = auth_header.merge({"If-Match" => params.fetch(:etag,"*")})
+        headers = auth_header.merge({"If-Match" => params.fetch(:etag, "*")})
 
         template = Template.new(:new_album, params)
         path = "/data/entry/api/user/#{user_id}/albumid/#{album_id}"

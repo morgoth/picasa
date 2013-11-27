@@ -11,7 +11,6 @@ require "picasa"
 
 AuthHeader = ENV["PICASA_AUTH_HEADER"] || "GoogleLogin auth=token"
 Password   = ENV["PICASA_PASSWORD"]    || "secret"
-UserId     = ENV["PICASA_AUTH_USER"]   || "user@gmail.com"
 
 MultiJson.adapter = ENV["JSON_PARSER"] || "oj"
 
