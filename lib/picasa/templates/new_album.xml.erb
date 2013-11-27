@@ -1,5 +1,7 @@
 <entry xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:gphoto="http://schemas.google.com/photos/2007">
+  <% if title %>
   <title type="text"><%= h title %></title>
+  <% end %>
   <% if summary %>
   <summary type="text"><%= h summary %></summary>
   <% end %>

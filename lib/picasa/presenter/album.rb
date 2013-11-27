@@ -46,7 +46,7 @@ module Picasa
 
       # @return [String]
       def summary
-        @summary ||= safe_retrieve(parsed_body, "summary")
+        @summary ||= safe_retrieve(parsed_body, "summary") || safe_retrieve(parsed_body, "subtitle")
       end
 
       # @return [String]

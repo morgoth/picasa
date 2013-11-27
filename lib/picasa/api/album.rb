@@ -59,6 +59,32 @@ module Picasa
         Presenter::Album.new(response.parsed_response["entry"])
       end
 
+      # Update properties of given album
+      #
+      # @param [String] album_id
+      # @param [Hash] options parameters to update
+      # @option options [String] :title title of album
+      # @option options [String] :summary summary of album
+      # @option options [String] :location location of album photos (i.e. Poland)
+      # @option options [String] :access ["public", "private", "protected"]
+      # @option options [String] :timestamp timestamp of album
+      # @option options [String] :keywords keywords (i.e. "vacation, poland")
+      # @option options [String] :etag updates only when ETag matches - protects before overwriting other client changes
+      #
+      # @return [Presenter::Album]
+      def update(album_id, params = {})
+        if params.has_key?(:timestamp)
+            params[:timestamp] = params[:timestamp] * 1000
+        end
+        headers = auth_header.merge({"If-Match" => params.fetch(:etag,"*")})
+
+        template = Template.new(:new_album, params)
+        path = "/data/entry/api/user/#{user_id}/albumid/#{album_id}"
+        response = Connection.new.patch(path: path, body: template.render, headers: headers)
+
+        Presenter::Album.new(response.parsed_response["entry"])
+      end
+
       # Destroys given album
       #
       # @param [String] album_id album id

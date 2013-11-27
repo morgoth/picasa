@@ -21,6 +21,12 @@ module Picasa
       exec_request(params) { |uri, options| HTTP.post(uri, options) }
     end
 
+    def patch(params = {})
+      params[:headers] ||= {}
+      params[:headers]["Content-Type"] ||= "application/xml"
+      exec_request(params) { |uri, options| HTTP.patch(uri,options) }
+    end
+
     # @param [Hash] params request arguments
     # @option params [String] :host host of request
     # @option params [String] :path request path
