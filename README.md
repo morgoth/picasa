@@ -96,6 +96,7 @@ Picasa uses gzipped requests to speedup fetching results. Benchmarks are availab
 * [Vinicius Teles](https://github.com/viniciusteles)
 * [Ionut-Cristian Florescu](https://github.com/icflorescu)
 * [Sébastien Grosjean](https://github.com/ZenCocoon)
+* [Grant Gardner](https://github.com/lwoggardner)
 
 ## Copyright
 
