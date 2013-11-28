@@ -74,7 +74,7 @@ module Picasa
       # @return [Presenter::Album]
       def update(album_id, params = {})
         if params.has_key?(:timestamp)
-          params[:timestamp] = params[:timestamp] * 1000
+          params[:timestamp] = params[:timestamp].to_i * 1000
         end
         headers = auth_header.merge({"If-Match" => params.fetch(:etag, "*")})
 
