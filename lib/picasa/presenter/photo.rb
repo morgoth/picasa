@@ -80,7 +80,7 @@ module Picasa
 
       # @return [String]
       def timestamp
-        @timestamp ||= safe_retrieve(parsed_body, "gphoto$timestamp")
+        @timestamp ||= (safe_retrieve(parsed_body, "gphoto$timestamp").to_i / 1000).to_s
       end
 
       # @return [Integer]

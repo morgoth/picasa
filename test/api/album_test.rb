@@ -229,7 +229,7 @@ describe Picasa::API::Album do
       end
 
       it "has timestamp" do
-        assert_equal "1219929243000", @photo.timestamp
+        assert_equal "1219929243", @photo.timestamp
       end
 
       it "has image version" do
