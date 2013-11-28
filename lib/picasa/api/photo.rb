@@ -28,6 +28,32 @@ module Picasa
         Presenter::Photo.new(response.parsed_response["entry"])
       end
 
+      # Updates metadata for photo
+      #
+      # @param [String] album_id album id
+      # @param [String] photo_id photo id
+      # @param [Hash] options request parameters
+      # @option options [String] :to_album_id move this photo to a different album
+      # @option options [String] :title title of photo (must not be empty)
+      # @option options [String] :summary summary of photo
+      # @option options [String] :timestamp timestamp of photo
+      # @option options [String] :keywords
+      #
+      # @return [Presenter::Photo] the updated photo
+      def update(album_id,photo_id, params = {})
+        template = Template.new(:update_photo, params)
+        headers = auth_header.merge({"Content-Type" => "application/xml",
+                                     "If-Match" => params.fetch(:etag, "*")})
+
+        if params.has_key?(:timestamp)
+           params[:timestamp] = params[:timestamp].to_i * 1000
+        end
+        path = "/data/entry/api/user/#{user_id}/albumid/#{album_id}/photoid/#{photo_id}"
+        response = Connection.new.patch(path: path, body: template.render, headers: headers)
+
+        Presenter::Photo.new(response.parsed_response["entry"])
+      end
+
       # Destroys given photo
       #
       # @param [String] album_id album id

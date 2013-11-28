@@ -1,0 +1,34 @@
+<entry
+    xmlns="http://www.w3.org/2005/Atom"
+    xmlns:exif='http://schemas.google.com/photos/exif/2007'
+    xmlns:georss='http://www.georss.org/georss'
+    xmlns:gml='http://www.opengis.net/gml'
+    xmlns:gphoto='http://schemas.google.com/photos/2007'
+    xmlns:media='http://search.yahoo.com/mrss/'
+    >
+   <% if to_album_id %>
+    <gphoto:albumid><%= h to_album_id %></gphoto:albumid>
+   <% end %>
+   <% if title %>
+    <title><%= h title %></title>
+   <% end %>
+   <% if summary %>
+       <summary><%= h summary %></summary>
+   <% end %>
+   <% if timestamp %>
+       <gphoto:timestamp><%= h timestamp %></gphoto:timestamp>
+   <% end %>
+   <% if keywords %>
+    <media:group>
+        <media:keywords><%= h keywords %></media:keywords>
+    </media:group>
+   <% end %>
+   <% if pos %>
+    <georss:where>
+        <gml:Point>
+            <gml:pos><%= h pos %></gml:pos>
+        </gml:Point>
+    </georss:where>
+   <% end %>
+    <category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#photo"/>
+</entry>
