@@ -30,8 +30,6 @@ describe Picasa::API::Photo do
       end
     end
 
-    it "updates image binary"
-
     it "moves photos between albums" do
       VCR.use_cassette("photo-move") do
         album_api = Picasa::API::Album.new(:user_id => "lwoggardner", :authorization_header => AuthHeader)
