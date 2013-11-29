@@ -38,6 +38,7 @@ module Picasa
       # @option options [String] :summary summary of photo
       # @option options [String] :timestamp timestamp of photo
       # @option options [String] :keywords
+      # @option options [String] :etag updates only when ETag matches - protects before destroying other client changes
       #
       # @return [Presenter::Photo] the updated photo
       def update(album_id,photo_id, params = {})
