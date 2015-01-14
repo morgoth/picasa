@@ -42,8 +42,7 @@ module Picasa
       # @return [DateTime]
       def time
         @time ||= begin
-          value = safe_retrieve(parsed_body, "exif$time")
-          if value
+          if value = safe_retrieve(parsed_body, "exif$time")
             DateTime.strptime((value.to_f / 1000).round.to_s, '%s')
           end
         end
@@ -53,7 +52,6 @@ module Picasa
       def image_unique_id
         @image_unique_id ||= safe_retrieve(parsed_body, "exif$imageUniqueID")
       end
-
     end
   end
 end

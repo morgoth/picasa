@@ -36,12 +36,12 @@ module Picasa
 
       # @return [Float]
       def latitude
-        @latitude ||= map_to_float(location.split(" ")[0])
+        @latitude ||= map_to_float(location && location.split(" ")[0])
       end
 
       # @return [Float]
       def longitude
-        @longitude ||= map_to_float(location.split(" ")[1])
+        @longitude ||= map_to_float(location && location.split(" ")[1])
       end
 
       # @return [DateTime]
