@@ -6,7 +6,7 @@ gem "multi_json"
 
 group :extra do
   gem "thor"
-  gem "debugger"
+  gem "byebug"
 end
 
 # JSON parsers
