@@ -12,4 +12,3 @@ end
 # JSON parsers
 gem "oj"
 gem "yajl-ruby"
-gem "json_pure"

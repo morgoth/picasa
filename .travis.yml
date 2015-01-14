@@ -1,12 +1,13 @@
 language: ruby
+sudo: false
+cache: bundler
 bundler_args: --without extra
 notifications:
   disabled: true
 rvm:
-  - 1.9.3
-  - 2.0.0
+  - 2.0
+  - 2.1
 
 env:
   - JSON_PARSER=oj
   - JSON_PARSER=yajl
-  - JSON_PARSER=json_pure
