@@ -59,6 +59,17 @@ describe Picasa::Utils do
     end
   end
 
+  describe "#map_to_float" do
+    it "does not convert nil value" do
+      assert_nil Picasa::Utils.map_to_float(nil)
+    end
+
+    it "converts given value to float" do
+      assert_in_delta 101.123, Picasa::Utils.map_to_float("101.123")
+    end
+  end
+
+
   describe "#map_to_date" do
     it "does not convert nil value" do
       assert_nil Picasa::Utils.map_to_date(nil)

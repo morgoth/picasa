@@ -37,6 +37,10 @@ module Picasa
       value && value.to_i
     end
 
+    def map_to_float(value)
+      value && value.to_f
+    end
+
     def map_to_date(value)
       value && DateTime.parse(value)
     end
@@ -56,6 +60,6 @@ module Picasa
       end.join("&")
     end
 
-    module_function :safe_retrieve, :retrieve, :array_wrap, :map_to_integer, :map_to_boolean, :map_to_date, :inline_query
+    module_function :safe_retrieve, :retrieve, :array_wrap, :map_to_integer, :map_to_boolean, :map_to_date, :inline_query, :map_to_float
   end
 end
