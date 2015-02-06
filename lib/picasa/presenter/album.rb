@@ -19,6 +19,11 @@ module Picasa
         @links ||= array_wrap(safe_retrieve(parsed_body, "link")).map { |link| Link.new(link) }
       end
 
+      # @return [Integer]
+      def total_results
+        @total_results ||= map_to_integer(safe_retrieve(parsed_body, "openSearch$totalResults"))
+      end
+
       # @return [Presenter::Media]
       def media
         @media ||= Media.new(safe_retrieve(parsed_body, "media$group"))
