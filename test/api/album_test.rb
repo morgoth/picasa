@@ -58,6 +58,11 @@ describe Picasa::API::Album do
       assert_equal "Wojciech Wnętrzak", @album_list.nickname
     end
 
+    it "has cover_photo" do
+      expected = "https://lh6.googleusercontent.com/-ZqXRf3HicvI/SLakNnjixrE/AAAAAAAAAkc/3EAZ0eF3-CQ/Test.jpg"
+      assert_equal expected, @album_list.albums[0].media.cover_photo_url
+    end
+
     it "has thumbnail" do
       expected = "https://lh3.googleusercontent.com/-6ezHc54U8x0/AAAAAAAAAAI/AAAAAAAAAAA/PBuxm7Ehn6E/s64-c/106136347770555028022.jpg"
       assert_equal expected, @album_list.thumbnail

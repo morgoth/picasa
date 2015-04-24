@@ -9,6 +9,11 @@ module Picasa
       end
 
       # @return [String]
+      def cover_photo_url
+        @cover_photo_url ||= parsed_body['media$content'][0]['url']
+      end
+
+      # @return [String]
       def credit
         @credit ||= parsed_body["media$credit"][0]["$t"]
       end
