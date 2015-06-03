@@ -28,17 +28,23 @@ client.photo.create("album_id", file_path: "path/to/my-photo.png")
 
 When request is authenticated, response will contain private data, however this can be controlled by `access` parameter.
 
-You can authenticate by specifing password:
+You can authenticate by specifing access_token:
 
 ```ruby
-client = Picasa::Client.new(user_id: "some.user@gmail.com", password: "secret")
+client = Picasa::Client.new(user_id: "some.user@gmail.com", access_token: "access-token")
 ```
 
-Or by setting custom authorization header, i.e. taken from [OAuth](https://developers.google.com/accounts/docs/OAuth2) authentication (your secret access token after "Bearer" or "OAuth" words):
+As authenticating by providing password is no longer possible due to google API shutdown https://developers.google.com/accounts/docs/AuthForInstalledApps
+you need to set `access_token` for authenticated requests.
 
-```ruby
-client = Picasa::Client.new(user_id: "some.user@gmail.com", authorization_header: "Bearer <access-token>")
-```
+For one time usage, you can retrieve access_token from google playground:
+* Visit https://developers.google.com/oauthplayground
+* Find "Picasa Web v2"
+* Click "Authorize APIs" providing your credentials
+* Click "Exchange authorization code for tokens"
+* Copy `access_token` value
+
+OAuth2 integration is not yet supported in this gem.
 
 ### Proxy
 
@@ -61,15 +67,13 @@ thor update imagery
 And then use it (it will create album taking title from folder name and upload all photos from that directory):
 
 ```
-GOOGLE_USER_ID=your.email@gmail.com GOOGLE_PASSWORD=secret thor imagery:upload path-to-folder-with-photos
-# Without specifing password
-GOOGLE_USER_ID=your.email@gmail.com GOOGLE_AUTHORIZATION_HEADER="GoogleLogin auth=token" thor imagery:upload path-to-folder-with-photos
+GOOGLE_USER_ID=your.email@gmail.com GOOGLE_ACCESS_TOKEN=access-token thor imagery:upload path-to-folder-with-photos
 ```
 
 If your upload was somehow interrupted, you can resume it by adding `--continue` option:
 
 ```
-GOOGLE_USER_ID=your.email@gmail.com GOOGLE_PASSWORD=secret thor imagery:upload --continue path-to-folder-with-photos
+GOOGLE_USER_ID=your.email@gmail.com GOOGLE_ACCESS_TOKEN=access-token thor imagery:upload --continue path-to-folder-with-photos
 ```
 
 If you run out of quota and want to resize images to fit Picasa free storage limits, you can install `rmagick` gem and run (this will modify files):

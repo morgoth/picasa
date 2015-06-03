@@ -78,15 +78,16 @@ class Imagery < Thor
 
   no_tasks do
     def client
-      @client ||= Picasa::Client.new(user_id: ENV["GOOGLE_USER_ID"],
-        authorization_header: ENV["GOOGLE_AUTHORIZATION_HEADER"],
-        password: ENV["GOOGLE_PASSWORD"])
+      @client ||= Picasa::Client.new(
+        user_id: ENV["GOOGLE_USER_ID"],
+        access_token: ENV["GOOGLE_ACCESS_TOKEN"]
+      )
     end
 
     def require_credentials
       say "You must specify GOOGLE_USER_ID env variable" and exit if ENV["GOOGLE_USER_ID"].nil?
-      if ENV["GOOGLE_AUTHORIZATION_HEADER"].nil? && ENV["GOOGLE_PASSWORD"].nil?
-        say "You must specify GOOGLE_PASSWORD or GOOGLE_AUTHORIZATION_HEADER env variable" and exit
+      if ENV["GOOGLE_ACCESS_TOKEN"].nil?
+        say "You must specify GOOGLE_ACCESS_TOKEN env variable" and exit
       end
     end
 

@@ -1,15 +1,21 @@
 module Picasa
   class Client
     attr_reader :user_id
-    attr_accessor :password, :authorization_header
+    attr_accessor :access_token, :authorization_header
 
     # @param [Hash] credentials
     # @option credentials [String] :user_id google username/email
-    # @option credentials [String] :password password for given username/email
     # @option credentials [String] :authorization_header custom authorization header (i.e. taken from OAuth2)
+    # @option credentials [String] :access_token picasa OAuth2 access token
     def initialize(credentials = {})
-      @user_id              = credentials[:user_id] || raise(ArgumentError, "You must specify user_id")
-      @password             = credentials[:password]
+      if credentials[:password]
+        raise(ArgumentError, "Providing password has no effect as google login by password API is not active anymore https://developers.google.com/accounts/docs/AuthForInstalledApps")
+      end
+      @user_id      = credentials[:user_id] || raise(ArgumentError, "You must specify user_id")
+      @access_token = credentials[:access_token]
+      if credentials[:authorization_header]
+        puts "Passing authorization_header is deprecated. Please pass access_token"
+      end
       @authorization_header = credentials[:authorization_header]
     end
 
@@ -21,7 +27,6 @@ module Picasa
     #   album_list.title
     #   # => "My album"
     def album
-      authenticate if authenticates?
       API::Album.new(credentials)
     end
 
@@ -33,7 +38,6 @@ module Picasa
     #   photo.id
     #   # => "4322232322421"
     def photo
-      authenticate if authenticates?
       API::Photo.new(credentials)
     end
 
@@ -45,7 +49,6 @@ module Picasa
     #   tag_list.title
     #   # => "holidays"
     def tag
-      authenticate if authenticates?
       API::Tag.new(credentials)
     end
 
@@ -57,45 +60,16 @@ module Picasa
     #   comment_list.entries.map &:content
     #   # => "nice photo!"
     def comment
-      authenticate if authenticates?
       API::Comment.new(credentials)
-    end
-
-    # @return [String]
-    def authenticate
-      response = Connection.new.post(
-        host:    HTTP::API_AUTH_URL,
-        headers: {"Content-Type" => "application/x-www-form-urlencoded"},
-        path:    "/accounts/ClientLogin",
-        body:    Utils.inline_query(
-          "accountType" => "HOSTED_OR_GOOGLE",
-          "Email"       => user_id,
-          "Passwd"      => password,
-          "service"     => "lh2",
-          "source"      => "ruby-gem-picasa-v#{VERSION}"
-        )
-      )
-
-      key = extract_auth_key(response.body)
-      @authorization_header = "GoogleLogin auth=#{key}"
     end
 
     private
 
-    def authenticates?
-      password && authorization_header.nil?
-    end
-
     def credentials
       {user_id: user_id}.tap do |credentials|
+        credentials[:access_token]         = access_token         if access_token
         credentials[:authorization_header] = authorization_header if authorization_header
       end
-    end
-
-    def extract_auth_key(data)
-      response = data.split("\n").map { |v| v.split("=") }
-      params = Hash[response]
-      params["Auth"]
     end
   end
 end

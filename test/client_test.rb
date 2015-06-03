@@ -7,43 +7,16 @@ describe Picasa::Client do
     end
   end
 
-  it "allows to assign custom authorization header" do
-    client = Picasa::Client.new(:user_id => "john.doe", :authorization_header => "OAuth token")
-    assert_equal "OAuth token", client.authorization_header
+  it "raises ArgumentError when providing password" do
+    assert_raises(Picasa::ArgumentError) do
+      client = Picasa::Client.new(:user_id => "john.doe", :password => "unknown")
+    end
   end
 
-  it "allows to set password on instance" do
-    client = Picasa::Client.new(:user_id => "john.doe", :password => "unknown")
-    client.password = "secret"
-
-    assert_equal "secret", client.password
-  end
-
-  it "allows to set authorization_header on instance" do
+  it "allows to set access_token on instance" do
     client = Picasa::Client.new(:user_id => "john.doe")
-    client.authorization_header = "Bearer some-token"
+    client.access_token = "some-access-token"
 
-    assert_equal "Bearer some-token", client.authorization_header
-  end
-
-  describe "#authenticate" do
-    it "successfully authenticates" do
-      VCR.use_cassette("auth-success") do
-        client = Picasa::Client.new(:user_id => "w.wnetrzak@gmail.com", :password => Password)
-        client.authenticate
-
-        refute_nil client.authorization_header
-      end
-    end
-
-    it "raises an ForbiddenError when authentication failed" do
-      VCR.use_cassette("auth-failed") do
-        client = Picasa::Client.new(:user_id => "w.wnetrzak@gmail.com", :password => "invalid")
-
-        assert_raises(Picasa::ForbiddenError) do
-          client.authenticate
-        end
-      end
-    end
+    assert_equal "some-access-token", client.access_token
   end
 end

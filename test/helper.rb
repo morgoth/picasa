@@ -9,8 +9,7 @@ require "mocha/setup"
 
 require "picasa"
 
-AuthHeader = ENV["PICASA_AUTH_HEADER"] || "GoogleLogin auth=token"
-Password   = ENV["PICASA_PASSWORD"]    || "secret"
+AuthHeader = ENV["PICASA_ACCESS_TOKEN"] || "GoogleLogin auth=token"
 
 MultiJson.adapter = ENV["JSON_PARSER"] || "oj"
 
@@ -19,7 +18,6 @@ VCR.configure do |c|
   c.hook_into :webmock
   c.default_cassette_options = {preserve_exact_body_bytes: true}
   c.filter_sensitive_data("<FILTERED>") { AuthHeader }
-  c.filter_sensitive_data("<FILTERED>") { Password }
 end
 
 class MiniTest::Test
