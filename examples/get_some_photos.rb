@@ -1,16 +1,11 @@
 require "picasa"
 
 # get some photos in an album
-begin
-  client = Picasa::Client.new(:user_id => "your_gmail_account", :password => "password")
+client = Picasa::Client.new(user_id: "your-gmail-account@gmail.com", access_token: "oauth-access-token")
 
-  albums = client.album.list.entries
-  album = albums.find { |album| album.title == "New Album" }
+albums = client.album.list.entries
+album = albums.find { |album| album.title == "New Album" }
 
-  photos = client.album.show(album.id).entries
+photos = client.album.show(album.id).entries
 
-  photos.each { |photo| puts photo.title }
-
-rescue Picasa::ForbiddenError
-  puts "You have the wrong user_id or password."
-end
+photos.each { |photo| puts photo.title }
