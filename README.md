@@ -8,7 +8,7 @@ Ruby library for [Picasa Web Albums Data API](https://developers.google.com/pica
 gem install picasa
 ```
 
-## Usage
+# Usage
 
 [Documentation](http://rubydoc.info/github/morgoth/picasa)
 
@@ -24,7 +24,7 @@ client.photo.create("album_id", file_path: "path/to/my-photo.png")
 # => Picasa::Presenter::Photo
 ```
 
-### Authentication
+## Authentication
 
 When request is authenticated, response will contain private data, however this can be controlled by `access` parameter.
 
@@ -37,7 +37,7 @@ client = Picasa::Client.new(user_id: "some.user@gmail.com", access_token: "acces
 As authenticating by providing password is no longer possible due to google API shutdown https://developers.google.com/accounts/docs/AuthForInstalledApps
 you need to set `access_token` for authenticated requests.
 
-## One time usage
+### One time usage
 
 For one time usage, you can retrieve access_token from google playground:
 * Visit https://developers.google.com/oauthplayground
@@ -48,7 +48,7 @@ For one time usage, you can retrieve access_token from google playground:
 
 OAuth2 integration is not yet supported in this gem.
 
-## Permanent server side usage
+### Permanent server side usage
 
 * Go to https://console.developers.google.com
 * Register an account and create project
@@ -89,9 +89,9 @@ signet.refresh!
 
 # Use access token with picasa gem
 signet.access_token
-```ruby
+```
 
-### Proxy
+## Proxy
 
 You can connect via proxy server setting `https_proxy` or `HTTPS_PROXY` environment variable to valid URL.
 
@@ -127,7 +127,7 @@ If you run out of quota and want to resize images to fit Picasa free storage lim
 thor imagery:resize path-to-folder-with-photos
 ```
 
-### Boost
+## Boost
 
 Picasa uses gzipped requests to speedup fetching results. Benchmarks are available on [Vinicius Teles gist](https://gist.github.com/4012466)
 
