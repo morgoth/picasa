@@ -37,6 +37,8 @@ client = Picasa::Client.new(user_id: "some.user@gmail.com", access_token: "acces
 As authenticating by providing password is no longer possible due to google API shutdown https://developers.google.com/accounts/docs/AuthForInstalledApps
 you need to set `access_token` for authenticated requests.
 
+## One time usage
+
 For one time usage, you can retrieve access_token from google playground:
 * Visit https://developers.google.com/oauthplayground
 * Find "Picasa Web v2"
@@ -45,6 +47,49 @@ For one time usage, you can retrieve access_token from google playground:
 * Copy `access_token` value
 
 OAuth2 integration is not yet supported in this gem.
+
+## Permanent server side usage
+
+* Go to https://console.developers.google.com
+* Register an account and create project
+* On "APIs & auth > Credentials" click "Create new Client ID"
+* Choose "Installed application > Other"
+* Note "Client ID" and "Client secret"
+* Craft URL replacing `YOUR_CLIENT_ID` `https://accounts.google.com/o/oauth2/auth?scope=http://picasaweb.google.com/data/&redirect_uri=urn:ietf:wg:oauth:2.0:oob&response_type=code&client_id=YOUR_CLIENT_ID`
+* Visit URL, grant access to your account and note `code`
+* Install gem `signet`
+* One time setup, to fetch `refresh_token`
+```ruby
+client_id = "client-id"
+client_secret = "client-secret"
+code = "authorization-code"
+
+require "signet/oauth_2/client"
+signet = Signet::OAuth2::Client.new(
+  code: code,
+  token_credential_uri: "https://www.googleapis.com/oauth2/v3/token",
+  client_id: client_id,
+  client_secret: client_secret,
+  redirect_uri: "urn:ietf:wg:oauth:2.0:oob"
+)
+signet.fetch_access_token!
+signet.refresh_token
+```
+* Note `refresh_token`
+* Before gem usage, you can get `access_token` by:
+```ruby
+require "signet/oauth_2/client"
+signet = Signet::OAuth2::Client.new(
+  client_id: client_id,
+  client_secret: client_secret,
+  token_credential_uri: "https://www.googleapis.com/oauth2/v3/token",
+  refresh_token: refresh_token
+)
+signet.refresh!
+
+# Use access token with picasa gem
+signet.access_token
+```ruby
 
 ### Proxy
 
