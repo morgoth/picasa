@@ -28,6 +28,4 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "webmock"
   spec.add_development_dependency "mocha", ">= 0.13.0"
   spec.add_development_dependency "vcr", ">= 2.4.0"
-
-  spec.post_install_message = "Authenticating by providing password is no longer possible due to google API shutdown https://developers.google.com/accounts/docs/AuthForInstalledApps You need to set `access_token` for authenticated requests now."
 end
