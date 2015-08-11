@@ -10,12 +10,16 @@ module Picasa
 
       # @return [String]
       def cover_photo_url
-        @cover_photo_url ||= parsed_body['media$content'][0]['url']
+        return @cover_photo_url if defined?(@cover_photo_url)
+        content = safe_retrieve(parsed_body, "media$content")
+        @cover_photo_url = content && content[0]["url"]
       end
 
       # @return [String]
       def credit
-        @credit ||= parsed_body["media$credit"][0]["$t"]
+        return @credit if defined?(@credit)
+        content = safe_retrieve(parsed_body, "media$credit")
+        @credit = content && content[0]["$t"]
       end
 
       # @return [String]
