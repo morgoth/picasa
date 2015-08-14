@@ -1,10 +1,15 @@
 --<%= boundary %>
 Content-type: application/atom+xml
 
-<entry xmlns="http://www.w3.org/2005/Atom">
+<entry xmlns="http://www.w3.org/2005/Atom" xmlns:media='http://search.yahoo.com/mrss/'>
   <title><%= h title %></title>
   <% if summary %>
   <summary><%= h summary %></summary>
+  <% end %>
+  <% if keywords %>
+  <media:group>
+    <media:keywords><%= h keywords %></media:keywords>
+  </media:group>
   <% end %>
   <category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#photo"/>
 </entry>

@@ -12,6 +12,7 @@ module Picasa
       # @option options [String] :summary summary of photo
       # @option options [String] :binary binary data (i.e. File.open("my-photo.png", "rb").read)
       # @option options [String] :content_type ["image/jpeg", "image/png", "image/bmp", "image/gif"] content type of given image
+      # @option options [String] :keywords keywords associated with the photo (comma delimited)
       def create(album_id, params = {})
         file = params[:file_path] ? File.new(params.delete(:file_path)) : File::Null.new
         params[:boundary]     ||= "===============PicasaRubyGem=="
