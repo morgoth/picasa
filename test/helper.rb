@@ -9,7 +9,8 @@ require "mocha/setup"
 
 require "picasa"
 
-AuthHeader = ENV["PICASA_ACCESS_TOKEN"] || "GoogleLogin auth=token"
+AuthHeader = ENV["PICASA_AUTH_HEADER"] || "GoogleLogin auth=token"
+AccessToken = ENV["PICASA_ACCESS_TOKEN"] || "access-token"
 
 MultiJson.adapter = ENV["JSON_PARSER"] || "oj"
 

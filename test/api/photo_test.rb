@@ -7,7 +7,7 @@ describe Picasa::API::Photo do
       VCR.use_cassette("photo-create") do
         attributes = {:file_path => fixture_path("lena.jpg"), :title => "Lena", :keywords => "one, two, three"}
 
-        photo = Picasa::API::Photo.new(:user_id => "w.wnetrzak@gmail.com", :authorization_header => AuthHeader).create("5793892606777564353", attributes)
+        photo = Picasa::API::Photo.new(:user_id => "w.wnetrzak@gmail.com", :access_token => AccessToken).create("5793892606777564353", attributes)
 
         assert_equal "Lena", photo.title
         assert_equal "one, two, three", photo.media.keywords
