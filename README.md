@@ -2,6 +2,8 @@
 
 Ruby library for [Picasa Web Albums Data API](https://developers.google.com/picasa-web/)
 
+Note: Picasa service will retire: [Moving on from Picasa](http://googlephotos.blogspot.com/2016/02/moving-on-from-picasa.html)
+
 ## Installation
 
 ```
